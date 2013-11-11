@@ -1,0 +1,11 @@
+EXPORTS
+	??1CPowerSaveDisplayMode@@UAE@XZ @ 1 NONAME ; CPowerSaveDisplayMode::~CPowerSaveDisplayMode(void)
+	?Exit@CPowerSaveDisplayMode@@QAEHXZ @ 2 NONAME ; int CPowerSaveDisplayMode::Exit(void)
+	?MaxLines@CPowerSaveDisplayMode@@QAEIXZ @ 3 NONAME ; unsigned int CPowerSaveDisplayMode::MaxLines(void)
+	?NewL@CPowerSaveDisplayMode@@SAPAV1@H@Z @ 4 NONAME ; class CPowerSaveDisplayMode * CPowerSaveDisplayMode::NewL(int)
+	?Set@CPowerSaveDisplayMode@@QAEHIIH@Z @ 5 NONAME ; int CPowerSaveDisplayMode::Set(unsigned int, unsigned int, int)
+	?Status@CPowerSaveDisplayMode@@QAEHXZ @ 6 NONAME ; int CPowerSaveDisplayMode::Status(void)
+	?Set@CPowerSaveDisplayMode@@QAEHIIPAGH@Z @ 7 NONAME ; int CPowerSaveDisplayMode::Set(unsigned int, unsigned int, unsigned short *, int)
+	?SetPowerSaveLevel@CPowerSaveDisplayMode@@QAEHW4TPowerSaveLevel@1@@Z @ 8 NONAME ; int CPowerSaveDisplayMode::SetPowerSaveLevel(enum CPowerSaveDisplayMode::TPowerSaveLevel)
+	?GetPowerSaveLevel@CPowerSaveDisplayMode@@QAE?AW4TPowerSaveLevel@1@XZ @ 9 NONAME ; enum CPowerSaveDisplayMode::TPowerSaveLevel CPowerSaveDisplayMode::GetPowerSaveLevel(void)
+

@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CDistanceAttenuationCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CDistanceAttenuationCI * CDistanceAttenuationCI::NewL(class CMMFDevSound &)
+	?NewL@CDistanceAttenuationCI@@SAPAV1@XZ @ 2 NONAME ; class CDistanceAttenuationCI * CDistanceAttenuationCI::NewL(void)
+

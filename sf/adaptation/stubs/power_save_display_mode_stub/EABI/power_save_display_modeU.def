@@ -1,0 +1,15 @@
+EXPORTS
+	_ZN21CPowerSaveDisplayMode3SetEjji @ 1 NONAME
+	_ZN21CPowerSaveDisplayMode4ExitEv @ 2 NONAME
+	_ZN21CPowerSaveDisplayMode4NewLEi @ 3 NONAME
+	_ZN21CPowerSaveDisplayMode6StatusEv @ 4 NONAME
+	_ZN21CPowerSaveDisplayMode8MaxLinesEv @ 5 NONAME
+	_ZN21CPowerSaveDisplayModeD0Ev @ 6 NONAME
+	_ZN21CPowerSaveDisplayModeD1Ev @ 7 NONAME
+	_ZN21CPowerSaveDisplayModeD2Ev @ 8 NONAME
+	_ZTI21CPowerSaveDisplayMode @ 9 NONAME ; #<TI>#
+	_ZTV21CPowerSaveDisplayMode @ 10 NONAME ; #<VT>#
+	_ZN21CPowerSaveDisplayMode17GetPowerSaveLevelEv @ 11 NONAME
+	_ZN21CPowerSaveDisplayMode17SetPowerSaveLevelENS_15TPowerSaveLevelE @ 12 NONAME
+	_ZN21CPowerSaveDisplayMode3SetEjjPti @ 13 NONAME
+

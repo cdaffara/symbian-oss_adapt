@@ -1,0 +1,15 @@
+EXPORTS
+	??1CEAacPlusDecoderIntfcCI@@UAE@XZ @ 1 NONAME ; CEAacPlusDecoderIntfcCI::~CEAacPlusDecoderIntfcCI(void)
+	?ApplyConfig@CEAacPlusDecoderIntfcCI@@UAEHXZ @ 2 NONAME ; int CEAacPlusDecoderIntfcCI::ApplyConfig(void)
+	?GetAudioObjectType@CEAacPlusDecoderIntfcCI@@UAEHAAW4TAudioObjectType@CEAacPlusDecoderIntfc@@@Z @ 3 NONAME ; int CEAacPlusDecoderIntfcCI::GetAudioObjectType(enum CEAacPlusDecoderIntfc::TAudioObjectType &)
+	?GetDownSampledMode@CEAacPlusDecoderIntfcCI@@UAEHAAH@Z @ 4 NONAME ; int CEAacPlusDecoderIntfcCI::GetDownSampledMode(int &)
+	?GetInputSamplingFrequency@CEAacPlusDecoderIntfcCI@@UAEHAAI@Z @ 5 NONAME ; int CEAacPlusDecoderIntfcCI::GetInputSamplingFrequency(unsigned int &)
+	?GetNumOfChannels@CEAacPlusDecoderIntfcCI@@UAEHAAI@Z @ 6 NONAME ; int CEAacPlusDecoderIntfcCI::GetNumOfChannels(unsigned int &)
+	?GetSbr@CEAacPlusDecoderIntfcCI@@UAEHAAH@Z @ 7 NONAME ; int CEAacPlusDecoderIntfcCI::GetSbr(int &)
+	?NewL@CEAacPlusDecoderIntfcCI@@SAPAV1@XZ @ 8 NONAME ; class CEAacPlusDecoderIntfcCI * CEAacPlusDecoderIntfcCI::NewL(void)
+	?SetAudioObjectType@CEAacPlusDecoderIntfcCI@@UAEXW4TAudioObjectType@CEAacPlusDecoderIntfc@@@Z @ 9 NONAME ; void CEAacPlusDecoderIntfcCI::SetAudioObjectType(enum CEAacPlusDecoderIntfc::TAudioObjectType)
+	?SetDownSampledMode@CEAacPlusDecoderIntfcCI@@UAEXH@Z @ 10 NONAME ; void CEAacPlusDecoderIntfcCI::SetDownSampledMode(int)
+	?SetInputSamplingFrequency@CEAacPlusDecoderIntfcCI@@UAEXI@Z @ 11 NONAME ; void CEAacPlusDecoderIntfcCI::SetInputSamplingFrequency(unsigned int)
+	?SetNumOfChannels@CEAacPlusDecoderIntfcCI@@UAEXI@Z @ 12 NONAME ; void CEAacPlusDecoderIntfcCI::SetNumOfChannels(unsigned int)
+	?SetSbr@CEAacPlusDecoderIntfcCI@@UAEXH@Z @ 13 NONAME ; void CEAacPlusDecoderIntfcCI::SetSbr(int)
+

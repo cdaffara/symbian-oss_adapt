@@ -1,0 +1,30 @@
+/*
+* Copyright (c) 2002-2004 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*
+*/
+
+
+#ifndef ASYREFERENCE_IBY
+#define ASYREFERENCE_IBY
+
+#ifdef __ACCESSORY_FW
+
+ECOM_PLUGIN(ASYReferencePlugin.dll, ASYReferencePlugin.rsc)
+
+#endif // __ACCESSORY_FW
+#endif // ASYREFERENCE_IBY
+
+// End of File
+

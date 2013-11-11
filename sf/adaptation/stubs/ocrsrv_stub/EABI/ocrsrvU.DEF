@@ -1,0 +1,18 @@
+EXPORTS
+	_ZN16OCREngineFactory16CreateOCREngineLER18MOCREngineObserver13TOcrEngineEnvNS_11TEngineTypeE @ 1 NONAME
+	_ZN16OCREngineFactory16ReleaseOCREngineEP19MOCREngineInterface @ 2 NONAME
+	_ZTI10COCREngine @ 3 NONAME ; #<TI>#
+	_ZTI10CShareData @ 4 NONAME ; #<TI>#
+	_ZTI14CEngineAdaptor @ 5 NONAME ; #<TI>#
+	_ZTI14COCREngineList @ 6 NONAME ; #<TI>#
+	_ZTI18COCREngineImplBase @ 7 NONAME ; #<TI>#
+	_ZTI24COCREngineRecognizeBlock @ 8 NONAME ; #<TI>#
+	_ZTI25COCREngineLayoutRecognize @ 9 NONAME ; #<TI>#
+	_ZTV10COCREngine @ 10 NONAME ; #<VT>#
+	_ZTV10CShareData @ 11 NONAME ; #<VT>#
+	_ZTV14CEngineAdaptor @ 12 NONAME ; #<VT>#
+	_ZTV14COCREngineList @ 13 NONAME ; #<VT>#
+	_ZTV18COCREngineImplBase @ 14 NONAME ; #<VT>#
+	_ZTV24COCREngineRecognizeBlock @ 15 NONAME ; #<VT>#
+	_ZTV25COCREngineLayoutRecognize @ 16 NONAME ; #<VT>#
+

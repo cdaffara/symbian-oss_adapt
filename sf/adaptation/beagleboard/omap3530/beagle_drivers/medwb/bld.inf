@@ -1,0 +1,17 @@
+// ===========================
+//
+//  Copyright Cypress Semiconductor Corporation, 2006-2009,
+//  All Rights Reserved
+//  UNPUBLISHED, LICENSED SOFTWARE.
+//
+//  CONFIDENTIAL AND PROPRIETARY INFORMATION
+//  WHICH IS THE PROPERTY OF CYPRESS.
+//
+// ===========================
+
+
+PRJ_PLATFORMS
+ARMV5
+
+PRJ_MMPFILES
+medwb

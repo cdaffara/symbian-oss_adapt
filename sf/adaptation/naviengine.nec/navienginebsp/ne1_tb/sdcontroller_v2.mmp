@@ -1,0 +1,84 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*
+*/
+
+
+
+#define BLD_MMC_SD
+
+// Enable DMA support in build time
+macro DMA_SUPPORTED
+
+SMPSAFE
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+targettype			kext
+romtarget			epbusv.dll
+
+USERINCLUDE ../../../../os/kernelhwsrv/kernel/eka/drivers/pbus/mmc/sdcard/sdcard3c
+
+USERINCLUDE ../../../../os/kernelhwsrv/kernel/eka/drivers/pbus/mmc/sdcard/sdcard3c/sdio
+
+USERINCLUDE inc
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+SYMBIAN_BASE_SYSTEMINCLUDE(ne1_tb)
+SYMBIAN_NE1_TB_SYSTEMINCLUDE(specific)
+
+
+USERINCLUDE ../naviengine_assp/mmc/inc
+USERINCLUDE ../naviengine_assp/mmc/angelus25
+USERINCLUDE ../naviengine_assp/mmc/sdcard3c
+userinclude				../naviengine_assp/mmc/angelus25
+
+sourcepath				../naviengine_assp/mmc/sdcard3c
+source					mmcstack.cpp
+source					mmcdma.cpp
+source					sdhw.cpp
+source					mmcpsu.cpp
+source					sd_init.cpp
+
+sourcepath				../naviengine_assp/mmc/angelus25
+source					angelus25.cpp
+
+
+library					VariantTarget(kanaviengine,lib)
+library					VariantTarget(ecust,lib)
+
+library					dma2.lib
+library					resman.lib
+
+macro					MMC_SD
+// SMP Driver Testing
+macro 					CPU_AFFINITY_ANY
+
+library					epbussd.lib
+
+epocallowdlldata
+
+capability				all
+
+target VariantTarget(epbussdiov_v2,dll)
+
+VENDORID 0x70000001
+
+SMPSAFE
+
+MACRO DMA_APIV2

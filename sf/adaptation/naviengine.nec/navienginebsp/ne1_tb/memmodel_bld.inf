@@ -1,0 +1,136 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+*
+*/
+
+
+
+PRJ_MMPFILES
+../../../../os/kernelhwsrv/kernel/eka/kernel/ekern
+../../../../os/kernelhwsrv/kernel/eka/kernel/kc_exe
+../../../../os/kernelhwsrv/kernel/eka/kernel/exmoncommon
+
+PRJ_EXTENSIONS
+
+start   extension       base/ne1_tb_genbootinc ne1_tb_genbootinc
+
+#ifdef SYMBIAN_OLD_EXPORT_LOCATION
+option INC_PATH   $(EPOCROOT)epoc32/include
+#else
+option INC_PATH   $(EPOCROOT)epoc32/include/platform
+#endif
+
+#ifdef SINGLE
+option  MEMMODEL        direct
+#elif defined(FLEXIBLE)
+option  MEMMODEL        flexible
+#else
+option  MEMMODEL        multiple
+#endif
+
+end
+
+				
+PRJ_EXTENSIONS
+
+#if 0 // #ifdef SBSV2 // If using SBSv2 with bootstrap FLM, MEMMODEL MUST begin with a capital letter
+
+start   extension       base.bootstrap bootstrap
+
+#ifdef SMP
+option  SMP             1
+#endif
+
+#ifdef SINGLE
+option  NAME            _sne1_tb_bootrom
+option  MEMMODEL        Direct
+#elif defined(FLEXIBLE)
+option  NAME            _fne1_tb_bootrom
+option  MEMMODEL        Flexible
+#else
+option  NAME            _ne1_tb_bootrom
+option  MEMMODEL        Multiple
+#endif
+
+option  CPU             arm
+option  SOURCES         ./bootstrap/ne1_tb.s
+
+#ifdef SMP
+option  EXTRA_EPOC32_INC_PATH  $(EPOCROOT)epoc32/include/platform/nkernsmp/arm $(EPOCROOT)epoc32/include/platform/assp/naviengine/$(MEMMODEL)
+option  GENINCLUDES_HEADERS    ../../../../os/kernelhwsrv/kernel/eka/include/nkernsmp/arm/arm_gic.h ../../../../kernelhwsrv/kernel/eka/include/kernel/arm/arm_types.h
+#else
+option  EXTRA_EPOC32_INC_PATH  $(EPOCROOT)epoc32/include/platform/assp/naviengine/$(MEMMODEL)
+option  GENINCLUDES_HEADERS     ../../../../os/kernelhwsrv/kernel/eka/include/kernel/arm/arm_types.h
+#endif
+
+option  EXTRA_SRC_PATH  ./bootstrap
+#ifdef	SINGLE
+option  INCLUDES        ./single/config.inc
+#else
+option  INCLUDES        ./config.inc
+#endif
+option  E32PATH         ../../../../os/kernelhwsrv/kernel/eka/../.
+
+end
+
+#else // !SBSV2
+
+start   extension       base/bootstrap bootstrap
+
+#ifdef SYMBIAN_OLD_EXPORT_LOCATION
+option INC_PATH   $(EPOCROOT)epoc32/include
+#else
+option INC_PATH   $(EPOCROOT)epoc32/include/platform
+#endif
+
+#ifdef SMP
+option  SMP             1
+#endif
+
+
+#ifdef SINGLE
+option  NAME            _sne1_tb_bootrom
+option  MEMMODEL        direct
+#elif defined(FLEXIBLE)
+option  NAME            _fne1_tb_bootrom
+option  MEMMODEL        flexible
+#else
+option  NAME            _ne1_tb_bootrom
+option  MEMMODEL        multiple
+#endif
+
+option  CPU             arm
+option  SOURCES         ne1_tb.s
+
+#ifdef SMP
+option  EXTRA_INC_PATH  $(INC_PATH)/nkernsmp/arm $(INC_PATH)/assp/naviengine/$(MEMMODEL)
+option  GENINCLUDES     arm_gic.inc arm_types.inc
+#else
+option  EXTRA_INC_PATH  $(INC_PATH)/assp/naviengine/$(MEMMODEL)
+option  GENINCLUDES     arm_types.inc
+#endif
+
+option  EXTRA_SRC_PATH  $(EXTENSION_ROOT)/bootstrap
+#ifdef	SINGLE
+option  INCLUDES        $(EXTENSION_ROOT)/single/config.inc
+#else
+option  INCLUDES        $(EXTENSION_ROOT)/config.inc
+#endif
+option  E32PATH         $(EXTENSION_ROOT)/../../../../os/kernelhwsrv/kernel/eka/../.
+
+end
+
+
+#endif // !SBSV2

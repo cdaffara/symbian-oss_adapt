@@ -1,0 +1,45 @@
+// ===========================
+//
+//  Copyright Cypress Semiconductor Corporation, 2006-2009,
+//  All Rights Reserved
+//  UNPUBLISHED, LICENSED SOFTWARE.
+//
+//  CONFIDENTIAL AND PROPRIETARY INFORMATION
+//  WHICH IS THE PROPERTY OF CYPRESS.
+//
+// ===========================
+
+
+#include			"beagle/variant.mmh"
+#include			"kernel/kern_ext.mmh"
+#include 			"drivers/elocd.mmh"
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+USERINCLUDE		../../../../../os/kernelhwsrv/kernel/eka/include/drivers
+
+target			VariantTarget(medwb,pdd)
+targettype		pdd
+
+//Define this macro to create an MBR when formatting low-capacity MMC cards :
+//macro			SYMBIAN_CREATE_MBR_ON_LOW_CAPACITY_MMC
+
+source			medwb.cpp
+
+library			elocd.lib
+//library			VariantTarget(wb,lib)
+library			wb.lib
+
+linkas			medwb.pdd
+
+start wins
+win32_headers
+end
+
+epocallowdlldata
+
+UID			0x100039d0 0x100000d9
+VENDORID 	0x70000001
+
+capability		all
+
+SMPSAFE

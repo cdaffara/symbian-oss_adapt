@@ -1,0 +1,63 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+*
+*/
+
+
+/**
+@file
+
+@SYMPurpose proxy device-driver for naviEngine CSI testing
+*/
+
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+macro STANDALONE_CHANNEL
+
+#include <variant_test.mmh>
+#include "kernel/kern_ext.mmh"
+#include "../csi_config.mmh"
+
+target         VariantTarget(d_csi_ctrless,ldd)
+romtarget      d_csi_ctrless.ldd
+
+targettype     ldd
+sourcepath     ./csi
+source         d_csi.cpp
+
+
+userinclude		../../naviengine_assp/csi
+userinclude		../inc
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+
+#ifdef __USE_MASTER_MODE__
+macro MASTER_MODE
+#endif
+
+#ifdef __USE_SLAVE_MODE__
+macro SLAVE_MODE
+#endif
+
+library    VariantTarget(csi_ctrless,lib)
+library    VariantTarget(gpio,lib)
+
+uid		0x100000af
+vendorid 0x70000001
+
+capability		all
+epocallowdlldata
+
+SMPSAFE

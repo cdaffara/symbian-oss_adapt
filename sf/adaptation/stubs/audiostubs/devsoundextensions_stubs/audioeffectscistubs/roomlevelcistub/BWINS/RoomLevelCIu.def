@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CRoomLevelCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CRoomLevelCI * CRoomLevelCI::NewL(class CMMFDevSound &)
+	?NewL@CRoomLevelCI@@SAPAV1@XZ @ 2 NONAME ; class CRoomLevelCI * CRoomLevelCI::NewL(void)
+

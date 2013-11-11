@@ -1,0 +1,84 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// NaviEngine script to stop all CPU cores.
+//
+// Change History:
+//
+// 08/05/2009 1.0 : Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+
+// Why is this required?
+// Because it doesn't work if we use cpu type as &CpuType!
+// Someone should work out why....
+sys.cpu ARM11MPCORE
+
+; CPU 3
+print "Stopping core 3..."
+system.multicore irpre 0.
+system.multicore drpre 0.
+system.multicore irpost 15.
+system.multicore drpost 3.
+
+sys.mode.attach
+
+if run()
+	break;
+
+sys.down
+
+; CPU 2
+print "Stopping core 2..."
+system.multicore irpre 5.
+system.multicore drpre 1.
+system.multicore irpost 10.
+system.multicore drpost 2.
+
+sys.mode.attach
+
+if run()
+	break;
+
+sys.down
+
+; CPU 1
+print "Stopping core 1..."
+system.multicore irpre 10.
+system.multicore drpre 2.
+system.multicore irpost 5.
+system.multicore drpost 1.
+
+sys.mode.attach
+
+if run()
+	break;
+
+sys.down
+
+; CPU 0
+print "Stopping core 0..."
+system.multicore irpre 15.
+system.multicore drpre 3.
+system.multicore irpost 0.
+system.multicore drpost 0.
+
+sys.mode.attach
+
+if run()
+	break;
+

@@ -1,0 +1,118 @@
+
+screen.always
+SYStem.CPU OMAP3530
+SYStem.JtagClock 10.0MHz
+
+Break.Delete
+MAP.RESet
+TASK.RESet
+sYmbol.RESet
+Data.PROLOG.RESet
+Data.EPILOG.RESet
+sYmbol.AutoLoad.CHECK OFF      ; disable dynamic autoloader
+sYmbol.AutoLoad.RESet          ; reset autoloader list
+
+TrOnchip.Set FIQ OFF           ; FIQ be handled by Symbian OS
+TrOnchip.Set IRQ OFF           ; IRQ be handled by Symbian OS
+TrOnchip.Set DABORT ON
+TrOnchip.Set PABORT ON
+TrOnchip.Set SWI OFF           ; SWI be handled by Symbian OS
+TrOnchip.Set UNDEF ON
+TrOnchip.Set RESET ON
+
+MAP.RESet
+TASK.RESet
+sYmbol.RESet
+Data.PROLOG.RESet
+Data.EPILOG.RESet
+sYmbol.AutoLoad.CHECK OFF      ; disable dynamic autoloader
+sYmbol.AutoLoad.RESet          ; reset autoloader list
+
+SYStem.Mode Attach
+
+Break
+
+&drive="P:"
+
+d.load.b "&drive\sf\os\kernelhwsrv\kernel\eka\rombuild\BEAGLEARMV5D.IMG" 0x81000000
+
+; Before mmu enabled
+d.load.elf "&drive\epoc32\release\armv5\_beagle_bootrom.sym" /nocode /rvct /reloc ER_RO at 0x81000000
+; After MMU enabled
+;d.load.elf "&drive\epoc32\release\armv5\_beagle_bootrom.sym" /nocode /rvct /reloc ER_RO at 0x80000000
+
+&_SYMBOL_FILE="&drive\sf\os\kernelhwsrv\kernel\eka\rombuild\ROMBUILD.LOG"
+&basepath="&drive\"
+if "&_SYMBOL_FILE"!=""
+	(
+	; Search paths for symbol files:
+	symbol.SourcePATH.setrecursedir &drive\sf\os\boardsupport\omap3530
+	symbol.SourcePATH.setrecursedir &drive\sf\os\kernelhwsrv\kernel\eka\e32
+	symbol.SourcePATH.setrecursedir &drive\sf\os\kernelhwsrv\kerneltest\e32test
+	symbol.SourcePATH.setrecursedir &drive\sf\os\kernelhwsrv\kerneltest\e32utils
+
+	print "Selected symbol file: &_SYMBOL_FILE"
+	symbol.AutoLoad.LOADEPOC &_SYMBOL_FILE "do "+os.ppd()+"/autoload "
+	; define dynamic autoloader
+	symbol.AutoLoad.CHECKEPOC "do "+os.ppd()+"/autoload "
+
+	; switch off automatic process detection (slows down debugger execution)
+	symbol.AutoLoad.CHECK OFF
+
+	; Load symbols for following:
+	symbol.AutoLoad.TOUCH "*kaomap3530.dll"
+	symbol.AutoLoad.TOUCH "*ekern.exe"
+	symbol.AutoLoad.TOUCH "*btracex.ldd"
+	symbol.AutoLoad.TOUCH "*ecust.dll"
+	symbol.AutoLoad.TOUCH "*exmoncommon.dll"
+	symbol.AutoLoad.TOUCH "*exmondebug.dll"
+	symbol.AutoLoad.TOUCH "*power.dll"
+	symbol.AutoLoad.TOUCH "*dma.dll"
+	symbol.AutoLoad.TOUCH "*lcd.dll"
+	symbol.AutoLoad.TOUCH "*ekeyb.dll"
+	symbol.AutoLoad.TOUCH "*ekdata.dll"
+	symbol.AutoLoad.TOUCH "*exyin.dll"
+	symbol.AutoLoad.TOUCH "*euart.pdd"
+	symbol.AutoLoad.TOUCH "*esdrv.pdd"
+	symbol.AutoLoad.TOUCH "*soundsc.pdd"
+;	symbol.AutoLoad.TOUCH "*elocd.ldd"
+	symbol.AutoLoad.TOUCH "*medint.pdd"
+;	symbol.AutoLoad.TOUCH "*ecomm.ldd"
+;	symbol.AutoLoad.TOUCH "*esound.ldd"
+;	symbol.AutoLoad.TOUCH "*pipelib.ldd"
+;	symbol.AutoLoad.TOUCH "*esoundsc.ldd"
+;	symbol.AutoLoad.TOUCH "*exstart.dll"
+;	symbol.AutoLoad.TOUCH "*usbc.ldd"
+	symbol.AutoLoad.TOUCH "*exyin.dll"
+	symbol.AutoLoad.TOUCH "*i2c.dll"
+	symbol.AutoLoad.TOUCH "*usbcc.dll"
+	symbol.AutoLoad.TOUCH "*prcm.dll"
+	symbol.AutoLoad.TOUCH "*gpio.dll"
+	symbol.AutoLoad.TOUCH "*led.dll"
+
+;	symbol.CLEANUP
+	)
+else
+	(
+	print "No symbol file selected, symbols not loaded"
+	)
+
+
+
+R.S PC 0x81000000
+
+b.s Fault /p /onchip
+b.s NKCrashHandler /p /onchip
+; b.s I2c::Open /p /onchip
+; b.s \\t_i2c\t_i2c\InitExtension /p /onchip
+; b.s I2c::TheDfc /p /onchip
+; b.s I2c::TI2c::Isr /p /onchip
+; b.s \\t_prcm\t_prcm\InitExtension /p /onchip
+; b.s Prcm::Init3 /p /onchip
+; b.s DLcdPowerHandler::PowerUpLcd /p /onchip
+; b.s \\_BEAGLE_LED\led\InitExtension /p /onchip
+
+m.h
+d.l
+
+enddo

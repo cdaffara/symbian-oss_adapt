@@ -1,0 +1,147 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// beagle\beagle_variant\rom\base_beagle.iby
+// I M P O R T A N T                                  *
+// Mirror all changes to this file in beagle_variant\rom\kernel.iby and     *
+// check that "rom -v=beagle -i=armv5" still builds                 *
+//
+
+#ifndef __BASE_BEAGLE_IBY__
+#define __BASE_BEAGLE_IBY__
+
+#ifdef _FULL_DEBUG
+#ifndef _DEBUG
+#define _DEBUG // _FULL_DEBUG implies _DEBUG
+#endif
+define BUILD_DIR udeb
+#else
+define BUILD_DIR urel
+#endif
+
+#ifndef _EABI
+#  ifdef _ARM4
+#    define _EABI ARM4
+	 ECHO Defaulting to ARM4
+#  elif defined(_ARMV5)
+#    define _EABI ARMV5
+	 ECHO Defaulting to ARMV5
+#  elif defined _X86GCC
+#    define _EABI x86gcc
+#  endif
+#endif
+
+#  ifdef _PLAT
+#    undef _EABI
+#    define _EABI _PLAT
+	 ECHO Defaulting to _EABI
+#  endif
+
+#  ifdef _GCCE
+#    undef _EABI
+#    define _EABI GCCE
+#  elif defined(ABIV2) || defined(ABIv2)
+#    undef _EABI
+#    define _EABI ARMV5_ABIV2
+#  endif
+
+#ifndef _KABI
+#define _KABI _EABI
+#endif
+
+define ABI_DIR    EPOCROOT##epoc32\release\##_EABI
+define KERNEL_DIR   EPOCROOT##epoc32\release\##_KABI
+
+#define HEAPMAX(x)
+#define FIXED
+
+kerneltrace 0x80000000
+debugport 2
+
+multikernel
+nowrapper
+
+bootbinary=\epoc32\release\ARMV5\_beagle_bootrom.bin
+
+memmodel multiple 0x100000
+
+romsize=0x20000000
+romlinearbase=0x80000000
+romalign=0x10
+kerneldataaddress=0xC8000000
+kernelheapmin=0x08000
+kernelheapmax=0x00FFC000
+dataaddress=0x400000
+defaultstackreserve=0x200000
+romchecksum=0x12345678
+
+primary[VARID]	=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_ekern.exe			\sys\bin\ekern.exe
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_kaomap3530.dll		\sys\bin\kaomap3530.dll
+
+#include <..\omapshared\mstick.iby>
+
+// Removing BTRACEX
+//extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_BTRACEX.LDD			\sys\bin\btracex.ldd
+
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_prcm.dll				\sys\bin\prcm.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_uart.dll			\sys\bin\uart.dll
+variant[VARID]	=\epoc32\release\ARMV5\BUILD_DIR\_beagle_ecust.dll			\sys\bin\ecust.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_exmoncommon.dll				\sys\bin\exmoncommon.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_exmondebug.dll   				\sys\bin\exmondebug.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_gpio.dll					\sys\bin\gpio.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\resman.ldd							\sys\bin\resman.ldd
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_PLATFORM_NAME_medstaticrd.pdd		\sys\bin\medstaticrd.pdd
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_i2c.dll			\sys\bin\i2c.dll
+
+#include <../omapshared/tps65950.iby>
+
+#ifdef SYMBIAN_BASE_USE_GCE
+// Use the new GCE compliant display driver  
+	extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_lcd_gce.dll	\sys\bin\lcd.dll
+	device[VARID]=\epoc32\release\ARMV5\BUILD_DIR\display.ldd			\sys\bin\display0.ldd
+	extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_serialkeyboard_uisoftkeys.dll	\sys\bin\ekeyb.dll
+#else
+#ifdef TSHELL_SERIAL
+//Use VT100 Over Serial
+#define EDISP_DRV	\EDISP_VT100.DLL
+#else
+	extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_lcd.dll				\sys\bin\lcd.dll
+#ifdef TSHELL_SERIALMOUSE
+	extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_serialmouse.DLL	\sys\bin\eserialmouse.dll
+#else
+	extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_serialkeyboard.DLL	\sys\bin\ekeyb.dll
+#endif
+#endif
+#endif //SYMBIAN_BASE_USE_GCE
+
+device[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_EUART.PDD				\sys\bin\euart.pdd
+device[VARID]=\epoc32\release\ARMV5\BUILD_DIR\ECOMM.LDD						\sys\bin\ecomm.ldd
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\elocd.ldd								\sys\bin\elocd.ldd
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_medint.pdd					\sys\bin\medint.pdd
+
+//Commented out
+//device[VARID]	=\epoc32\release\ARMV5\BUILD_DIR\pipelib.ldd							\sys\bin\pipelib.ldd // Removed for clash in 3.0.0
+//device[VARID]	=\epoc32\release\ARMV5\BUILD_DIR\minkda.ldd							\sys\bin\minkda.ldd
+
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\exstart.dll							\sys\bin\exstart.dll
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_led.dll						\sys\bin\led.dll
+
+#ifdef INCLUDE_USB
+extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_omap3530_usbcc.dll					\sys\bin\usbcc.dll
+device[VARID]=	\epoc32\release\ARMV5\BUILD_DIR\usbc.ldd							\sys\bin\eusbc.ldd
+extension[VARID]=	\epoc32\release\ARMV5\BUILD_DIR\_beagle_usbv.dll					\sys\bin\usbv.DLL
+#endif
+
+//extension[VARID]=\epoc32\release\ARMV5\BUILD_DIR\_beagle_ekeyb.dll	\sys\bin\ekeyb.dll
+
+#endif

@@ -1,0 +1,39 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Project definition file for project Tilt Compensation
+*                algorithm.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          		tiltcompensation.dll
+TARGETTYPE      		dll
+UID             		0x1000008d 0x2000B5F7
+
+CAPABILITY      		CAP_GENERAL_DLL
+VENDORID        		VID_DEFAULT
+
+SOURCEPATH      		../src
+SOURCE                  tiltcompensation.cpp
+
+OS_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE     		.
+USERINCLUDE     		../inc
+
+LIBRARY         		euser.lib
+
+// End of File

@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN13CAudioInputCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZN13CAudioInputCI4NewLEv @ 2 NONAME
+	_ZTI13CAudioInputCI @ 3 NONAME ; #<TI>#
+	_ZTV13CAudioInputCI @ 4 NONAME ; #<VT>#
+

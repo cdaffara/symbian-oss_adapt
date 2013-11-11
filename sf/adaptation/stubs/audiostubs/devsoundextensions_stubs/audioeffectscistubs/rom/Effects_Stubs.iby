@@ -1,0 +1,35 @@
+/*
+* Copyright (c) 2005-2006 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Support for Effects CI Stubs
+*
+*/
+
+#ifndef __EFFECTS_STUBS_IBY__
+#define __EFFECTS_STUBS_IBY__
+
+file=ABI_DIR\BUILD_DIR\AudioEqualizerCI_Stub.dll		SHARED_LIB_DIR\AudioEqualizerCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\EnvironmentalReverbCI_Stub.dll		SHARED_LIB_DIR\EnvironmentalReverbCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\StereoWideningCI_Stub.dll		SHARED_LIB_DIR\StereoWideningCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\BassBoostCI_Stub.dll			SHARED_LIB_DIR\BassBoostCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\ListenerDopplerCI_Stub.dll		SHARED_LIB_DIR\ListenerDopplerCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\SourceDopplerCI_Stub.dll			SHARED_LIB_DIR\SourceDopplerCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\ListenerLocationCI_Stub.dll		SHARED_LIB_DIR\ListenerLocationCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\ListenerOrientationCI_Stub.dll		SHARED_LIB_DIR\ListenerOrientationCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\SourceLocationCI_Stub.dll		SHARED_LIB_DIR\SourceLocationCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\SourceOrientationCI_Stub.dll		SHARED_LIB_DIR\SourceOrientationCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\DistanceAttenuationCI_Stub.dll		SHARED_LIB_DIR\DistanceAttenuationCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\LoudnessCI_Stub.dll			SHARED_LIB_DIR\LoudnessCI_Stub.dll
+file=ABI_DIR\BUILD_DIR\RoomLevelCI_Stub.dll					SHARED_LIB_DIR\RoomLevelCI_Stub.dll
+
+#endif

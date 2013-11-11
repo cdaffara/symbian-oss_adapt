@@ -1,0 +1,32 @@
+/*
+* Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  
+*
+*/
+
+
+
+#include "../audioequalizercistub/Group/bld.inf"
+#include "../bassboostcistub/Group/bld.inf"
+#include "../distanceattenuationcistub/Group/bld.inf"
+#include "../environmentalreverbcistub/Group/bld.inf"
+#include "../listenerdopplercistub/Group/bld.inf"
+#include "../listenerlocationcistub/Group/bld.inf"
+#include "../listenerorientationcistub/Group/bld.inf"
+#include "../loudnesscistub/Group/bld.inf"
+#include "../roomlevelcistub/Group/bld.inf"
+#include "../sourcedopplercistub/Group/bld.inf"
+#include "../sourcelocationcistub/Group/bld.inf"
+#include "../sourceorientationcistub/Group/bld.inf"
+#include "../stereowideningcistub/Group/bld.inf"

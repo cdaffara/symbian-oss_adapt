@@ -1,0 +1,50 @@
+/*
+* Copyright (c) 2005-2006 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Project file for POS Message plugin reference implementation
+*
+*/
+
+#include <platform_paths.hrh>
+
+TARGET          eposomasuplposrefapp.dll
+TARGETTYPE      PLUGIN
+UID             0x10009d8d 0x1027509D
+
+CAPABILITY      CAP_ECOM_PLUGIN
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      ../src
+SOURCE          epos_comasuplposhandler.cpp
+SOURCE          epos_comasuplpossession.cpp
+SOURCE          epos_comasuplposhandlerproxy.cpp
+SOURCE          epos_comasuplposhandlermain.cpp
+SOURCE          epos_tomasuplposutility.cpp
+
+MW_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE     ../inc
+
+//SYSTEMINCLUDE   /epoc32/include 
+//SYSTEMINCLUDE   /epoc32/include/ecom
+
+LIBRARY         euser.lib 
+LIBRARY         ecom.lib
+LIBRARY         eposomasuplposmessageplugin.lib
+
+
+START RESOURCE  ../data/1027509D.rss
+    #ifdef SYMBIAN_SECURE_ECOM 
+        TARGET eposomasuplposrefapp.rsc
+    #endif	
+END

@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CTvOutConfig@@SAPAV1@XZ @ 1 NONAME ; class CTvOutConfig * CTvOutConfig::NewL(void)
+

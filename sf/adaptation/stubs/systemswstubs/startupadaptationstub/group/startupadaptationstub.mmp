@@ -1,0 +1,55 @@
+/*
+* Copyright (c) 2004-2009 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Project definition file for project StartupAdaptationStub
+*
+*/
+
+
+// To get the OS_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+TARGET          startupadaptationstub.dll
+CAPABILITY      CAP_ECOM_PLUGIN
+TARGETTYPE      PLUGIN
+UID             0x10009D8D 0x10205053
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      ../src
+SOURCE          StartupAdaptationStub.cpp
+SOURCE          StartupAdaptationStubModel.cpp
+SOURCE          CommandProcessingEngine.cpp
+SOURCE          ImplementationFactory.cpp
+SOURCE          sastubeventlistener.cpp
+
+USERINCLUDE     ../inc
+
+OS_LAYER_SYSTEMINCLUDE
+
+START RESOURCE  ../data/10205053.rss
+TARGET          startupadaptationstub.rsc
+END
+
+LIBRARY         euser.lib
+LIBRARY         ecom.lib
+LIBRARY         efsrv.lib
+
+LANG            SC
+
+// >>> define to enable the tracing
+// MACRO           __TRACE_ALL__
+// <<< define to enable the tracing
+
+// >>> define to enable module test support
+// MACRO           __STARTER_MODULE_TEST_SUPPORT__
+// <<< define to enable module test support

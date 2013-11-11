@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="2.0.1">
+  <systemModel>
+    <layer name="adaptation" long-name="Adaptation">
+      <block name="aricent.codecs" long-name="Aricent Codecs">
+        <collection id="utilities" name="Aricent Utilities">
+          <component id="ariprocessengine" name="Aricent Process Engine">
+            <unit bldFile="/sf/adaptation/aricent.codecs/utilities/ariprocessengine/group" />
+          </component>
+          <component id="aristatemachine" name="Aricent State Machine">
+            <unit bldFile="/sf/adaptation/aricent.codecs/utilities/aristatemachine/group" />
+          </component>
+        </collection>
+        <collection id="aaclc_enc" level="plugin">
+          <component id="ariaaclcencmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/aaclc_enc/ariaaclcencmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="amrnb_dec" level="plugin">
+          <component id="ariamrnbdecmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/amrnb_dec/ariamrnbdecmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="amrnb_enc" level="plugin">
+          <component id="ariamrnbencmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/amrnb_enc/ariamrnbencmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="amrwb_dec" level="plugin">
+          <component id="ariamrwbdecmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/amrwb_dec/ariamrwbdecmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="h264_dec" level="plugin">
+          <component id="arih264dechwdevice">
+            <unit bldFile="/sf/adaptation/aricent.codecs/h264_dec/arih264dechwdevice/group" />
+          </component>
+        </collection>
+        <collection id="h264_enc" level="plugin">
+          <component id="arih264enchwdevice">
+            <unit bldFile="/sf/adaptation/aricent.codecs/h264_enc/arih264enchwdevice/group" />
+          </component>
+        </collection>
+        <collection id="heaac_dec" level="plugin">
+          <component id="ariheaacdecmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/heaac_dec/ariheaacdecmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="mp3_dec" level="plugin">
+          <component id="arimp3decmmfcodec">
+            <unit bldFile="/sf/adaptation/aricent.codecs/mp3_dec/arimp3decmmfcodec/group" />
+          </component>
+        </collection>
+        <collection id="mp4asp_dec" level="plugin">
+          <component id="arimpeg4aspdechwdevice">
+            <unit bldFile="/sf/adaptation/aricent.codecs/mp4asp_dec/arimpeg4aspdechwdevice/group" />
+          </component>
+        </collection>
+        <collection id="mp4sp_enc" level="plugin">
+          <component id="arimp4spenchwdevice">
+            <unit bldFile="/sf/adaptation/aricent.codecs/mp4sp_enc/arimp4spenchwdevice/group" />
+          </component>
+        </collection>
+      </block>
+    </layer>
+  </systemModel>
+</SystemDefinition>

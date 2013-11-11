@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CAudioEqualizerCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CAudioEqualizerCI * CAudioEqualizerCI::NewL(class CMMFDevSound &)
+	?NewL@CAudioEqualizerCI@@SAPAV1@XZ @ 2 NONAME ; class CAudioEqualizerCI * CAudioEqualizerCI::NewL(void)
+

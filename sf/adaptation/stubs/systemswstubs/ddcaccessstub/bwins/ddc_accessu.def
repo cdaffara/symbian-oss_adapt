@@ -1,0 +1,4 @@
+EXPORTS
+	?ApiVersion@CDdcPortAccess@@SAIXZ @ 1 NONAME ; unsigned int CDdcPortAccess::ApiVersion(void)
+	?NewL@CDdcPortAccess@@SAPAV1@XZ @ 2 NONAME ; class CDdcPortAccess * CDdcPortAccess::NewL(void)
+

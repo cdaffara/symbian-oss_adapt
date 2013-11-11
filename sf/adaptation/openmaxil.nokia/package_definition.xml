@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.1">
+  <package id="openmaxil.nokia" name="Openmaxil Adaptation" levels="adaptation hw-if device-fw devices middleware app-if">
+
+    <collection id="omxilcomp" name="OpenMAX IL Components" level="adaptation">
+         <component id="omxilgeneric" name="OpenMAX IL generic Components" introduced="^3" purpose="optional" class="plugin">
+        <unit version="1" bldFile="omxilcomp/omxilgeneric/group"/>
+      </component>
+
+          <component id="omxilaudioemulator" name="OpenMAX IL Emulator Components" introduced="^3" purpose="optional" class="plugin">
+        <unit version="1" bldFile="omxilcomp/omxilaudioemulator/group"/>
+      </component>
+
+          <component id="omxiltestcomp" name="OpenMAX IL Test Components" introduced="^3" purpose="development" class="plugin">
+        <unit version="1" bldFile="omxilcomp/omxiltestcomp/group"/>
+      </component>
+    </collection>
+
+  </package>
+</SystemDefinition>

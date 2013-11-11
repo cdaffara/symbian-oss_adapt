@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN20CSourceOrientationCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI20CSourceOrientationCI @ 2 NONAME ; #<TI>#
+	_ZTV20CSourceOrientationCI @ 3 NONAME ; #<VT>#
+	_ZN20CSourceOrientationCI4NewLEv @ 4 NONAME
+

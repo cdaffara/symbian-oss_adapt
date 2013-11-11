@@ -1,0 +1,106 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Used as an reference implementation
+*                Declaration of SSYReferencePlugin ECom resource
+*
+*/
+
+
+#include <sensrvresource.hrh>
+#include "ecom/registryinfov2.rh"
+
+//  RESOURCE DEFINITIONS 
+// -----------------------------------------------------------------------------
+// 
+// 10205089.rss
+// Declares info for SSYReference ECom plugin
+//
+// -----------------------------------------------------------------------------
+//
+
+RESOURCE REGISTRY_INFO SSYReferencePlugin
+    {
+    // UID for the DLL. See SSYReferencePlugin.mmp
+    resource_format_version = RESOURCE_FORMAT_VERSION_2;
+    dll_uid = 0x10205089;
+    interfaces = 
+        {
+        INTERFACE_INFO
+            {
+            // UID of interface that is implemented
+            interface_uid = KSsyControlInterfaceUid;
+            implementations = 
+                {
+                BINARY_IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = 0x10205088;
+                    version_no         = 1;
+                    display_name       = "SSYReferencePlugin";
+                    default_data       = {
+                                         // Double tap channel
+                                         0x1, // ChannelInfoVersion
+                                         0x2F, //  ChannelInfoLength
+                                         0x2E, // Flags
+                                         0x81, 0x50, 0x20, 0x10, // ChannelType
+                                         0x02, 0x00, 0x00, 0x00, // ContextType ESensrvContextTypeDevice
+                                         0x0B, 0x00, 0x00, 0x00, // Quantity ESensrvQuantityTapping
+                                         0x0C, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, 0x44, 0x62, 0x6C, 0x54, 0x61, 0x70, // Location: SsyRefDblTap
+                                         0x06, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, // VendorId: SsyRef
+                                         0x7F, 0x50, 0x20, 0x10, // ChannelDataTypeId
+                                         0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // ChannelSecurityPolicy
+                                         
+                                         // Accelerometer channel
+                                         0x1, // ChannelInfoVersion
+                                         0x2F, //  ChannelInfoLength
+                                         0x1E, // Flags
+                                         0x7E, 0x50, 0x20, 0x10, // ChannelType
+                                         0x02, 0x00, 0x00, 0x00, // ContextType ESensrvContextTypeDevice
+                                         0x0A, 0x00, 0x00, 0x00, // Quantity ESensrvQuantityAcceleration
+                                         0x0C, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, 0x58, 0x59, 0x5A, 0x43, 0x68, 0x6E, // Location SsyRefXYZChn
+                                         0x06, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, // VendorId: SsyRef
+                                         0x7E, 0x50, 0x20, 0x10, // ChannelDataTypeId
+                                         0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // ChannelSecurityPolicy
+                                         
+                                         // Magnetometer channel
+                                         0x1, // ChannelInfoVersion
+                                         0x2F, //  ChannelInfoLength
+                                         0x1E, // Flags
+                                         0xE0, 0xBE, 0x00, 0x20, // ChannelType
+                                         0x01, 0x00, 0x00, 0x00, // ContextType ESensrvContextAmbient
+                                         0x0E, 0x00, 0x00, 0x00, // Quantity ESensrvQuantityMagnetic
+                                         0x0C, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, 0x58, 0x59, 0x5A, 0x43, 0x68, 0x6E, // Location: SsyRefXYZChn
+                                         0x06, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, // VendorId: SsyRef
+                                         0xE0, 0xBE, 0x00, 0x20, // ChannelDataTypeId
+                                         0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // ChannelSecurityPolicy
+
+                                         // Proximity channel
+                                         0x1, // ChannelInfoVersion
+                                         0x2F, //  ChannelInfoLength
+                                         0x3E, // Flags
+                                         0x85, 0xE5, 0x00, 0x20, // ChannelType (0x2000E585)
+                                         0x02, 0x00, 0x00, 0x00, // ContextType ESensrvContextTypeDevice
+                                         0x10, 0x00, 0x00, 0x00, // Quantity ESensrvQuantityProximity
+                                         0x0C, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, 0x50, 0x72, 0x78, 0x43, 0x68, 0x6E, // Location: SsyRefPrxChn
+                                         0x06, 0x53, 0x73, 0x79, 0x52, 0x65, 0x66, // VendorId: SsyRef
+                                         0x85, 0xE5, 0x00, 0x20, // ChannelDataTypeId
+                                         0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF // ChannelSecurityPolicy                                                                             
+                                         };
+                    opaque_data        = {};
+                    }
+                };
+            }
+        };
+    }
+
+// End of File

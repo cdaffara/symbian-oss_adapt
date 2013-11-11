@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="tactileclickplugin_stub" name="Tactile Click Plugin Stub">
+    <collection id="tactileclickplugin_stub_info" name="Tactile Click Plugin Stub Info">
+      <meta rel="config">
+        <defined condition="RD_TACTILE_FEEDBACK"/>
+      </meta>
+      <component id="tactileclickplugin_stub_build" name="Tactile Click Plugin Stub Build" class="plugin" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

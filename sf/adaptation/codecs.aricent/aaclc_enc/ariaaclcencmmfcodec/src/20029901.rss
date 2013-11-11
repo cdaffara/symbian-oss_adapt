@@ -1,0 +1,51 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Resource file for AacLC Encoder Plugin.
+*
+*/
+
+#include "RegistryInfo.rh"
+#include "mmfPluginInterfaceUIDs.hrh"
+#include "ariaaclcencmmfcodec_uid.hrh"
+
+// Declares info for two implementations
+RESOURCE REGISTRY_INFO theInfo
+    {
+    // UID for the DLL
+    dll_uid = KUidAacLCEncMmfDllUid;
+    // Declare array of interface info
+    interfaces = 
+        {
+        INTERFACE_INFO
+            {
+            // UID of interface that is implemented
+            interface_uid = KMmfUidPluginInterfaceCodec;
+            implementations = 
+                {
+                // Info for CImplementation1
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = KUidAacLCEncMmfImplUid;
+                    version_no = 1;
+                    display_name = "Aac-LC Encoder plugin||copyright Aricent";
+                    //four CC codes
+                    default_data = " P16, AAC"; 
+                    opaque_data = "";
+                    }
+                };
+            }
+        };
+    }
+

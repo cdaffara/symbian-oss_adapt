@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="power_save_display_mode_stub" name="Power Save Display Mode Stub">
+    <collection id="power_save_display_mode_stub_info" name="Power Save Display Mode Stub Info">
+      <component id="power_save_display_mode_stub_build" name="Power Save Display Mode Stub Build" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

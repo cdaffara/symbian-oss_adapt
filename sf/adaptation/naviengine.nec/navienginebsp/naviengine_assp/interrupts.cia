@@ -1,0 +1,64 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* naviengine_assp\interrupts.cia
+*
+*/
+
+
+
+#include <naviengine_priv.h>
+
+#ifndef __SMP__
+__NAKED__ void NaviEngineInterrupt::IrqDispatch()
+	{
+	asm("stmfd sp!, {r4,r5,lr}");
+	asm("ldr r4, __KHwBaseIntIf");							// Base address of Interrupt interface
+	asm("ldr r12, __Handlers");								// Base address of interrupt handlers
+
+
+ 	asm("ldr r5, [r4, #%a0]" : : "i" ((TInt)KHoCIIIntAck));	// Acknowledge the interrupt
+
+	asm("ldr lr, __KHmIntMask");							// Interrupt mask in end-of-interrupt register
+    asm("and r5, r5, lr");									// r5 = interruptID
+
+    asm("cmp r5, lr");										// Spurious interrupt has ID 1023
+    asm("beq IRQ_End");				
+
+    // Call handler
+	asm("add r12, r12, r5, lsl #3");
+	asm("adr lr, IRQ_End");
+	asm("ldmia r12, {r0, pc}");       						// Call interrupt handler. This will alse clear interrupt cause.
+    
+	// End of Interrupt
+	asm("IRQ_End:");
+	asm("str r5, [r4, #%a0]" : : "i" ((TInt)KHoCIIEndOfInt));
+	asm("ldmfd sp!, {r4,r5,pc}");          						// No more pending, so finish
+
+	asm("__KHwBaseIntIf:");
+	asm(".word %a0" : : "i" ((TInt)KHwBaseIntIf));
+	asm("__Handlers: ");
+	asm(".word %a0" : : "i" ((TInt)&NaviEngineInterrupt::Handlers[0]));
+	asm("__KHmIntMask:");
+	asm(".word %a0" : : "i" ((TInt)1023));
+	}
+#endif
+
+//FIQ is not used, so this should never be called.
+__NAKED__ void NaviEngineInterrupt::FiqDispatch()
+	{
+	asm("mov r0, #0");
+	asm("sub r0, r0, #1"); 	//	r0 = -1
+	asm("str r0, [r0]"); 	//	Generate exception
+	}

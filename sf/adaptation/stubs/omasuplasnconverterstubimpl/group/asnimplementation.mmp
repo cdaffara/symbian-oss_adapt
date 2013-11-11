@@ -1,0 +1,53 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Project definition for plugin implementation
+*
+*/
+
+#include <platform_paths.hrh>
+
+TARGET		  AsnImplementation.dll
+TARGETTYPE	  PLUGIN
+UID			 0x10009d8d 0xE4D7B7C9
+
+CAPABILITY      CAP_ECOM_PLUGIN
+VENDORID        VID_DEFAULT
+
+START RESOURCE    ../data/E4D7B7C9.rss   
+		TARGET asnimplementation.rsc
+END
+
+USERINCLUDE	 ../inc
+
+MW_LAYER_SYSTEMINCLUDE
+
+SOURCEPATH	  ../src
+
+SOURCE		  asnimplementation.cpp
+SOURCE        asnimplementationdllmain.cpp asnimplementationbase.cpp 
+
+
+
+LIBRARY		 euser.lib 
+LIBRARY 	 ecom.lib
+LIBRARY 	 epos_csuplutils.lib
+LIBRARY 	 estlib.lib
+LIBRARY 	 eposomasuplposmessageplugin.lib
+LIBRARY 	 epos_comasuplasnplugin.lib
+
+#ifdef ENABLE_ABIV2_MODE
+DEBUGGABLE_UDEBONLY
+#endif
+
+SOURCE cstubsuplstart.cpp cstubsuplresponse.cpp cstubsuplposinit.cpp cstubsuplpos.cpp cstubsuplinit.cpp cstubsuplend.cpp cstubsuplauthresponse.cpp cstubsuplauthrequest.cpp

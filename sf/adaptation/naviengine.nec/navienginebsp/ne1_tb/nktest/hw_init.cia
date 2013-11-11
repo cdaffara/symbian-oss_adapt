@@ -1,0 +1,89 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb\nktest\hw_init.cia
+*
+*/
+
+
+
+#include <arm.h>
+#include <nkutils.h>
+#include <diag.h>
+
+#ifdef __SMP__
+#include <arm_gic.h>
+#endif
+
+
+/******************************************************************************
+ * Fast counter
+ ******************************************************************************/
+extern "C" __NAKED__ TUint64 fast_counter()
+	{
+	// Return a 64 bit high resolution timestamp count
+	// Timer 1 counts from 00000000 to FFFFFEFF and then wraps back to 0
+	// Timer 2 counts from 00000000 to FFFFFFFF and then wraps back to 0
+	// Both timers increment at 16.667MHz (60ns period)
+	// Algorithm:
+	//		volatile TUint32 t2 = Timer2Count;	// must read t2 first
+	//		volatile TUint32 t1 = Timer1Count;
+	//		TUint32 n = (t1-t2)>>8;		// number of times T1 has wrapped
+	//		return t1 + n * 0xFFFFFF00;
+
+	asm("ldr	r3, 1f ");				// r3 = address of T1 counter
+	asm("mrs	r12, cpsr ");
+	__ASM_CLI();						// interrupts off
+	asm("ldr	r1, [r3, #0x400] ");	// r1 = t2
+	asm("ldr	r0, [r3] ");			// r0 = t1
+	asm("msr	cpsr, r12 ");			// restore interrupts
+	asm("sub	r1, r0, r1 ");			// t1-t2
+	asm("mov	r1, r1, lsr #8 ");		// n = (t1-t2)>>8, now have r1:r0 = 2^32*n + t1
+	asm("subs	r0, r0, r1, lsl #8 ");	// subtract 256*n
+	asm("sbcs	r1, r1, #0 ");			// propagate borrow
+	__JUMP(,lr);
+
+	asm("1: ");
+	asm(".word 0x18036400 ");				// address of timer 1 counter
+	}
+
+extern "C" __NAKED__ TUint64 fast_counter_x(TUint32*)
+	{
+	// Return a 64 bit high resolution timestamp count
+	// Timer 1 counts from 00000000 to FFFFFEFF and then wraps back to 0
+	// Timer 2 counts from 00000000 to FFFFFFFF and then wraps back to 0
+	// Both timers increment at 16.667MHz (60ns period)
+	// Algorithm:
+	//		volatile TUint32 t1 = Timer1Count;
+	//		volatile TUint32 t2 = Timer2Count;
+	//		TUint32 n = (t1-t2)>>8;		// number of times T1 has wrapped
+	//		return t1 + n * 0xFFFFFF00;
+
+	asm("ldr	r3, 1f ");				// r3 = address of T1 counter
+	asm("mov	r2, r0 ");
+	asm("mrs	r12, cpsr ");
+	__ASM_CLI();						// interrupts off
+	asm("ldr	r1, [r3, #0x400] ");	// r1 = t2
+	asm("ldr	r0, [r3] ");			// r0 = t1
+	asm("msr	cpsr, r12 ");			// restore interrupts
+	asm("stmia	r2, {r0,r1} ");
+	asm("sub	r1, r0, r1 ");			// t1-t2
+	asm("mov	r1, r1, lsr #8 ");		// n = (t1-t2)>>8, now have r1:r0 = 2^32*n + t1
+	asm("subs	r0, r0, r1, lsl #8 ");	// subtract 256*n
+	asm("sbcs	r1, r1, #0 ");			// propagate borrow
+	__JUMP(,lr);
+
+	asm("1: ");
+	asm(".word 0x18036400 ");				// address of timer 1 counter
+	}

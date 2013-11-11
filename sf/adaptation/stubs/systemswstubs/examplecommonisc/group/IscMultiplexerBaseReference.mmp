@@ -1,0 +1,67 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  A reference implementation for ISC multiplexer base.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+#include "kernel/kern_ext.mmh"
+
+#if defined(WINSCW)
+TARGET          IscMultiplexerBase.ldd
+TARGETTYPE      ldd
+UID             0x100000AF 0x102020A3
+DEFFILE         IscMultiplexerBaseCW.def
+#else
+TARGET          IscMultiplexerBase.dll
+TARGETTYPE      kdll
+UID             0x10000079 0x102020A3
+DEFFILE         IscMultiplexerBase.def
+#endif
+
+VENDORID        VID_DEFAULT
+
+CAPABILITY      ALL
+
+SOURCEPATH      ../IscMultiplexerBase/src
+SOURCE          IscMultiplexerBase.cpp
+
+
+USERINCLUDE     ../IscMultiplexerBase/inc
+USERINCLUDE     ../IscDriver/inc
+
+OS_LAYER_KERNEL_SYSTEMINCLUDE
+
+LIBRARY         IscDriver.lib
+
+START WINS      
+win32_library   kernel32.lib
+#if defined(VC32)
+win32_library   libc.lib
+#endif
+
+END
+// Do not remove this flag unless you are sure what you are doing.
+macro TRACE_MODE_KERNEL
+
+// flag to enable trace of components API calls
+//MACRO   API_TRACE_FLAG
+
+// flag to enable normal trace inside component
+//MACRO   COMPONENT_TRACE_FLAG
+
+
+EPOCALLOWDLLDATA

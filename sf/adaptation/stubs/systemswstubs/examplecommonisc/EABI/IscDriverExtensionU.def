@@ -1,0 +1,5 @@
+EXPORTS
+	_Z19CreateLogicalDevicev @ 1 NONAME
+	_ZTI25DIscDriverExtensionDevice @ 2 NONAME ; #<TI>#
+	_ZTV25DIscDriverExtensionDevice @ 3 NONAME ; #<VT>#
+

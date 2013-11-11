@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN19CIlbcEncoderIntfcCI10GetVadModeERi @ 1 NONAME
+	_ZN19CIlbcEncoderIntfcCI10SetVadModeEi @ 2 NONAME
+	_ZN19CIlbcEncoderIntfcCI14SetEncoderModeEN17CIlbcEncoderIntfc11TEncodeModeE @ 3 NONAME
+	_ZN19CIlbcEncoderIntfcCI4NewLEv @ 4 NONAME
+	_ZN19CIlbcEncoderIntfcCID0Ev @ 5 NONAME
+	_ZN19CIlbcEncoderIntfcCID1Ev @ 6 NONAME
+	_ZN19CIlbcEncoderIntfcCID2Ev @ 7 NONAME
+	_ZTI19CIlbcEncoderIntfcCI @ 8 NONAME ; #<TI>#
+	_ZTV19CIlbcEncoderIntfcCI @ 9 NONAME ; #<VT>#
+

@@ -1,0 +1,32 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  IBY file
+*
+*/
+
+#ifndef WMDRMPD_DIST_IBY
+#define WMDRMPD_DIST_IBY
+
+#include <data_caging_paths_for_iby.hrh>
+
+#if (defined __WINDOWS_MEDIA_DRM)
+
+file=ABI_DIR\BUILD_DIR\cameseutility.dll        SHARED_LIB_DIR\cameseutility.dll
+ECOM_PLUGIN(wmdrmagent.dll,10205CB6.rsc)
+file=ABI_DIR\BUILD_DIR\wmdrmdla.dll             SHARED_LIB_DIR\wmdrmdla.dll
+file=ABI_DIR\BUILD_DIR\wmdrmpd.dll              SHARED_LIB_DIR\wmdrmpd.dll
+
+#endif // __WINDOWS_MEDIA_DRM
+
+#endif // WMDRMPD_DIST_IBY

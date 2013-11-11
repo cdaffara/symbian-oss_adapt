@@ -1,0 +1,83 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// A script to check what symbol files are available that match a particular
+// component, such as filename.dll.  This is used to determine whether to use
+// SBSv1 (filename.sym) or SBSv2 (filename.dll.sym) symbol files.
+//
+// Parameters:
+//
+// filename: The fully qualified name of the file for which to find the symbols.
+//           Due to a quirk in the operation of the autoload.cmm script that
+//           calls this (among others), this must be enclosed in " characters
+//
+// Change History:
+//
+// 12/08/2008 1.0 : Initial version
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.0
+
+entry &filename
+local &sbsv1symfilename &sbsv2symfilename
+
+; Have a look for SBSv1 symbol files (somefile.sym) and SBSv2 symbol files (somefile.dll.sym) and use
+; whichever are found.  To avoid confusion and using the wrong symbol files we won't allow the situation
+; where the user has been mixing SBSv1 and SBSv2 builds.  If both sets of symbols are found for a
+; particular component then we will stop processing
+&sbsv1symfilename=""
+&sbsv2symfilename=""
+
+; Any SBSv1 symbol file present (somefile.sym)?
+&basename=string.cut(&filename,-string.len(os.file.extension(&filename)))
+&symfilename="&basename"+".sym"
+&filepath=y.searchfile("&symfilename")
+if os.file("&filepath")
+	(
+	&sbsv1symfilename="&symfilename"
+	)
+
+; Any SBSv2 symbol file present (somefile.dll.sym)?
+&symfilename=string.cut(&filename,0)+".sym"
+&filepath=y.searchfile("&symfilename")
+if os.file("&filepath")
+	(
+	&sbsv2symfilename="&symfilename"
+	)
+
+; If both SBSv1 and SBSv2 symbol files are present then we could check to see which are the newest and use those,
+; but we'll refuse to continue as this is safer
+if ("&sbsv1symfilename"!="")&&("&sbsv2symfilename"!="")
+	(
+	print "*** Symbol loading aborted (Both SBSv1 and SBSv2 symbolics were detected - please do not mix these) ***"
+	print "*** Best solution is to clean your component, manually ensure all related symbol files are deleted  ***"
+	print "*** from the UDEB directory (ie. component_name*.sym) and rebuild your component.                   ***"
+
+	stop
+	)
+else if ("&sbsv1symfilename"!="")
+	(
+	&symfilename="&sbsv1symfilename"
+	)
+else
+	(
+	&symfilename="&sbsv2symfilename"
+	)
+
+&filepath=y.searchfile("&symfilename")
+
+enddo

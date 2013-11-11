@@ -1,0 +1,18 @@
+EXPORTS
+	_ZN13CStateMachine13IsInDeadStateEv @ 1 NONAME
+	_ZN13CStateMachine13IsInitializedEv @ 2 NONAME
+	_ZN13CStateMachine14IsInitializingEv @ 3 NONAME
+	_ZN13CStateMachine17IsInputEndPendingEv @ 4 NONAME
+	_ZN13CStateMachine17IsTransitionValidENS_8TCommandE @ 5 NONAME
+	_ZN13CStateMachine20IsInInitializedStateEv @ 6 NONAME
+	_ZN13CStateMachine21IfIsStateInInitailizeEv @ 7 NONAME
+	_ZN13CStateMachine4NewLEv @ 8 NONAME
+	_ZN13CStateMachine5ResetEv @ 9 NONAME
+	_ZN13CStateMachine7TransitENS_8TCommandE @ 10 NONAME
+	_ZN13CStateMachine8IsPausedEv @ 11 NONAME
+	_ZN13CStateMachine9IsPlayingEv @ 12 NONAME
+	_ZN13CStateMachine9IsStartedEv @ 13 NONAME
+	_ZN13CStateMachine9IsStoppedEv @ 14 NONAME
+	_ZTI13CStateMachine @ 15 NONAME
+	_ZTV13CStateMachine @ 16 NONAME
+

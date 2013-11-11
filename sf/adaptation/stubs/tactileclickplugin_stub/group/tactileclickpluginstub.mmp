@@ -1,0 +1,44 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  This is stub for compilation and running of Tactile Feedback
+*                dependent components, when the real implementation is not
+*                available.
+* Part of:      Tactile Feedback.
+*
+*/
+
+
+#include <data_caging_paths.hrh>
+
+// To get the MW_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+TARGET                  tactileclickplugin.dll
+TARGETTYPE              DLL
+UID                     0x10004F63 0x2000B493
+
+CAPABILITY              ALL -TCB
+VENDORID                VID_DEFAULT
+
+SOURCEPATH              ../src
+SOURCE                  tactileclickpluginstub.cpp
+SOURCE                  tactilefeedbackserverstub.cpp
+
+USERINCLUDE             ../inc
+
+// Default system include paths for middleware layer modules.
+MW_LAYER_SYSTEMINCLUDE
+
+LIBRARY                 euser.lib
+

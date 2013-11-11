@@ -1,0 +1,7 @@
+EXPORTS
+	??1CG711EncoderIntfcCI@@UAE@XZ @ 1 NONAME ; CG711EncoderIntfcCI::~CG711EncoderIntfcCI(void)
+	?GetVadMode@CG711EncoderIntfcCI@@UAEHAAH@Z @ 2 NONAME ; int CG711EncoderIntfcCI::GetVadMode(int &)
+	?NewL@CG711EncoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CG711EncoderIntfcCI * CG711EncoderIntfcCI::NewL(void)
+	?SetEncoderMode@CG711EncoderIntfcCI@@UAEHW4TEncodeMode@CG711EncoderIntfc@@@Z @ 4 NONAME ; int CG711EncoderIntfcCI::SetEncoderMode(enum CG711EncoderIntfc::TEncodeMode)
+	?SetVadMode@CG711EncoderIntfcCI@@UAEHH@Z @ 5 NONAME ; int CG711EncoderIntfcCI::SetVadMode(int)
+

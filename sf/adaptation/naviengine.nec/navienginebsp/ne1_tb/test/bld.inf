@@ -1,0 +1,64 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+*
+*/
+
+PRJ_PLATFORMS
+ARM4 ARM4SMP ARMV5 ARMV5SMP
+
+PRJ_TESTEXPORTS
+autoexec.bat                        /epoc32/rom/ne1_tb/	//
+
+// Files required for automated nand testing
+nandtest_test_autoexec.bat			/epoc32/rom/ne1_tb/	//
+nandtest_load_autoexec.bat 			/epoc32/rom/ne1_tb/  // 
+nandtest_load_wdp_autoexec.bat 		/epoc32/rom/ne1_tb/  // 
+nandtest_shortertest_autoexec.bat	/epoc32/rom/ne1_tb/	//
+nandtest_fulltest_autoexec.bat		/epoc32/rom/ne1_tb/	//
+
+// Files required for automated NAND demand paging testing
+nanddemandpaginge32tests.bat    /epoc32/rom/ne1_tb/      //
+
+#if !defined(GCCXML) || !defined(NO_GCCXML)
+
+PRJ_MMPFILES
+mediaext/d_nfe.mmp
+
+PRJ_TESTMMPFILES
+
+// Drivers
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/d_mstim		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/d_tick		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/d_latncy		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/d_shadow		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/bm_pdd		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/group/d_cache		support
+../../../../../os/kernelhwsrv/kerneltest/e32test/hcr/d_hcrext_client	support
+../../../../../os/kernelhwsrv/kerneltest/e32test/hcr/d_hcrext_own		support
+d_csi	support
+d_csi_ctrless	support
+d_timestamppdd support
+
+d_frqchg		                                                support
+d_gpio	support
+#ifndef SMP
+t_csi	manual
+#endif
+t_gpio
+#endif
+
+d_pci						support
+
+t_pci

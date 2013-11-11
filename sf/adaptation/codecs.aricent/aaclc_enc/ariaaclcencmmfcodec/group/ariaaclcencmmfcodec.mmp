@@ -1,0 +1,65 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Project File for AacLC Encoder Plugin. The file specifies the
+* include paths, source files and libraries to be used to build the 
+* AacLC Encoder plugin binaries.
+*
+*/
+
+#include  <platform_paths.hrh>
+#include  "..\inc\ariaaclcencmmfcodec_uid.hrh"
+
+TARGET  		ariaaclcencmmfcodec.dll
+TARGETTYPE		PLUGIN
+
+CAPABILITY 		ALL -TCB
+
+UID 			0x10009D8D  KUidAacLCEncMmfDllUid
+
+MACRO 			LOGLEVEL_CRITICAL
+
+MW_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE	\epoc32\include\ecom
+SYSTEMINCLUDE	\epoc32\include\mmf\common
+SYSTEMINCLUDE	\epoc32\include\mmf\server
+SYSTEMINCLUDE	\epoc32\include\mmf\plugin
+
+USERINCLUDE     ..\inc 
+USERINCLUDE		..\..\ariaaclcencwrapper\export_hdr
+USERINCLUDE		..\..\..\utilities\log
+
+SOURCEPATH 		..\src
+SOURCE 			ariaaclcencmmfcodec.cpp
+
+SOURCEPATH 		..\src
+START RESOURCE 	20029901.rss
+	TARGET 		ariaaclcencmmfcodec.rsc
+END
+
+LIBRARY 		euser.lib  
+LIBRARY			mmfserverbaseclasses.lib 	
+LIBRARY 		ECOM.lib
+LIBRARY 		ariaaclcencwrapper.lib
+
+
+
+
+
+
+
+
+
+

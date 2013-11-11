@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "sf/adaptation/stubs/systemswstubs" >
+]>
+
+<SystemDefinition name="systemswstubs" schema="1.4.0">
+  <systemModel>
+    <layer name="stubs_layer">
+      <module name="systemswstubs">
+  	<unit name="systemswstubs" unitID="sydo.systemswstubs" bldFile="&layer_real_source_path;/group" mrp="" />
+      </module>
+      <module name="">
+        <unit name="sydo_systemswstubs_TVOutConfig" unitID="sydo.systemswstubs.TVOutConfig" bldFile="&layer_real_source_path;/TVOutConfig/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_accessorypolicyreference" unitID="sydo.systemswstubs.accessorypolicyreference" bldFile="&layer_real_source_path;/accessorypolicyreference/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_asyreference" unitID="sydo.systemswstubs.asyreference" bldFile="&layer_real_source_path;/asyreference/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_examplecommonisc" unitID="sydo.systemswstubs.examplecommonisc" bldFile="&layer_real_source_path;/examplecommonisc/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_exampledsy" unitID="sydo.systemswstubs.exampledsy" bldFile="&layer_real_source_path;/exampledsy/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_featuremanagerstub" unitID="sydo.systemswstubs.featuremanagerstub" bldFile="&layer_real_source_path;/featuremanagerstub/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_hwrmstubplugins" unitID="sydo.systemswstubs.hwrmstubplugins" bldFile="&layer_real_source_path;/hwrmstubplugins/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_hwrmhapticsstubplugin" unitID="sydo.systemswstubs.hwrmhapticsstubplugin" bldFile="&layer_real_source_path;/hwrmhapticsstubplugin/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_sensorchannelsreference" unitID="sydo.systemswstubs.sensorchannelsreference" bldFile="&layer_real_source_path;/sensorchannelsreference/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_ssyreference" unitID="sydo.systemswstubs.ssyreference" bldFile="&layer_real_source_path;/ssyreference/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_startupadaptationstub" unitID="sydo.systemswstubs.startupadaptationstub" bldFile="&layer_real_source_path;/startupadaptationstub/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_tiltcompensationstub" unitID="sydo.systemswstubs.tiltcompensationstub" bldFile="&layer_real_source_path;/tiltcompensationstub/group" mrp="" filter="oem_build" />
+        <unit name="sydo_systemswstubs_tvoutbehaviour" unitID="sydo.systemswstubs.tvoutbehaviour" bldFile="&layer_real_source_path;/tvoutbehaviour/group" mrp="" filter="oem_build" />        
+        <unit name="sydo_systemswstubs_wiredbearerreference" unitID="sydo.systemswstubs.wiredbearerreference" bldFile="&layer_real_source_path;/wiredbearerreference/group" mrp="" filter="oem_build" />
+      </module>
+    </layer>
+  </systemModel>
+</SystemDefinition>

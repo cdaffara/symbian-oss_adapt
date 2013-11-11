@@ -1,0 +1,6 @@
+EXPORTS
+	ResourceManager__22TNE1_TBPowerController @ 1  NONAME R3UNUSED ABSENT ; TNE1_TBPowerController::ResourceManager(void)
+	WakeupEvent__22TNE1_TBPowerController @ 2 NONAME R3UNUSED ; TNE1_TBPowerController::WakeupEvent(void)
+	EngageCore__22TNE1_TBPowerControlleriR15TRetireEngageCb @ 3  NONAME R3UNUSED ABSENT ; TNE1_TBPowerController::EngageCore(int, TRetireEngageCb &) 
+	RetireCore__22TNE1_TBPowerControlleriR15TRetireEngageCb @ 4  NONAME R3UNUSED ABSENT ; TNE1_TBPowerController::RetireCore(int, TRetireEngageCb &)
+	IdleCount__22TNE1_TBPowerController @ 5 NONAME ; TNE1_TBPowerController::IdleCount

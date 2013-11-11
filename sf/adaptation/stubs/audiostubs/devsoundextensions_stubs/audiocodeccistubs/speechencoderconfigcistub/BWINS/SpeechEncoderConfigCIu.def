@@ -1,0 +1,9 @@
+EXPORTS
+	??1CSpeechEncoderConfigCI@@UAE@XZ @ 1 NONAME ; CSpeechEncoderConfigCI::~CSpeechEncoderConfigCI(void)
+	?GetBitrate@CSpeechEncoderConfigCI@@UAEHAAI@Z @ 2 NONAME ; int CSpeechEncoderConfigCI::GetBitrate(unsigned int &)
+	?GetSupportedBitrates@CSpeechEncoderConfigCI@@UAEHAAV?$RArray@I@@@Z @ 3 NONAME ; int CSpeechEncoderConfigCI::GetSupportedBitrates(class RArray<unsigned int> &)
+	?GetVadMode@CSpeechEncoderConfigCI@@UAEHAAH@Z @ 4 NONAME ; int CSpeechEncoderConfigCI::GetVadMode(int &)
+	?NewL@CSpeechEncoderConfigCI@@SAPAV1@XZ @ 5 NONAME ; class CSpeechEncoderConfigCI * CSpeechEncoderConfigCI::NewL(void)
+	?SetBitrate@CSpeechEncoderConfigCI@@UAEHI@Z @ 6 NONAME ; int CSpeechEncoderConfigCI::SetBitrate(unsigned int)
+	?SetVadMode@CSpeechEncoderConfigCI@@UAEHH@Z @ 7 NONAME ; int CSpeechEncoderConfigCI::SetVadMode(int)
+

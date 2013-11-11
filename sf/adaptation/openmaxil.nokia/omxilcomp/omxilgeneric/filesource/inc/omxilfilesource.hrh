@@ -1,0 +1,35 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+#ifndef OMXILFILESOURCE_HRH_
+#define OMXILFILESOURCE_HRH_
+
+
+#define KUidNokiaOmxILAudioFileSourceDll     0x2002EAAA
+#define KUidNokiaOmxILAudioFileSource        0x2002EAAB
+
+#define KUidNokiaOmxILVideoFileSourceDll     0x2002EAAC
+#define KUidNokiaOmxILVideoFileSource        0x2002EAAD
+
+#define KUidNokiaOmxILImageFileSourceDll     0x2002EAAE
+#define KUidNokiaOmxILImageFileSource        0x2002EAAF
+
+#define KUidNokiaOmxILOtherFileSourceDll     0x2002EAB0
+#define KUidNokiaOmxILOtherFileSource        0x2002EAB1
+
+
+#endif /*OMXILFILESOURCE_HRH_*/

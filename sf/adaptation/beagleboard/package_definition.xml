@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="beagleboard" name="Beagle Board" levels="hw-if">
+    <collection id="omap3530" name="OMAP 3530" level="hw-if">
+      <component id="omap3530" name="Beagle Board common" introduced="symbian^3" purpose="optional">
+        <unit bldFile="omap3530" mrp="omap3530/base_beagle.mrp"/>
+      </component>
+      <component id="kernel" name="Beagle Board kernel" introduced="symbian^3" purpose="optional">
+        <unit bldFile="omap3530/kernel"/>
+      </component>
+      <component id="beagleboard" name="Beagle Board baseport" introduced="symbian^3" purpose="optional">
+        <unit bldFile="omap3530/beagleboard"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>
+

@@ -1,0 +1,27 @@
+EXPORTS
+	_ZN18CSbcEncoderIntfcCI11ApplyConfigEv @ 1 NONAME
+	_ZN18CSbcEncoderIntfcCI14GetBitpoolSizeERj @ 2 NONAME
+	_ZN18CSbcEncoderIntfcCI14GetChannelModeERN16CSbcEncoderIntfc15TSbcChannelModeE @ 3 NONAME
+	_ZN18CSbcEncoderIntfcCI14GetNumOfBlocksERj @ 4 NONAME
+	_ZN18CSbcEncoderIntfcCI14SetBitpoolSizeEj @ 5 NONAME
+	_ZN18CSbcEncoderIntfcCI14SetChannelModeEN16CSbcEncoderIntfc15TSbcChannelModeE @ 6 NONAME
+	_ZN18CSbcEncoderIntfcCI14SetNumOfBlocksEj @ 7 NONAME
+	_ZN18CSbcEncoderIntfcCI16GetNumOfSubbandsERj @ 8 NONAME
+	_ZN18CSbcEncoderIntfcCI16SetNumOfSubbandsEj @ 9 NONAME
+	_ZN18CSbcEncoderIntfcCI19GetAllocationMethodERN16CSbcEncoderIntfc20TSbcAllocationMethodE @ 10 NONAME
+	_ZN18CSbcEncoderIntfcCI19SetAllocationMethodEN16CSbcEncoderIntfc20TSbcAllocationMethodE @ 11 NONAME
+	_ZN18CSbcEncoderIntfcCI20GetSamplingFrequencyERj @ 12 NONAME
+	_ZN18CSbcEncoderIntfcCI20SetSamplingFrequencyEj @ 13 NONAME
+	_ZN18CSbcEncoderIntfcCI23GetSupportedNumOfBlocksER6RArrayIjE @ 14 NONAME
+	_ZN18CSbcEncoderIntfcCI24GetSupportedBitpoolRangeERjS0_ @ 15 NONAME
+	_ZN18CSbcEncoderIntfcCI24GetSupportedChannelModesER6RArrayIN16CSbcEncoderIntfc15TSbcChannelModeEE @ 16 NONAME
+	_ZN18CSbcEncoderIntfcCI25GetSupportedNumOfSubbandsER6RArrayIjE @ 17 NONAME
+	_ZN18CSbcEncoderIntfcCI29GetSupportedAllocationMethodsER6RArrayIN16CSbcEncoderIntfc20TSbcAllocationMethodEE @ 18 NONAME
+	_ZN18CSbcEncoderIntfcCI31GetSupportedSamplingFrequenciesER6RArrayIjE @ 19 NONAME
+	_ZN18CSbcEncoderIntfcCI4NewLEv @ 20 NONAME
+	_ZN18CSbcEncoderIntfcCID0Ev @ 21 NONAME
+	_ZN18CSbcEncoderIntfcCID1Ev @ 22 NONAME
+	_ZN18CSbcEncoderIntfcCID2Ev @ 23 NONAME
+	_ZTI18CSbcEncoderIntfcCI @ 24 NONAME ; #<TI>#
+	_ZTV18CSbcEncoderIntfcCI @ 25 NONAME ; #<VT>#
+

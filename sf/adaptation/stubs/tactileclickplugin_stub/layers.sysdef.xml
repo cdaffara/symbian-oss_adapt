@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "sf/adaptation/stubs/tactileclickplugin_stub" >
+]>
+
+<SystemDefinition name="tactileclickplugin_stub" schema="1.4.0">
+  <systemModel>
+    <layer name="stubs_layer">
+      <module name="tactileclickplugin_stub">
+        <unit unitID="abs.tactileclickplugin_stub" mrp="" bldFile="&layer_real_source_path;/group" name="tactileclickplugin_stub" />
+      </module>
+    </layer>
+  </systemModel>
+</SystemDefinition>

@@ -1,0 +1,60 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb/resmanpsl.mmp
+*
+*/
+
+
+
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+target				VariantTarget(resmanpsl,pdd)
+targettype			kext
+linkas			resman.pdd
+
+staticlibrary 	resmanpsl.lib
+
+USERINCLUDE inc
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+sourcepath 	./specific/
+source		resmanpsl.cpp powerresources.cpp
+
+// all exported APIs
+sourcepath	../../../../os/kernelhwsrv/kernel/eka/drivers/resourceman
+source		resourceman.cpp resource.cpp rescontrol_export.cpp
+
+
+deffile 		../../../../os/kernelhwsrv/kernel/eka/~/resman.def
+
+nostrictdef
+noexportlibrary
+
+library				VariantTarget(ecust,lib)
+
+uid         		0x1000008d 0x10285812
+
+epocallowdlldata
+
+capability	all
+
+macro CPU_AFFINITY_ANY
+SMPSAFE

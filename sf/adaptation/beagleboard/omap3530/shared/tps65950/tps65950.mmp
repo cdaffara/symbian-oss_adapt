@@ -1,0 +1,46 @@
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// omap3530/omap3530_assp/shared/tps65950/tps65950.mmp
+//
+
+#include <assp/omap3530_assp/assp.mmh>
+
+#include <kernel/kern_ext.mmh>
+
+
+TARGET           tps65950.dll
+TARGETTYPE       kext
+
+SOURCEPATH       .
+SOURCE           tps65950.cpp
+SOURCE           tps65950_int.cpp
+
+USERINCLUDE      .
+SYSTEMINCLUDE	+/include
+SYSTEMINCLUDE	+/include/kernel
+SYSTEMINCLUDE	+/include/drivers
+SYSTEMINCLUDE	+/include/nkern
+SYSTEMINCLUDE	+/include/assp/omap3530_assp
+
+NOSTRICTDEF
+DEFFILE		~/tps65950.def
+
+LIBRARY		AsspTarget(kaomap3530,lib)
+LIBRARY		AsspTarget(prcm,lib)
+LIBRARY		AsspTarget(i2c,lib)
+
+EPOCALLOWDLLDATA
+CAPABILITY       all
+
+VENDORID         0x70000001

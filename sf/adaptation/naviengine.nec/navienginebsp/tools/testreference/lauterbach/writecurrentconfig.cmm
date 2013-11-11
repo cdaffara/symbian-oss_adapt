@@ -1,0 +1,43 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+// Writes the current config to file
+//////////////////////////////////////////////////////////////////////////////
+
+
+// Open the config file for writing
+open #1 currentconfig.cmm /Create
+
+// Write the config to the file in script format for loading later
+write #1 "&"+"Platform="+'"'+"&Platform"+'"'
+write #1 "&"+"AutoloadModule="+'"'+"&AutoloadModule"+'"'
+write #1 "&"+"RamAddr="+'"'+"&RamAddr"+'"'
+write #1 "&"+"RamImage="+'"'+"&RamImage"+'"'
+write #1 "&"+"RamAddr1="+'"'+"&RamAddr1"+'"'
+write #1 "&"+"RamImage1="+'"'+"&RamImage1"+'"'
+write #1 "&"+"RamAddr2="+'"'+"&RamAddr2"+'"'
+write #1 "&"+"RamImage2="+'"'+"&RamImage2"+'"'
+write #1 "&"+"RamAddr3="+'"'+"&RamAddr3"+'"'
+write #1 "&"+"RamImage3="+'"'+"&RamImage3"+'"'
+write #1 "&"+"RamAddr4="+'"'+"&RamAddr4"+'"'
+write #1 "&"+"RamImage4="+'"'+"&RamImage4"+'"'
+write #1 "&"+"FlashAddr="+'"'+"&FlashAddr"+'"'
+write #1 "&"+"FlashImage="+'"'+"&FlashImage"+'"'
+write #1 "&"+"FlashWriteProtect="+'"'+"&FlashWriteProtect"+'"'
+write #1 "&"+"FlashEraseProtect="+'"'+"&FlashEraseProtect"+'"'
+
+// All done, so close the file
+close #1

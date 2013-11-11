@@ -1,0 +1,205 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* boardsupport/naviengine/navienginebsp/ne1_tb/rom/header.iby
+* TO DO: (mandatory)
+* This file provides the ROM header information for your variant
+*
+*/
+
+#define USE_CUSTOM_MMC_PARTITION
+
+#if defined(XABI_ARM4SMP) || defined(XABI_ARMV5SMP) || defined(XABI_ARMV6SMP) || defined(XABI_ARMV7SMP)
+#define SMP
+#endif
+
+#define VARIANT_PATH ../adapt/naviengine.nec/navienginebsp/ne1_tb
+
+#define HEAPMAX(x)
+
+//
+// The Variant ID
+//
+#define VARID		0x09080001
+#define MAGIC		0x09080001
+#define ALL			0x09080001
+#define FIXED
+
+#ifdef WITH_DIRECT_MM
+// Direct MM
+
+#define MEMMODEL_VARIANT    S##VARIANT##
+
+kerneltrace 0x80000000
+
+memmodel direct 0x1000
+
+trace 0x10
+multikernel
+
+nowrapper
+
+version=0.01
+bootbinary=\Epoc32\Release\##KMAIN##\_sne1_tb_bootrom.bin
+
+#ifdef DEBUGPORT
+debugport DEBUGPORT
+#else
+debugport 0
+#endif
+
+romsize=0x2000000
+romlinearbase=0x88000000
+romalign=0x1000
+
+#ifdef SMP
+kerneldataaddress=0x70014000
+#else
+kerneldataaddress=0x70005000
+#endif
+
+#ifdef NKERN_ONLY_ROM
+dataaddress=0xD0000000		// not used
+kernelheapmin=0x00B00000	// must have max=min
+kernelheapmax=0x00B00000
+#else
+dataaddress=0x71000000
+kernelheapmin=0x100000		// must have max=min
+kernelheapmax=0x100000
+#endif
+
+defaultstackreserve=0x200000
+romchecksum=0x12345678
+
+//#define WITH_LFFS
+//#define WITH_EXTENSION
+//#define WITH_ROFS
+//#define WITH_COMP
+//#define NAVIENGINE_USE_VGA
+
+#undef __USB
+#define USE_CUSTOM_MMC_PARTITION
+
+#ifdef UNICODE
+unicode
+#endif
+
+#else
+// Flexible or Multiple MM
+
+#if (defined(CRAZYSCHEDDELAY) || defined(CRAZYSCHEDPRIO)) && defined(SMP)
+#error The crazy scheduler cannot be used with SMP!
+#endif
+
+#include <rom/include/kernel.hby>
+#ifdef CRAZYSCHEDDELAY
+kerneltrace 0x80000000 0 0x20
+#else
+kerneltrace 0x80000000
+#endif
+#ifdef CRAZYSCHEDPRIO
+CRAZYSCHEDULING(on)
+#endif
+
+#ifdef SMP
+#if defined(SMPCOMPATMODE) && defined(SMPCOMPATCPU0)
+#error "Can't have SMPCOMPATMODE and SMPCOMPATCPU0 at once!"
+#endif
+#ifdef SMPCOMPATMODE
+SMPUNSAFECOMPAT(on)
+#endif
+#ifdef SMPCOMPATCPU0
+SMPUNSAFECPU0(on)
+#endif
+#ifdef SMPCRAZYINTS
+CRAZYINTERRUPTS(on)
+#endif
+#ifndef SMPUNLOCKTHREADSCORE0
+SMPLOCKKERNELTHREADSCPU0(on)
+#endif
+#endif //SMP
+
+#ifdef WITH_FLEXIBLE_MM
+memmodel flexible 0x100000 0x1000 -0x4000
+dlldatatop 0x7f000000
+#define MEMMODEL_VARIANT    F##VARIANT##
+bootbinary=\Epoc32\Release\##KMAIN##\_fne1_tb_bootrom.bin
+#else
+memmodel multiple 0x100000
+#define MEMMODEL_VARIANT    VARIANT
+bootbinary=\Epoc32\Release\##MAIN##\_ne1_tb_bootrom.bin
+#endif
+
+trace 0x10
+collapse arm gcc 0
+multikernel
+
+nowrapper
+
+version=0.01
+
+#ifdef DEBUGPORT
+debugport DEBUGPORT
+#else
+debugport 0
+#endif
+
+#ifdef UBOOTLDR_ROM
+
+// for Bootloader remove components not required
+#undef __USB
+#define SYMBIAN_EXCLUDE_RUNTESTS
+
+#endif
+
+romsize=0x2000000
+romlinearbase=0x80000000
+romalign=0x10
+kerneldataaddress=0xC8000000
+kernelheapmin=0x1000			// calculated at boot time
+kernelheapmax=0x00FFF000
+dataaddress=0x400000
+defaultstackreserve=0x200000
+romchecksum=0x12345678
+
+//#define WITH_LFFS
+//#define WITH_EXTENSION
+//#define WITH_ROFS
+//#define WITH_COMP
+//#define NAVIENGINE_USE_VGA
+
+#ifdef UNICODE
+unicode
+#endif
+
+#if defined(_NAND2) || defined(_NANDTEST2)
+// Pick up ROFS components
+#define WITH_ROFS
+#define LARGE_BLOCK
+#define MULTIPLEROFS
+#endif
+
+// Pick up the composite filesystem if NAND is required
+#if defined(_NAND) || defined(_NAND2) || defined(_NANDTEST2) || defined(_NANDTEST)
+#define WITH_COMP	// Include ecomp.fsy
+#endif
+
+#define CUSTOM_ESTART
+
+#ifndef INST_ARM4
+// Enable VFP
+#define VFPHELPERS
+#endif
+
+#endif

@@ -1,0 +1,9 @@
+EXPORTS
+	_Z20CreatePhysicalDevicev @ 1 NONAME
+	_ZN16DLcdPowerHandler16RegisterCallbackEP16TLcdUserCallBack @ 2 NONAME
+	_ZN16DLcdPowerHandler18DeRegisterCallbackEP16TLcdUserCallBack @ 3 NONAME
+	_ZTI18DDisplayPddFactory @ 4 NONAME
+	_ZTI18DDisplayPddNaviEng @ 5 NONAME
+	_ZTV18DDisplayPddFactory @ 6 NONAME
+	_ZTV18DDisplayPddNaviEng @ 7 NONAME
+

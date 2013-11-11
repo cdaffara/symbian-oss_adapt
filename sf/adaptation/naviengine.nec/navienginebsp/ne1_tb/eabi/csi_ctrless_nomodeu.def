@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN20TIicBusSlaveCallback7DfcFuncEPv @ 1 NONAME
+	_ZN25DIicBusChannelMasterSlaveC1EN14DIicBusChannel8TBusTypeENS0_14TChannelDuplexEP20DIicBusChannelMasterP19DIicBusChannelSlave @ 2 NONAME
+	_ZN25DIicBusChannelMasterSlaveC2EN14DIicBusChannel8TBusTypeENS0_14TChannelDuplexEP20DIicBusChannelMasterP19DIicBusChannelSlave @ 3 NONAME
+	_ZTI19DIicBusChannelSlave @ 4 NONAME
+	_ZTI20DIicBusChannelMaster @ 5 NONAME
+	_ZTI25DIicBusChannelMasterSlave @ 6 NONAME
+	_ZTV19DIicBusChannelSlave @ 7 NONAME
+	_ZTV20DIicBusChannelMaster @ 8 NONAME
+	_ZTV25DIicBusChannelMasterSlave @ 9 NONAME
+

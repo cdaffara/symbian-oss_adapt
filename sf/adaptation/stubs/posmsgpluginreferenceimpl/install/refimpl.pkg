@@ -1,0 +1,38 @@
+;
+; Copyright (c) 2005-2006 Nokia Corporation and/or its subsidiary(-ies).
+; All rights reserved.
+; This component and the accompanying materials are made available
+; under the terms of "Eclipse Public License v1.0"
+; which accompanies this distribution, and is available
+; at the URL "http://www.eclipse.org/legal/epl-v10.html".
+;
+; Initial Contributors:
+; Nokia Corporation - initial contribution.
+;
+; Contributors:
+;
+; Description:  Package file for project eposomasuplposrefapp
+;
+
+;RefImpl.pkg
+
+;languages
+&EN
+
+;packet-header (name, uid, major, minor, build, type)
+#{"SuplPosRefImpl"},(0x1027509D),1,0,1,TYPE=SY
+
+; Localised Vendor name
+%{"Nokia-EN"}
+
+; Unique Vendor name
+:"Nokia"
+
+;Supports Series 60 v 1.0
+(0x101f7962), 0, 0, 0, {"Series60ProductID"}
+
+; For Pos Tester
+"\Epoc32\release\armv5\urel\eposomasuplposrefapp.dll"	-		"c:\sys\bin\eposomasuplposrefapp.dll"
+"\Epoc32\data\Z\Resource\plugins\eposomasuplposrefapp.rsc"		-		"c:\resource\plugins\eposomasuplposrefapp.rsc"
+
+;ENDIF

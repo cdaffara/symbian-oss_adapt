@@ -1,0 +1,48 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description:
+* Project file of  base process engine
+*
+*/
+#include <platform_paths.hrh>
+
+TARGET        ariprocessengine.dll
+TARGETTYPE    DLL
+
+UID           0x1000008D 0x2002AD88
+
+CAPABILITY  All -TCB
+VENDORID 	0x101FB657
+
+DEFFILE       ariprocessengine.def
+NOSTRICTDEF
+
+MACRO         LOGLEVEL_CRITICAL
+SOURCEPATH    ..\src
+SOURCE	      ariprocessengine.cpp
+
+USERINCLUDE   ..\inc
+USERINCLUDE   ..\..\log
+
+SYSTEMINCLUDE	\epoc32\include
+
+MW_LAYER_SYSTEMINCLUDE
+
+LIBRARY       euser.lib
+
+
+//-----------------------------------------------------------------------------
+//  End of File
+//-----------------------------------------------------------------------------
+

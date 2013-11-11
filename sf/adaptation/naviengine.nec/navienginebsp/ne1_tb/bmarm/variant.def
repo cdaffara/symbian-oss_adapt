@@ -1,0 +1,9 @@
+EXPORTS
+	VariantInitialise @ 1 NONAME
+	BaseLinAddress__7Variant @ 2 NONAME R3UNUSED ; Variant::BaseLinAddress(void)
+	MarkDebugPortOff__7Variant @ 3 NONAME R3UNUSED ; Variant::MarkDebugPortOff(void)
+	PowerReset__7Variant @ 4 NONAME R3UNUSED ; Variant::PowerReset(void)
+	Switches__7Variant @ 5 NONAME R3UNUSED ; Variant::Switches(void)
+	GetSerialNumber__13NE1_TBVariant @ 6 NONAME R3UNUSED ; NE1_TBVariant::GetSerialNumber(void)
+	SetSerialNumber__13NE1_TBVariantUl @ 7 NONAME R3UNUSED ; NE1_TBVariant::SetSerialNumber(unsigned long)
+

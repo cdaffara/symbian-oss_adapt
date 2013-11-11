@@ -1,0 +1,58 @@
+/*
+* Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Project specification file for AudioServerFactory stub
+*
+*/
+
+#include        <platform_paths.hrh>
+
+TARGET          mmfaudioserverfactorystub.dll
+TARGETTYPE      PLUGIN
+UID             0x10009d8d 0x10207ABB
+
+VENDORID        VID_DEFAULT
+CAPABILITY      CAP_ECOM_PLUGIN
+
+#if defined(WINSCW)
+DEFFILE   ../bwinscw/
+#elif defined(WINS)
+DEFFILE   ../bwins/
+#elif defined(GCC32)
+DEFFILE   ../bmarm/
+#else
+DEFFILE   ../eabi/
+#endif
+
+SOURCEPATH      ../src
+SOURCE          main.cpp
+SOURCE          mmfaudioserverfactorystub.cpp
+SOURCE 		telephonyaudioroutingmanagerstub.cpp
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../inc
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/a3f
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+SYSTEMINCLUDE   /epoc32/include/ecom
+
+
+SOURCEPATH      ../data
+START RESOURCE 10207ABC.rss
+	TARGET mmfaudioserverfactorystub.rsc
+END
+
+LIBRARY         euser.lib
+LIBRARY         ecom.lib
+LIBRARY         TelephonyAudioRoutingManager.lib

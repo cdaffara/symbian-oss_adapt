@@ -1,0 +1,98 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// Autoload script, called by TRACE32 if symbols are to be loaded.
+//
+// Change History:
+//
+// 03/08/2004 0.1 : Initial symbian version
+// 06/08/2004 2.0 : Rolled version to 2.0 for release
+// 04/05/2005 4.0 : Rolled version to 4.0 for release
+// 12/05/2009 4.1 : Tidied up in readiness for putting into Nokia's distribution system
+// 12/08/2009 4.2 : Added support for loading SBSv2 generated symbol files
+// 14/10/2009 4.3 : When manually loading .sym files, file dialog now displays sensible wildcards
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=4.3
+
+; define local macros
+local &_FILENAME &basename &progname &filepath &code &data &space &databsslinear &symfilename &wildcard
+
+; get _FILENAME and relocation information
+; these parameters are passed when calling this skript
+entry &_FILENAME &code &data &databsslinear &space
+
+; &_FILENAME:      name of process/file
+; &code:          text segment address
+; &data:          data segment address (not used in Symbian OS)
+; &databsslinear: combined data & bss segment address
+; &space:         space id of process (not used here)
+
+;area.select ramdl
+print "Symbolics request: &_FILENAME &code &data &databsslinear &space"
+; get symbol file name and program name
+&basename=string.cut(&_FILENAME,-string.len(os.file.extension(&_FILENAME)))
+&progname=os.file.name("&basename")
+
+; delete program if it already exists or other code is already there
+ y.delete &code
+ if y.exist("\\&progname")
+   y.delete \\&progname
+
+; Determine whether to use SBSv1 or SBSv2 symbol file
+do checksymbols.cmm &_FILENAME
+
+; We've decided which symbol file to use so go ahead and try to load it
+if !os.file("&filepath")
+	(
+	local &file
+	&file=os.file.path(&_FILENAME)
+	winpos ,,,,,, filebox normal "Searching symbols for &_FILENAME"
+	&wildcard="&file"+"\*.sym"
+	dialog.file "&wildcard"
+	entry %line &filepath
+	&symfilename="&filepath"
+	if "&filepath"==""
+	enddo
+	)
+
+; load symbol file (options for sourcepath, e.g. /STRIPPART may need to be added when required)
+if string.scan(string.lwr("&_FILENAME"),"arm4",0)!=-1
+	(
+	 print "Symbolics found ARM4: &symfilename"
+	 data.load.exe "&filepath" /noclear /cpp /nocode /strippart 3 /reloc .text at &code /reloc .data at &databsslinear /reloc .bss after .data
+	)
+else if string.scan(string.lwr("&_FILENAME"),"armv5",0)!=-1
+	(
+	 print "Symbolics found ARMV5: &symfilename"
+	 ; Idea from baseporting database 2/8/2004
+	 ; data.load.elf <sym file> .. /reloc ER_RO at XXXX
+	 ; data.load.elf "&filepath" &newcode /noclear /cpp /nocode /dwarf /rvct /strippart 3
+; autoload5.cmm: d.load.elf "&filepath" /noclear /cpp /nocode /rvct /dwarf /reloc ER_RO at &code
+	; BSS/global pointers aren't being setup properly
+	; My best attempt
+	;data.load.elf "&filepath" /noclear /cpp /nocode /rvct /dwarf /strippart 3 /reloc ER_RO at &code /reloc .data at &databsslinear /reloc .bss after .data
+	; From Rudi (04/03/05)
+	data.load.elf "&filepath" /noclear /cpp /nocode /strippart 3 /reloc ER_RO at &code /reloc ER_RW at &databsslinear /reloc ER_ZI after ER_RW
+	)
+else
+	(
+	 print "Symbolics defaulting to ARMV5: &symfilename"
+	data.load.elf "&filepath" /noclear /cpp /nocode /rvct /dwarf /strippart 3 /reloc ER_RO at &code /reloc .data at &databsslinear /reloc .bss after .data
+	)
+
+enddo

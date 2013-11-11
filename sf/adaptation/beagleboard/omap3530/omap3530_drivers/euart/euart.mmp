@@ -1,0 +1,37 @@
+// This component and the accompanying materials are made available
+// under the terms of the License "Symbian Foundation License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.symbianfoundation.org/legal/sfl-v10.html".
+//
+// Initial Contributors:
+// Accenture
+//
+// Contributors:
+//
+// Description:
+// omap3530\omap3530_drivers\euart\euart.mmp
+// 
+//
+
+#include "beagle/variant.mmh"
+#include <assp/omap3530_assp/assp.mmh>
+#include "kernel/kern_ext.mmh"
+
+target				AsspTarget(euart,pdd)
+targettype			pdd
+romtarget			euart.pdd
+
+systeminclude		.
+systeminclude		+/include/assp/omap3530_assp
+systeminclude		+/include/platform/drivers
+
+sourcepath 			.
+source				euart.cpp
+
+library				AsspTarget(kaomap3530,lib) AsspTarget(uart,lib) VariantTarget(ecust,lib) AsspTarget(prcm,lib)
+
+uid					0 0x1000015b
+
+VENDORID 0x70000001
+
+capability			all

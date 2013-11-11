@@ -1,0 +1,55 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// omap3530/beaglboard/src/vbeagle.mmp
+// ecust.dll Beagle variant library
+//
+
+
+
+/**
+ @file
+*/
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+
+#include			"beagle/variant.mmh"
+#include			"kernel/kern_ext.mmh"
+
+target				VariantTarget(ecust,dll)
+targettype			var
+linkas				ecust.dll
+
+systeminclude		+/include/drivers
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+sourcepath			.
+source				variant.cpp
+source				variant.cia
+
+library				AsspTarget(i2c,lib)
+library				AsspTarget(uart,lib)
+library				AsspTarget(gpio,lib)
+library				tps65950.lib
+library				_omap3XXX_mstick.lib
+
+deffile				../def/~/vbeagle.def
+nostrictdef
+
+epocallowdlldata
+
+uid					0x1000008d 0x100039e8
+
+VENDORID 0x70000001
+
+capability			all

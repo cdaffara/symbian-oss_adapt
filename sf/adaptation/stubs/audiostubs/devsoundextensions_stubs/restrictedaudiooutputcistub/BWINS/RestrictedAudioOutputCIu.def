@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CRestrictedAudioOutputCI@@SAPAV1@XZ @ 1 NONAME ; class CRestrictedAudioOutputCI * CRestrictedAudioOutputCI::NewL(void)
+

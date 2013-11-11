@@ -1,0 +1,136 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// This script will perform a full hardware initialisation of the NaviEngine board.
+//
+// Change History:
+//
+// 01/01/2008 1.0 : Initial version
+// 08/05/2009 1.1 : Tidied up in readiness for putting into Nokia's distribution system
+//
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.1
+
+print "======================================================================="
+print "&Platform initialisation script version &scriptversion"
+
+; Initialise system control coprocessor
+print "Initialising system control coprocessor"
+
+; <MCR|MRC> p15, <op1>, Rd, CRn, CRm, <op2>
+; BIT0-3:CRn
+; BIT4-7:CRm
+; BIT8-10:<op2>
+; BIT12-14:<op1>
+
+;*CPU Init
+;*MMU/D-cache/I-cache disabled
+; c1, 0, c0, 0
+core 0
+d.s C15:0x0001 %LE %LONG 0x00054078
+core 1
+d.s C15:0x0001 %LE %LONG 0x00054078
+core 2
+d.s C15:0x0001 %LE %LONG 0x00054078
+core 3
+d.s C15:0x0001 %LE %LONG 0x00054078
+
+;*Invalidate both caches
+; c7, 0, c7, 0
+d.s C15:0x0077 %LE %LONG 0x0
+
+;*Invalidate TLBs
+; c8, 0, c7, 0
+d.s C15:0x0078 %LE %LONG 0x0
+
+system.resettarget
+print "Initialising bus controller and peripherals"
+
+;*DDR2 Init
+data.set sd:0x18021044 %LE %LONG 0x30022123
+data.set sd:0x18021058 %LE %LONG 0x00000001
+data.set sd:0x18021008 %LE %LONG 0x00000020
+
+wait.1s
+
+;*delay(Memo Register dummy write)
+data.set sd:0x18037C0C %LE %LONG 0x00000000
+data.set sd:0x18021008 %LE %LONG 0x10000004
+data.set sd:0x18021008 %LE %LONG 0x00010002
+data.set sd:0x18021008 %LE %LONG 0x00018002
+data.set sd:0x18021008 %LE %LONG 0x00008002
+data.set sd:0x18021008 %LE %LONG 0X1D480002
+data.set sd:0x18021008 %LE %LONG 0x10000004
+data.set sd:0x18021008 %LE %LONG 0x00000001
+data.set sd:0x18021008 %LE %LONG 0x00000001
+
+;*delay(Memo Register dummy write)
+data.set sd:0x18037C0C %LE %LONG 0x00000000
+data.set sd:0x18037C0C %LE %LONG 0x00000000
+data.set sd:0x18037C0C %LE %LONG 0x00000000
+data.set sd:0x18021008 %LE %LONG 0x19480002
+data.set sd:0x18021008 %LE %LONG 0x01308002
+data.set sd:0x18021008 %LE %LONG 0x00000100
+data.set sd:0x18021040 %LE %LONG 0x1485A912
+data.set sd:0x18021034 %LE %LONG 0x00000121
+
+;*SysCon Init
+;*  .word 0x18037C80 %LE %LONG 0x007F0103
+data.set sd:0x18037C80 %LE %LONG 0x00000000
+
+;*ExBus Init
+data.set sd:0x1801A000 %LE %LONG 0x0000004A
+data.set sd:0x1801A004 %LE %LONG 0x08000049
+data.set sd:0x1801A008 %LE %LONG 0x0600004E
+data.set sd:0x1801A00C %LE %LONG 0x0400004B
+data.set sd:0x1801A010 %LE %LONG 0x1000004A
+data.set sd:0x1801A014 %LE %LONG 0x1400000A
+data.set sd:0x1801A020 %LE %LONG 0x10388E7F
+data.set sd:0x1801A024 %LE %LONG 0x10388E7E
+data.set sd:0x1801A028 %LE %LONG 0x10388E7E
+data.set sd:0x1801A02C %LE %LONG 0x10388E7F
+data.set sd:0x1801A030 %LE %LONG 0x10388E7E
+data.set sd:0x1801A034 %LE %LONG 0x10388E7E
+
+;*ExBus PCS5 UART-EX Init
+d.s SD:0x14020003 %LE %BYTE 0x00
+d.s SD:0x14020001 %LE %BYTE 0x00
+d.s SD:0x14020002 %LE %BYTE 0x07
+d.s SD:0x14020003 %LE %BYTE 0x80
+d.s SD:0x14020000 %LE %BYTE 0x1E
+d.s SD:0x14020001 %LE %BYTE 0x00
+d.s SD:0x14020003 %LE %BYTE 0x03
+d.s SD:0x14020004 %LE %BYTE 0x03
+
+;*ExBus PCS5 CharLED
+d.s SD:0x14000000 %LE %BYTE 0x59
+d.s SD:0x14000001 %LE %BYTE 0x45
+d.s SD:0x14000002 %LE %BYTE 0x53
+d.s SD:0x14000003 %LE %BYTE 0x21
+d.s SD:0x14000004 %LE %BYTE 0x21
+d.s SD:0x14000005 %LE %BYTE 0x20
+d.s SD:0x14000006 %LE %BYTE 0x20
+d.s SD:0x14000007 %LE %BYTE 0x20
+
+;*ExBus PCS4 LED
+d.s SD:0x10000030 %LE %WORD 0x00AA
+
+data.set sd:0x18037C14 %LE %LONG 0x00000000
+
+enddo
+

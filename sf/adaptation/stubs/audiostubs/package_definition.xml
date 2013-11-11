@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="audiostubs" name="Audio Stubs">
+    <collection id="audiostubs_info" name="Audio Stubs Info">
+      <component id="devsoundextensions_stubs" name="Devsound Extensions Stubs" filter="s60,sf_build">
+        <unit bldFile="devsoundextensions_stubs/group"/>
+      </component>
+      <component id="fmradiotunercontrolstub" name="FM Radio Tuner Control Stub" filter="s60,sf_build">
+        <unit bldFile="fmradiotunercontrolstub/group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

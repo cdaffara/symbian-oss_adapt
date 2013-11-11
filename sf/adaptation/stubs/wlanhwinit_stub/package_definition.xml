@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="wlanhwinit_stub" name="WLAN Hardware Init Stub">
+    <collection id="wlanhwinit_stub_info" name="WLAN Hardware Init Stub Info">
+      <component id="wlanhwinit_stub_build" name="WLAN Hardware Init Stub Build" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

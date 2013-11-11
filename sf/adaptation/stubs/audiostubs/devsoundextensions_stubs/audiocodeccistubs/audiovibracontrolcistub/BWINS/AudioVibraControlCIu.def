@@ -1,0 +1,6 @@
+EXPORTS
+	??1CAudioVibraControlCI@@UAE@XZ @ 1 NONAME ; CAudioVibraControlCI::~CAudioVibraControlCI(void)
+	?NewL@CAudioVibraControlCI@@SAPAV1@XZ @ 2 NONAME ; class CAudioVibraControlCI * CAudioVibraControlCI::NewL(void)
+	?StartVibra@CAudioVibraControlCI@@UAEHXZ @ 3 NONAME ; int CAudioVibraControlCI::StartVibra(void)
+	?StopVibra@CAudioVibraControlCI@@UAEHXZ @ 4 NONAME ; int CAudioVibraControlCI::StopVibra(void)
+

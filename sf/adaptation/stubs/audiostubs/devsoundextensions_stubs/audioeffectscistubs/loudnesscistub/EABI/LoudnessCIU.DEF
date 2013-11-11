@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN11CLoudnessCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI11CLoudnessCI @ 2 NONAME ; #<TI>#
+	_ZTV11CLoudnessCI @ 3 NONAME ; #<VT>#
+	_ZN11CLoudnessCI4NewLEv @ 4 NONAME
+

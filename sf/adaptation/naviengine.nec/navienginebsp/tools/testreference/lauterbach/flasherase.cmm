@@ -1,0 +1,65 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// Generic NOR Flash erasing script.
+//
+// Change History:
+//
+// 01/01/2008 1.0 : Initial version
+// 08/05/2009 1.1 : Updated to fit in with new platform specific flashing mechanism
+//
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.1
+
+print "======================================================================="
+print "Generic NOR flash erasing script version &scriptversion"
+
+; Declare the global variables used by the system and read the current config into them
+do globals.cmm
+
+; Make sure that flashing is supported on the target platform
+if os.file("&PlatformsDir\&Platform\flash.cmm")
+	(
+	; Get some generic global settings before doing anything
+	do init.cmm
+
+	local &result
+
+	; Make sure the user really does want to wipe out their NOR flash!
+	if "&FlashEraseProtect"!="OFF"
+	(
+		dialog.yesno "Are you *sure* you want to erase NOR flash?"
+		entry &result
+	)
+	else
+	(
+		&result=(0==0)
+	)
+
+	if &result
+		(
+		; Now do the platform specific operations
+		do &PlatformsDir\&Platform\flasherase.cmm
+		)
+	)
+else
+	(
+	dialog.ok "NOR flashing not supported for platform &Platform"
+	)
+
+enddo

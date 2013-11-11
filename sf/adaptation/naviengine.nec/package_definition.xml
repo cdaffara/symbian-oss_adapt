@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="naviengine.nec" name="NaviEngine" levels="hw-if">
+    <collection id="navienginebsp" name="NaviEngine BSP" level="hw-if">
+      <component id="ne1_tb" name="NaviEngine 1 (Multiple)" introduced="^4" purpose="optional" filter="sf_build">
+        <unit bldFile="navienginebsp/ne1_tb"/>
+      </component>
+      <component id="sne1_tb" name="NaviEngine 1 (Single)" introduced="^4" purpose="optional" filter="sf_build">
+        <unit bldFile="navienginebsp/ne1_tb/single"/>
+      </component>
+      <component id="fne1_tb" name="NaviEngine 1 (Flexible)" introduced="^4" purpose="optional" filter="sf_build">
+        <unit bldFile="navienginebspflexible"/>
+      </component>
+      <component id="navienginebootldr" name="NaviEngine Boot Loader" introduced="^4" purpose="optional" filter="sf_build">
+        <unit bldFile="navienginebootldr"/>
+      </component>
+      <component id="navienginetest" name="NaviEngine Test" introduced="^4" purpose="optional" filter="test,sf_build">
+        <unit bldFile="navienginebsp/ne1_tb/test"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

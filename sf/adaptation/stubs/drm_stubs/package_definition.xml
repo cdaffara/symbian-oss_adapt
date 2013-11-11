@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="drm_stubs" name="DRM Stubs">
+    <collection id="drm_stubs_info" name="DRM Stubs Info">
+      <component id="drm_stubs_build" name="DRM Stubs Build" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

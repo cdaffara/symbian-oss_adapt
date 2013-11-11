@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CAudioInputCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CAudioInputCI * CAudioInputCI::NewL(class CMMFDevSound &)
+	?NewL@CAudioInputCI@@SAPAV1@XZ @ 2 NONAME ; class CAudioInputCI * CAudioInputCI::NewL(void)
+

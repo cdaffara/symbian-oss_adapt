@@ -1,0 +1,47 @@
+/*
+* Copyright (c) 2004 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Project file for Environmental Reverb Custom Interface STUB.
+*				  
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          EnvironmentalReverbCI_Stub.dll
+TARGETTYPE      DLL
+UID             0x1000008D 0x10207A83
+
+
+CAPABILITY CAP_GENERAL_DLL
+VENDORID 	VID_DEFAULT
+
+
+SOURCEPATH      ../src
+SOURCE          EnvironmentalReverbCIStub.cpp 
+
+USERINCLUDE     ../inc ../src
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+
+LIBRARY         euser.lib
+LIBRARY		EffectBase.lib
+LIBRARY		EnvironmentalReverbEffect.lib
+
+// Users link against the non-stub name, so that rebuild is not necessary
+EXPORTLIBRARY	EnvironmentalReverbCI.lib
+
+LINKAS          EnvironmentalReverbCI.dll
+

@@ -1,0 +1,5 @@
+EXPORTS
+	??1CAacDecoderConfigCI@@UAE@XZ @ 1 NONAME ; CAacDecoderConfigCI::~CAacDecoderConfigCI(void)
+	?NewL@CAacDecoderConfigCI@@SAPAV1@XZ @ 2 NONAME ; class CAacDecoderConfigCI * CAacDecoderConfigCI::NewL(void)
+	?SetAudioConfig@CAacDecoderConfigCI@@UAEHAAVTAudioConfig@@@Z @ 3 NONAME ; int CAacDecoderConfigCI::SetAudioConfig(class TAudioConfig &)
+

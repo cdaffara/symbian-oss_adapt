@@ -1,0 +1,9 @@
+EXPORTS
+	??1CWlanHwInit@@UAE@XZ @ 1 NONAME ; CWlanHwInit::~CWlanHwInit(void)
+	?GetHwInitData@CWlanHwInit@@UAEXPAPBEAAI01@Z @ 2 NONAME ; void CWlanHwInit::GetHwInitData(unsigned char const * *, unsigned int &, unsigned char const * *, unsigned int &)
+	?GetHwTestData@CWlanHwInit@@UAEHIAAVTDes8@@@Z @ 3 NONAME ; int CWlanHwInit::GetHwTestData(unsigned int, class TDes8 &)
+	?GetHwTestInitData@CWlanHwInit@@UAEXPAPBEAAI01@Z @ 4 NONAME ; void CWlanHwInit::GetHwTestInitData(unsigned char const * *, unsigned int &, unsigned char const * *, unsigned int &)
+	?GetMacAddress@CWlanHwInit@@UAEHAAUTMacAddr@@@Z @ 5 NONAME ; int CWlanHwInit::GetMacAddress(struct TMacAddr &)
+	?NewL@CWlanHwInit@@SAPAV1@XZ @ 6 NONAME ; class CWlanHwInit * CWlanHwInit::NewL(void)
+	?SetHwTestData@CWlanHwInit@@UAEHIAAVTDesC8@@@Z @ 7 NONAME ; int CWlanHwInit::SetHwTestData(unsigned int, class TDesC8 &)
+

@@ -1,0 +1,3 @@
+EXPORTS
+	?Create@CMessageHandlerFactory@@SAPAVCMMFObject@@VTUid@@PAXAAVCMMFObjectContainer@@@Z @ 1 NONAME ; class CMMFObject * CMessageHandlerFactory::Create(class TUid, void *, class CMMFObjectContainer &)
+

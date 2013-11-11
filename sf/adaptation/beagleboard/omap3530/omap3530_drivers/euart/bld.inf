@@ -1,0 +1,7 @@
+// omap3530/omap3530_drivers/euart/bld.inf
+
+PRJ_PLATFORMS
+ARMV5
+
+PRJ_MMPFILES
+euart

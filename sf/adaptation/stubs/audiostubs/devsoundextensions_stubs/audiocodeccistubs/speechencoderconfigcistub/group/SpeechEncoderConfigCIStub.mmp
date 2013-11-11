@@ -1,0 +1,48 @@
+/*
+* Copyright (c) 2002-2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -   
+*  Version     : %version: bh1mmcf#14 %
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          SpeechEncoderConfigCI_Stub.dll
+TARGETTYPE      DLL
+UID             0x1000008D 0x10207B0B
+
+CAPABILITY CAP_GENERAL_DLL
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      ../src
+SOURCE          SpeechEncoderConfigCIStub.cpp
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../inc
+USERINCLUDE     ../../../inc
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+SYSTEMINCLUDE   /epoc32/include/mmf/server
+SYSTEMINCLUDE 	../inc
+
+LIBRARY         euser.lib
+
+// Users link against the non-stub name, so that rebuild is not necessary
+EXPORTLIBRARY	SpeechEncoderConfigCI.lib
+
+LINKAS          SpeechEncoderConfigCI.dll
+
+// End of file

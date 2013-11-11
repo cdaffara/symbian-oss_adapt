@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CLoudnessCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CLoudnessCI * CLoudnessCI::NewL(class CMMFDevSound &)
+	?NewL@CLoudnessCI@@SAPAV1@XZ @ 2 NONAME ; class CLoudnessCI * CLoudnessCI::NewL(void)
+

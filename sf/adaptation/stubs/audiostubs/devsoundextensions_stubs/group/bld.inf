@@ -1,0 +1,64 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Build file for AdvancedAudioController including the projects that
+*                are needed to be built.
+*
+*/
+
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_EXPORTS
+
+PRJ_MMPFILES
+
+// MmfDevSoundAdaptation Stub
+#include "../mmfdevsoundadaptation_stub/group/bld.inf"
+
+// mmfaudioserverfactorystub Stub
+#include "../mmfaudioserverfactorystub/group/bld.inf"
+
+// Added DevSoundControl CI Stub
+#include "../addeddevsoundcontrolcistub/Group/bld.inf"
+
+// Audio Enhancement Factory Stubs
+#include "../audioenhancementfactorystubs/group/bld.inf"
+
+// Audio Routing CI Stub
+#include "../audioinputcistub/Group/bld.inf"
+#include "../audiooutputcistub/Group/bld.inf"
+
+// Audio Effect CI Stub
+#include "../audioeffectscistubs/group/bld.inf"
+
+// Audio Codec CI Stub
+#include "../audiocodeccistubs/group/bld.inf"
+
+// Audio Visualization Stub -- As Audio Visualization is deprecated, this also should be deprecated
+//#include "../audiovisualizationstub/Group/bld.inf"
+
+// Restricted Audio Output CI Stub
+#include "../restrictedaudiooutputcistub/Group/bld.inf"
+
+//CI stub plugin
+#include "../cistubplugin/group/bld.inf"
+
+PRJ_TESTMMPFILES
+
+PRJ_TESTEXPORTS
+
+////////////////////////////////////////////////////////////////////////////////
+//                                END OF FILE                                 //
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,53 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* Project file for the LCD keypad driver
+*
+*/
+
+
+
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+USERINCLUDE ../naviengine_assp/lcdgce
+USERINCLUDE inc
+
+target				VariantTarget(keypad,dll)
+targettype		kext
+linkas				keypad.dll
+
+
+sourcepath		specific
+source			  keypad.cpp
+
+library				VariantTarget(power,lib)
+
+noexportlibrary
+//deffile				../../../../os/kernelhwsrv/kernel/eka/~/empty.def
+
+uid					0x1000008d 0x100039ea
+VENDORID            0x70000001
+
+capability			all
+
+nostrictdef
+
+SMPSAFE

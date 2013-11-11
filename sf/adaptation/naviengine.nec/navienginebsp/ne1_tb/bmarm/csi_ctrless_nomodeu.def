@@ -1,0 +1,4 @@
+EXPORTS
+	DfcFunc__20TIicBusSlaveCallbackPv @ 1 NONAME R3UNUSED ; TIicBusSlaveCallback::DfcFunc(void *)
+	__25DIicBusChannelMasterSlaveQ214DIicBusChannel8TBusTypeQ214DIicBusChannel14TChannelDuplexP20DIicBusChannelMasterP19DIicBusChannelSlave @ 2 NONAME ; DIicBusChannelMasterSlave::DIicBusChannelMasterSlave(DIicBusChannel::TBusType, DIicBusChannel::TChannelDuplex, DIicBusChannelMaster *, DIicBusChannelSlave *)
+

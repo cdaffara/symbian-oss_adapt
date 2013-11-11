@@ -1,0 +1,82 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// This script configures the paths that are searched for source code to be a
+// list of user specified paths plus a path that is computed as being the root
+// of the environment, ie. The path at which the "os" directory resides.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+GLOBAL &driveletter
+GLOBAL &sospath
+
+&driveletter=string.mid(os.file.path(&_SYMBOLICS_FILENAME),0.,2.)
+&sospath=""
+
+if os.file("&driveletter\os\kernelhwsrv\kernel\eka\release.txt")
+	(
+	&sospath=""
+	)
+else if os.file("&driveletter\sf\os\kernelhwsrv\kernel\eka\release.txt")
+	(
+	&sospath="\sf"
+	)
+else
+	(
+	&sospath=""
+	)
+print "Base path for SymbianOS source code is &driveletter&sospath\os"
+
+if os.file("&PlatformsDir\&Platform\customsourcepaths.cmm")
+	(
+	print "Loading custom source paths"
+	do &PlatformsDir\&Platform\customsourcepaths.cmm
+	)
+else
+	(
+	if os.file("&PlatformsDir\&Platform\defaultsourcepaths.cmm")
+		(
+		print "Loading default source paths for this platform"
+		do &PlatformsDir\&Platform\defaultsourcepaths.cmm
+		)
+	else
+		(
+		print "No source paths defined for this platform, using some generic ones"
+
+		; extract the drive letter and add it to the symbol path
+		&driveletter=string.mid(os.file.path(&_SYMBOLICS_FILENAME),0.,2.)
+
+		SYMBOL.SPATH.RESET
+		SYMBOL.SPATH.SETRECURSEDIR "&driveletter&sospath\os\kernelhwsrv\kernel\eka\drivers"
+		if "&NumberOfCpus">"1"
+			(
+			print "More than one CPU, so using NKernSMP, not NKern"
+			SYMBOL.SPATH.SETRECURSEDIR "&driveletter&sospath\os\kernelhwsrv\kernel\eka\nkernsmp"
+			SYMBOL.SPATH.SET           "&driveletter\epoc32\release\armv5smp\UDEB"
+			)
+		else
+			(
+			print "Only one CPU, so using NKern, not NKernSMP"
+			SYMBOL.SPATH.SETRECURSEDIR "&driveletter&sospath\os\kernelhwsrv\kernel\eka\nkern"
+			)
+
+		SYMBOL.SPATH.SETRECURSEDIR "&driveletter&sospath\os\kernelhwsrv\kernel\eka\kernel"
+		SYMBOL.SPATH.SET           "&driveletter\epoc32\release\armv5\UDEB"
+		)
+	)
+
+enddo

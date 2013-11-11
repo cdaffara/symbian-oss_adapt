@@ -1,0 +1,5 @@
+EXPORTS
+	_ZN24CRestrictedAudioOutputCI4NewLEv @ 1 NONAME
+	_ZTI24CRestrictedAudioOutputCI @ 2 NONAME ; #<TI>#
+	_ZTV24CRestrictedAudioOutputCI @ 3 NONAME ; #<VT>#
+

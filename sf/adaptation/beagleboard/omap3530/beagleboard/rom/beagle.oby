@@ -1,0 +1,76 @@
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+#ifndef __BEAGLE_OBY__
+#define __BEAGLE_OBY__
+
+define LANGID 01
+define BUILDNO 0
+define VERSION 0.01
+define ROMDATE	##TODAY##
+DEFAULT_LANGUAGE 01
+
+REM Definitions specific to Beagle Board 
+
+#undef  _ARMV5
+#define _ARMV5
+
+#define __BEAGLE__
+
+//define BEAGLE			0x09080001
+define VARIANT			beagle
+define VARID			0x09080001
+define ASSP_DIR			EPOCROOT##epoc32\release\mbeagle
+define ROMMEGS			80		/* !! HEX !! */
+define PLATFORM_NAME	beagle
+#define BASEPORT_DRV	<base_beagle.iby>
+
+#define COLOR
+
+#define	EUSER_DLL	../../armv5/BUILD_DIR/_omap3530_euser.dll
+
+
+define	HAL_DLL			_beagle_hal.dll
+define	ESTART_EXE		e32strt.exe
+define	KEYMAP_FILE		_beagle_ekdata
+define	SCDV_DLL		_omapqvga_scdv.dll
+
+//#define WITH_LFFS
+
+// Not supported! Need gce aware lcd driver and display0.ldd
+//#define SYMBIAN_BASE_USE_GCE
+//#define SYMBIAN_GRAPHICS_USE_GCE
+
+//#define SYMBIAN_EXCLUDE_LOCATION   // <- Can't exclude from s60 images
+#define SERIALMOUSE
+
+#define SYMBIAN_EXCLUDE_OMA_DEVMAN
+#define SYMBIAN_EXCLUDE_OMA_DATASYNC
+#define SYMBIAN_EXCLUDE_MTP
+#define SYMBIAN_EXCLUDE_USB
+
+REM defines for IrDA options
+REM Uncomment the line below to enable IrDA to use a Jeteye ESI09680 pod with serial card adapter
+REM #define _ENABLE_IRDA_POD_
+REM define which port IrDA uses
+define IRPOD_ESK irda_port1.esk
+
+REM define which serial port Bluetooth protocol uses
+REM define BLUETOOTH_ESK bt_port2.esk
+
+REM Define whether or not to include USB client support:
+#define EUSBC
+
+#endif //__BEAGLE_OBY__

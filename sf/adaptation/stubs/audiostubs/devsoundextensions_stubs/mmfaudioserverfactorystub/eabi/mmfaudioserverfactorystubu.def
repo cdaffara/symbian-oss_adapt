@@ -1,0 +1,8 @@
+EXPORTS
+	_Z24ImplementationGroupProxyRi @ 1 NONAME
+	_ZN26CMMFAudioServerFactoryStub4NewLEv @ 2 NONAME
+	_ZTI26CMMFAudioServerFactoryStub @ 3 NONAME ; #<TI>#
+	_ZTI33CTelephonyAudioRoutingManagerStub @ 4 NONAME ; #<TI>#
+	_ZTV26CMMFAudioServerFactoryStub @ 5 NONAME ; #<VT>#
+	_ZTV33CTelephonyAudioRoutingManagerStub @ 6 NONAME ; #<VT>#
+

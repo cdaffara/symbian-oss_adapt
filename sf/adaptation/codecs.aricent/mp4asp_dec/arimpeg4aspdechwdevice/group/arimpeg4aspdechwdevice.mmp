@@ -1,0 +1,62 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description:
+* Project file for Mpeg4/H263 Video Decode HwDevice.
+*/
+
+#include <platform_paths.hrh>
+#include "..\inc\arimpeg4aspdechwdeviceuid.hrh"
+
+TARGET			arimpeg4aspdechwdevice.dll
+
+TARGETTYPE		PLUGIN
+
+#ifdef SYMBIAN_SECURE_ECOM
+TARGETTYPE		PLUGIN
+#else
+TARGETTYPE		ECOMIIC
+#endif
+
+UID 			0x10009D8D KUidMp4DecoderHwDeviceDllUid
+
+CAPABILITY  ALL -TCB
+
+SOURCEPATH		..\src
+SOURCE			arimpeg4aspdechwdevice.cpp
+
+START RESOURCE 200298FA.rss
+	TARGET arimpeg4aspdechwdevice.rsc
+END
+
+MACRO LOGLEVEL_CRITICAL
+
+USERINCLUDE	    ..\inc
+USERINCLUDE     ..\..\arimpeg4aspdecwrapper\Export_hdr
+USERINCLUDE	    ..\..\..\Utilities\log
+USERINCLUDE     ..\..\..\Utilities\ariprocessengine\inc
+USERINCLUDE     ..\..\..\Utilities\aristatemachine\inc
+
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\libc
+SYSTEMINCLUDE	\epoc32\include\ecom
+SYSTEMINCLUDE	\epoc32\include\mmf\devvideo
+SYSTEMINCLUDE	\epoc32\include\oem
+
+MW_LAYER_SYSTEMINCLUDE
+
+LIBRARY			euser.lib estlib.lib
+LIBRARY			efsrv.lib
+LIBRARY			aristatemachine.lib
+LIBRARY			devvideo.lib
+LIBRARY			arimpeg4aspdecwrapper.lib ariprocessengine.lib

@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CSourceLocationCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CSourceLocationCI * CSourceLocationCI::NewL(class CMMFDevSound &)
+	?NewL@CSourceLocationCI@@SAPAV1@XZ @ 2 NONAME ; class CSourceLocationCI * CSourceLocationCI::NewL(void)
+

@@ -1,0 +1,43 @@
+// Autoload script, called by TRACE32 if symbols are to be loaded
+
+// define local macros
+ local &filename &basename &progname &symfilename &filepath &code &data &space &databsslinear &basename
+
+// get filename and relocation information
+ // these parameters are passed when calling this skript
+ 
+ entry &filename &code &data &databsslinear &space
+ 
+ // &filename:      name of process/file
+ // &code:          text segment address
+ // &data:          data segment address (not used in Symbian OS)
+ // &databsslinear: combined data & bss segment address
+ // &space:         space id of process (not used here)
+
+// get symbol file name and program name
+ &basename=string.cut(&filename,-string.len(os.file.extension(&filename)))
+ &symfilename="&basename"+".sym"
+ &progname=os.file.name("&basename")
+
+// delete program if it already exists or other code is already there
+ y.delete &code
+ if y.exist("\\&progname")
+   y.delete \\&progname
+
+// search file in source search path and open dialog when not there
+ &filepath=y.searchfile("&symfilename")
+ if !os.file("&filepath")
+ (
+   local &file
+   &file=os.file.name("&symfilename")
+   winpos ,,,,,, filebox normal "Searching symbols for &filename"
+   dialog.file "*\&file"
+   entry %line &filepath
+   if "&filepath"==""
+     enddo
+ )
+
+// load symbol file (options for sourcepath, e.g. /STRIPPART may need to be added when required)
+ d.load.elf "&filepath" /noclear /cpp /nocode /reloc ER_RO at &code /reloc ER_RW at &databsslinear /reloc ER_ZI after ER_RW
+ 
+ enddo

@@ -1,0 +1,15 @@
+EXPORTS
+	?CreateLogicalDevice@@YAPAVDLogicalDevice@@XZ @ 1 NONAME ; class DLogicalDevice * CreateLogicalDevice(void)
+	??0DIscDataTransmissionBase@@QAE@XZ @ 2 NONAME ; DIscDataTransmissionBase::DIscDataTransmissionBase(void)
+	??1DIscDataTransmissionBase@@UAE@XZ @ 3 NONAME ; DIscDataTransmissionBase::~DIscDataTransmissionBase(void)
+	?AllocBuffers@DIscBufferAllocator@@QAEHXZ @ 4 NONAME ; int DIscBufferAllocator::AllocBuffers(void)
+	?AllocBuffers@DIscDataTransmissionBase@@UAEXPAUTIscBufferEntry@@@Z @ 5 NONAME ; void DIscDataTransmissionBase::AllocBuffers(struct TIscBufferEntry *)
+	?Connect@DIscDataTransmissionBase@@UAEXPAVDIscDevice@@@Z @ 6 NONAME ; void DIscDataTransmissionBase::Connect(class DIscDevice *)
+	?Install@DIscDataTransmissionBase@@UAEHXZ @ 7 NONAME ; int DIscDataTransmissionBase::Install(void)
+	?NotifyConnectionStatus@DIscDataTransmissionBase@@IAEXH@Z @ 8 NONAME ; void DIscDataTransmissionBase::NotifyConnectionStatus(int)
+	?ReceiveFrame@DIscDataTransmissionBase@@IAEXAAVTDesC8@@@Z @ 9 NONAME ; void DIscDataTransmissionBase::ReceiveFrame(class TDesC8 &)
+	?ReleaseMemoryBlock@DIscBufferAllocator@@QAEXPAVTDes8@@@Z @ 10 NONAME ; void DIscBufferAllocator::ReleaseMemoryBlock(class TDes8 *)
+	?ReleaseMemoryBlock@DIscDataTransmissionBase@@UAEXPAVTDes8@@@Z @ 11 NONAME ; void DIscDataTransmissionBase::ReleaseMemoryBlock(class TDes8 *)
+	?ReserveMemoryBlock@DIscBufferAllocator@@QAEXAAPAVTDes8@@G@Z @ 12 NONAME ; void DIscBufferAllocator::ReserveMemoryBlock(class TDes8 * &, unsigned short)
+	?ReserveMemoryBlock@DIscDataTransmissionBase@@UAEXAAPAVTDes8@@G@Z @ 13 NONAME ; void DIscDataTransmissionBase::ReserveMemoryBlock(class TDes8 * &, unsigned short)
+

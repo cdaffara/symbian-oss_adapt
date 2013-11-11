@@ -1,0 +1,5 @@
+EXPORTS
+	_ZN5Omap36MsTick17SuppressIdleTicksEi @ 1 NONAME
+	_ZN5Omap36MsTick22EndIdleTickSuppressionEi @ 2 NONAME
+	_ZN5Omap36MsTick5StartEv @ 3 NONAME
+

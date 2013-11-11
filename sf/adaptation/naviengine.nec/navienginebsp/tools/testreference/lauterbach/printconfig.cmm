@@ -1,0 +1,89 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// A script to display the current configuration of T32, in terms of what board
+// it is configured for and the ROM image to be used etc.  This can be called by
+// the configdialog.cmm script or manually by the user.
+//
+// Change History:
+//
+// 11/11/2008 1.0 : Initial version
+// 13/05/2009 1.1 : Tidied up in readiness for putting into Nokia's distribution system
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.1
+
+; Make sure that we have loaded the latest configuration variables
+do globals.cmm
+
+print "=============================================================================="
+print "USER CONFIG"
+print "=============================================================================="
+
+print "Platform             &Platform"
+print "RAM Addr             &RamAddr"
+print "RAM Image            &RamImage"
+print "Flash Addr           &FlashAddr"
+print "Flash Image          &FlashImage"
+print "Boot Addr            &BootAddr"
+print "Boot Image           &BootImage"
+print "Flash Write Protect  &FlashWriteProtect"
+print "Flash Erase Protect  &FlashEraseProtect"
+
+print "=============================================================================="
+print "PLATFORM CONFIG"
+print "=============================================================================="
+
+print "CPU Type               &CpuType"
+print "JTAG clock             &JtagClock"
+print "Number of CPUs         &NumberOfCpus"
+
+print "On-chip triggers->"
+print "    FIQ                &OnChipTriggerFiq"
+print "    IRQ                &OnChipTriggerIrq"
+print "    DABORT             &OnChipTriggerDabort"
+print "    PABORT             &OnChipTriggerPabort"
+print "    SWI                &OnChipTriggerSwi"
+print "    UNDEF              &OnChipTriggerUndef"
+print "    RESET              &OnChipTriggerReset"
+print "    Alignment          &OnChipTriggerAlignment"
+print "    StepVector         &OnChipTriggerStepvector"
+print "    ADDRESS            &OnChipTriggerAddress"
+print "    ERROR              &OnChipTriggerError"
+
+print "Sytem Option ->"
+print "    enreset            &SystemOptionEnreset"
+print "    turbo              &SystemOptionTurbo"
+print "    dismode            &SystemOptionDismode"
+print "    noircheck          &SystemOptionNoircheck"
+print "    waitreset          &SystemOptionWaitreset"
+print "    resbreak           &SystemOptionResbreak"
+print "    dacr               &SystemOptionDacr"
+print "    tidbgen            &SystemOptionTidbgen"
+
+print "Flash Config"
+print "    Type               &FlashType"
+print "    Bloc Size          &FlashBlockSize"
+print "    Start Addr         &FlashStart"
+print "    Length             &FlashLength"
+print "    End Addr           &FlashEnd"
+print "    Width              &FlashWidth"
+print "    Target             &FlashOptionTarget"
+
+print "=============================================================================="
+
+enddo

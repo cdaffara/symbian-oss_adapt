@@ -1,0 +1,47 @@
+/*
+* Copyright (c) 2009-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*
+*/
+
+
+#include			<../variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+target				VariantTarget(d_pci,ldd)
+romtarget			d_pci.ldd
+targettype			ldd
+
+SYMBIAN_BASE_SYSTEMINCLUDE(assp/naviengine)
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+SYMBIAN_BASE_SYSTEMINCLUDE(e32test)
+userinclude			../../naviengine_assp/pci
+
+sourcepath			./pci
+source				d_pci.cpp
+
+sourcepath			../../naviengine_assp/pci
+source				allocator.cpp
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+
+library				VariantTarget(kanaviengine,lib)
+library				VariantTarget(pci,lib)
+
+capability			all
+
+vendorid			0x70000001
+epocallowdlldata
+
+SMPSAFE

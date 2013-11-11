@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN24CErrorConcealmentIntfcCI12SetFrameModeEi @ 1 NONAME
+	_ZN24CErrorConcealmentIntfcCI18FrameModeRqrdForECERi @ 2 NONAME
+	_ZN24CErrorConcealmentIntfcCI25ConcealErrorForNextBufferEv @ 3 NONAME
+	_ZN24CErrorConcealmentIntfcCI4NewLEv @ 4 NONAME
+	_ZN24CErrorConcealmentIntfcCID0Ev @ 5 NONAME
+	_ZN24CErrorConcealmentIntfcCID1Ev @ 6 NONAME
+	_ZN24CErrorConcealmentIntfcCID2Ev @ 7 NONAME
+	_ZTI24CErrorConcealmentIntfcCI @ 8 NONAME ; #<TI>#
+	_ZTV24CErrorConcealmentIntfcCI @ 9 NONAME ; #<VT>#
+

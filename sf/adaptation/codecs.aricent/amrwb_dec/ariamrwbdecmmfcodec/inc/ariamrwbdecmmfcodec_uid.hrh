@@ -1,0 +1,28 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* This file defines the macros for Plugin Dll and Implementation Uids.
+*
+*/
+
+
+#ifndef ARIAMRWBDECMMFCODECUID_H	
+#define ARIAMRWBDECMMFCODECUID_H
+
+// Implementation UID
+#define KUidARIAMRWBDecImplUid  		0x200298F6
+// Dll UID
+#define KUidARIAMRWBDecDllUid 			0x200298F7 
+
+#endif /* ARIAMRWBDECMMFCODECUID_H */

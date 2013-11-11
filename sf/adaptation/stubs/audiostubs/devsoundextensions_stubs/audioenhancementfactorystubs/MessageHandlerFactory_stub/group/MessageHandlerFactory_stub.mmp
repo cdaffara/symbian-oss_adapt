@@ -1,0 +1,73 @@
+/*
+* Copyright (c) 2006-2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Project definition file for project MessageHandlerFactory_stub
+*  Version     : %version: bh1mmcf#16 %
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          MessageHandlerFactory.dll
+TARGETTYPE      DLL
+UID             0x1000008D 0x10203821
+
+CAPABILITY      CAP_GENERAL_DLL
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      ../src
+SOURCE          MessageHandlerFactory.cpp
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../Inc
+USERINCLUDE     ../src
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+
+LIBRARY         euser.lib
+
+LIBRARY         AudioEqualizerMessageHandler.lib
+LIBRARY         EnvironmentalReverbMessageHandler.lib
+LIBRARY         StereoWideningMessageHandler.lib
+LIBRARY         BassBoostMessageHandler.lib
+LIBRARY         ListenerDopplerMessageHandler.lib
+LIBRARY         ListenerLocationMessageHandler.lib
+LIBRARY         ListenerOrientationMessageHandler.lib
+LIBRARY         SourceDopplerMessageHandler.lib
+LIBRARY         SourceLocationMessageHandler.lib
+LIBRARY         SourceOrientationMessageHandler.lib
+LIBRARY         DistanceAttenuationMessageHandler.lib
+LIBRARY         LoudnessMessageHandler.lib
+LIBRARY         RoomLevelMessageHandler.lib
+LIBRARY         RestrictedAudioOutputMessageHandler.lib
+LIBRARY         AudioInputMessageHandler.lib
+LIBRARY         AudioOutputMessageHandler.lib
+LIBRARY         SpeechEncoderConfigMsgHdlr.lib
+LIBRARY         ErrorConcealmentIntfcMsgHdlr.lib
+LIBRARY         G711DecoderIntfcMsgHdlr.lib
+LIBRARY         G729DecoderIntfcMsgHdlr.lib
+LIBRARY         IlbcDecoderIntfcMsgHdlr.lib
+LIBRARY         G711EncoderIntfcMsgHdlr.lib
+LIBRARY         G729EncoderIntfcMsgHdlr.lib
+LIBRARY         IlbcEncoderIntfcMsgHdlr.lib
+LIBRARY         AddedDevSoundControlMsgHdlr.lib
+
+//enable each line when supported by the adaptation
+//LIBRARY       AudioResourceMessageHandler.lib
+//LIBRARY       AacDecoderConfigMsgHdlr.lib
+//LIBRARY       AudioVibraControlMsgHdlr.lib
+
+
+// End of File

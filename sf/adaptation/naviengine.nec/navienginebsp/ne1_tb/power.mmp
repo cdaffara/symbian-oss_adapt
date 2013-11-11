@@ -1,0 +1,74 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb/power.mmp
+*
+*/
+
+
+
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+target				VariantTarget(power,dll)
+targettype			kext
+linkas				power.dll
+romtarget			power.dll
+
+
+// uncomment the line below to remove any reference to the idlehandler PIL
+// this disables power managent
+//#define NO_IDLE_HANDLER_PIL
+#ifdef NO_IDLE_HANDLER_PIL
+macro __NO_IDLE_HANDLER_PIL__
+#endif
+
+USERINCLUDE inc
+SYMBIAN_BASE_SYSTEMINCLUDE(ne1_tb)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+SYMBIAN_NE1_TB_SYSTEMINCLUDE(specific)
+
+
+#if defined(SMP) && !defined(NO_IDLE_HANDLER_PIL)
+USERINCLUDE                  ../../../../os/kernelhwsrv/kernel/eka/include/drivers/smppower/sample_idlehandler
+#endif
+
+sourcepath			../../../../os/kernelhwsrv/kernel/eka/drivers/power/binary
+source				bpower.cpp
+
+sourcepath			specific
+source				power.cpp power.cia
+
+#if defined(SMP) && !defined(NO_IDLE_HANDLER_PIL)
+staticlibrary		idlehelper.lib
+staticlibrary		sample_smpidlehandler.lib
+#endif
+
+library				VariantTarget(ecust,lib)
+
+deffile				./~/power.def
+nostrictdef
+
+epocallowdlldata
+
+uid 				0x1000008d 0x100039e8
+VENDORID 0x70000001
+
+capability			all
+SMPSAFE

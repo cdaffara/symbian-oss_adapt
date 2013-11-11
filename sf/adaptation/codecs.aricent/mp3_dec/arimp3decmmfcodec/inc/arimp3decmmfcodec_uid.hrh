@@ -1,0 +1,30 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* This file defines the macros for Plugin Dll and Implementation Uids.
+*
+*/
+#ifndef ARIMP3DECMMFCODEC_UID_HRH  
+#define ARIMP3DECMMFCODEC_UID_HRH
+
+// Implementation UID
+#define KUidMp3DecCodecImplUid 	0x200297CD
+// Dll UID
+#define KUidMp3DecCodecDllUid	0x200297CE
+
+#endif // ARIMP3DECMMFCODEC_UID_HRH //
+
+//-----------------------------------------------------------------------------
+//  End of File
+//-----------------------------------------------------------------------------

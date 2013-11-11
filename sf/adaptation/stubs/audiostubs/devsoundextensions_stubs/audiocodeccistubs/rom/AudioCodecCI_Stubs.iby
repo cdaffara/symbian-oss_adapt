@@ -1,0 +1,39 @@
+/*
+* Copyright (c) 2005-2007 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Image description file for project Audio Codec Stubs
+*
+*/
+
+
+#ifndef __AUDIOCODECCI_STUBS_IBY__
+#define __AUDIOCODECCI_STUBS_IBY__
+
+
+file=ABI_DIR\BUILD_DIR\AacDecoderConfigCI_stub.dll		SHARED_LIB_DIR\AacDecoderConfigCI_stub.dll
+file=ABI_DIR\BUILD_DIR\AudioVibraControlCI_stub.dll		SHARED_LIB_DIR\AudioVibraControlCI_stub.dll
+file=ABI_DIR\BUILD_DIR\ErrorConcealmentIntfcCI_stub.dll		SHARED_LIB_DIR\ErrorConcealmentIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\G711DecoderIntfcCI_stub.dll		SHARED_LIB_DIR\G711DecoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\G711EncoderIntfcCI_stub.dll		SHARED_LIB_DIR\G711EncoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\G729DecoderIntfcCI_stub.dll		SHARED_LIB_DIR\G729DecoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\G729EncoderIntfcCI_stub.dll		SHARED_LIB_DIR\G729EncoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\IlbcDecoderIntfcCI_stub.dll		SHARED_LIB_DIR\IlbcDecoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\IlbcEncoderIntfcCI_stub.dll		SHARED_LIB_DIR\IlbcEncoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\SpeechEncoderConfigCI_stub.dll		SHARED_LIB_DIR\SpeechEncoderConfigCI_stub.dll
+file=ABI_DIR\BUILD_DIR\EAacPlusDecoderIntfcCI_stub.dll  	SHARED_LIB_DIR\EAacPlusDecoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\SbcEncoderIntfcCI_stub.dll		SHARED_LIB_DIR\SbcEncoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\Ra8DecoderIntfcCI_stub.dll       	SHARED_LIB_DIR\Ra8DecoderIntfcCI_stub.dll
+file=ABI_DIR\BUILD_DIR\WmaDecoderIntfcCI_Stub.dll      	        SHARED_LIB_DIR\WmaDecoderIntfcCI_Stub.dll
+
+
+#endif __AUDIOCODECCI_STUBS_IBY__

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Copyright (c) NOKIA 2009. All rights reserved.
+	file Source Sink Video tests for OpenMAX IL.
+	
+
+	Expected Result:
+	BasicOperation				Pass
+	GetFilenameNoFileSet_filesink		Fail	OMX_ErrorNotReady
+	GetFilenameOverFlow_filesink		Fail	OMX_ErrorBadParameter
+	ChangeEncodeType_filesink		Pass		
+	ChangeInvalidEncodeType_filesink	Fail	OMX_ErrorUnsupportedSetting
+	BasicOperation_nofilename_filesink	Pass
+-->
+
+<TestSet>
+
+	<!--  ->  
+		File Source Video -> 	File Sink Video	 	
+	-->
+	<Test name="BasicOperation">
+		<!-- Simple file read\write testcase: all comps. to IDLE then to EXECUTING then 3 secs later to IDLE
+			 -->
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<LoadComponent comp="filesource" name="OMX.NOKIA.VIDEO.FILESOURCE" />
+		
+		<SetupTunnel output="filesource:0" input="filesink:0" />
+		<BufferSupplierOverride output="filesource:0" input="filesink:0" supplier="output" />
+		
+		<SetFilename comp="filesink" filename="C:\omxil\data\aac_same_video.stream" />
+		
+		<SetFilename comp="filesource" filename="C:\omxil\data\aac.stream" />
+		<GetFilename comp="filesink" filename="C:\omxil\data\aab_same_video.stream"/>	
+
+		<IgnoreEvent comp="filesink" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+		<IgnoreEvent comp="filesource" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+		
+		<IgnoreEvent comp="filesink" event="OMX_EventBufferFlag" nData1="0x00000000 " nData2="0x00000001" nData3="0"/>
+		<IgnoreEvent comp="filesource" event="OMX_EventBufferFlag" nData1="0x00000000 " nData2="0x00000001" nData3="0"/>
+		
+		<AllTransition state="idle" order="auto"/>
+		<AllTransition state="executing" order="auto" />
+		<Wait delaytime="3000000" />
+		<AllTransition state="idle" order="auto"/>
+		<AllTransition state="loaded" order="auto"/>
+	</Test>
+	
+	
+	<Test name="GetFilenameNoFileSet_filesink">
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<!--OMX_ErrorNotReady-->
+		<ExpectEvent comp="filesink" event="Error" nData1="0x80001010" nData2="0"/>
+		<GetFilename comp="filesink" filename="C:\omxil\data\aab.stream" expectedomxerr="OMX_ErrorNotReady"/>
+	</Test>
+	
+	<Test name="GetFilenameOverFlow_filesink">
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<!--OMX_ErrorBadParameter-->
+		
+		<SetFilename comp="filesink" filename="C:\omxil\data\aac.stream" />
+		<IgnoreEvent comp="filesink" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+		
+		<ExpectEvent comp="filesink" event="Error" nData1="0x80001005" nData2="0" />
+		<GetFilename comp="filesink" filename="C:\omxil\data\aa.stream" expectedomxerr="OMX_ErrorBadParameter"/>
+	</Test>
+		
+	<Test name="ChangeEncodeType_filesink">
+	<!-- expected result :Pass -->
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<!--Pass-->
+		<SetVideoPortDef port="filesink:0" codingType="unused" /> 
+		<IgnoreEvent comp="filesink" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+	</Test>
+	
+	
+	<Test name="ChangeInvalidEncodeType_filesink">
+	<!-- expected result :fail OMX_ErrorUnsupportedSetting-->
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<!--Pass-->
+		<SetVideoPortDef port="filesink:0" codingType="mpeg4" expectedomxerr="OMX_ErrorUnsupportedSetting"/> 
+		<IgnoreEvent comp="filesink" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+	</Test>
+	
+	<Test name="BasicOperation_nofilename_filesink">
+		<!-- Simple file read\write testcase: all comps. to IDLE then to EXECUTING then 3 secs later to IDLE
+		 no filename is set for the file sink -->
+		<LoadComponent comp="filesink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<LoadComponent comp="filesource" name="OMX.NOKIA.VIDEO.FILESOURCE" />
+
+		<SetupTunnel output="filesource:0" input="filesink:0" />
+		<BufferSupplierOverride output="filesource:0" input="filesink:0" supplier="output" />
+
+		<SetFilename comp="filesource" filename="C:\omxil\data\aac.stream" />
+		
+		<IgnoreEvent comp="filesink" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+		<IgnoreEvent comp="filesource" event="PortSettingsChanged" nData1="0x02000001" nData2="0" nData3="0"/>
+
+		<IgnoreEvent comp="filesink" event="OMX_EventBufferFlag" nData1="0x00000000 " nData2="0x00000001" nData3="0"/>
+		<IgnoreEvent comp="filesource" event="OMX_EventBufferFlag" nData1="0x00000000 " nData2="0x00000001" nData3="0"/>
+
+		<AllTransition state="idle" order="auto"/>
+		<AllTransition state="executing" order="auto" />
+		<Wait delaytime="3000000" />
+		<AllTransition state="idle" order="auto"/>
+		<AllTransition state="loaded" order="auto"/>
+	</Test>
+	
+	
+</TestSet>
+
+
+

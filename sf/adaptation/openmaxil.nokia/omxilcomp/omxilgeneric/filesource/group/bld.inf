@@ -1,0 +1,50 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+PRJ_PLATFORMS
+DEFAULT
+
+#ifdef SYMBIAN_MM_OPENMAXIL_ADDITIONAL_COMPONENTS
+PRJ_EXPORTS
+
+omxilotherfilesource.iby							/epoc32/rom/include/omxilotherfilesource.iby
+omxilaudiofilesource.iby							/epoc32/rom/include/omxilaudiofilesource.iby
+omxilvideofilesource.iby							/epoc32/rom/include/omxilvideofilesource.iby	
+omxilimagefilesource.iby							/epoc32/rom/include/omxilimagefilesource.iby
+
+PRJ_MMPFILES
+../mmpfiles/omxilotherfilesource.mmp
+../mmpfiles/omxilaudiofilesource.mmp
+../mmpfiles/omxilimagefilesource.mmp
+../mmpfiles/omxilvideofilesource.mmp
+
+
+PRJ_TESTEXPORTS
+../tests/khronos_conformance/Khronos_file_source_audio.txt		/epoc32/winscw/c/omxil/khronos/Khronos_file_source_audio.txt
+../tests/khronos_conformance/Khronos_file_source_image.txt		/epoc32/winscw/c/omxil/khronos/Khronos_file_source_image.txt
+../tests/khronos_conformance/Khronos_file_source_video.txt		/epoc32/winscw/c/omxil/khronos/Khronos_file_source_video.txt
+../tests/khronos_conformance/Khronos_file_source_other.txt		/epoc32/winscw/c/omxil/khronos/Khronos_file_source_other.txt
+
+../tests/unit/te_omx_filesource_audio.script		/epoc32/winscw/c/omxil/tef/te_omx_filesource_audio.script	
+../tests/unit/te_omx_filesource_audio.xml		/epoc32/winscw/c/omxil/tef/te_omx_filesource_audio.xml	
+../tests/unit/te_omx_filesource_image.script		/epoc32/winscw/c/omxil/tef/te_omx_filesource_image.script	
+../tests/unit/te_omx_filesource_image.xml		/epoc32/winscw/c/omxil/tef/te_omx_filesource_image.xml	
+../tests/unit/te_omx_filesource_other.script		/epoc32/winscw/c/omxil/tef/te_omx_filesource_other.script
+../tests/unit/te_omx_filesource_other.xml		/epoc32/winscw/c/omxil/tef/te_omx_filesource_other.xml	
+../tests/unit/te_omx_filesource_video.script		/epoc32/winscw/c/omxil/tef/te_omx_filesource_video.script
+../tests/unit/te_omx_filesource_video.xml		/epoc32/winscw/c/omxil/tef/te_omx_filesource_video.xml	
+../tests/unit/te_omx_filesrc.ini			/epoc32/winscw/c/omxil/tef/te_omx_filesrc.ini
+#endif

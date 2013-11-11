@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "systemDefinition.dtd"[
+
+ 	<!ENTITY layer_real_source_path "\sf\adaptation\stubs\power_save_display_mode_stub">
+ 	<!ENTITY layer_name "power_save_display_mode_stub">
+
+ 	<!ENTITY layer_file SYSTEM "systemDefinitionLayer.xml">
+ 	<!ENTITY targetDefinition_file SYSTEM "/epoc32/tools/systemDefinition/targetDefinition.xml">
+ 	<!ENTITY defaultbuild_file SYSTEM "/epoc32/tools/systemDefinition/default_build.xml">
+ 	<!ENTITY defaultclean_file SYSTEM "/epoc32/tools/systemDefinition/default_clean.xml">
+]>
+
+<SystemDefinition name="SystemDefinition" schema="1.4.0">
+  <systemModel>
+&layer_file;
+  </systemModel>
+  <build>
+&targetDefinition_file;
+
+		<configuration name="build" description="build layer" filter="">
+    	<layerRef layerName="&layer_name;"/>
+
+&defaultbuild_file;
+    </configuration>
+
+		<configuration name="clean" description="clean layer" filter="">
+    	<layerRef layerName="&layer_name;"/>
+
+&defaultclean_file;
+    </configuration>
+
+  </build>
+</SystemDefinition>

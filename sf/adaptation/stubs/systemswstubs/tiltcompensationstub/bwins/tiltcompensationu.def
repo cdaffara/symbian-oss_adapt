@@ -1,0 +1,4 @@
+EXPORTS
+	?Compensate@@YAHABVTTiltCompensationInput@@AAVTTiltCompensationOutput@@F@Z @ 1 NONAME ; int Compensate(class TTiltCompensationInput const &, class TTiltCompensationOutput &, short)
+	?Compensate@@YAHABVTTiltCompensationInput@@AAVTTiltCompensationOutput@@FABV?$RArray@N@@@Z @ 2 NONAME ; int Compensate(class TTiltCompensationInput const &, class TTiltCompensationOutput &, short, class RArray<double> const &)
+

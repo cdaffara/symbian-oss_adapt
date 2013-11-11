@@ -1,0 +1,138 @@
+/*
+* Copyright (c) 1998-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb/bld.inf
+* Bld.inf for Flexible, Multiple and Direct MM common binaries
+*
+*/
+
+
+#ifndef NO_GCCXML
+#define NO_GCCXML
+#endif
+
+#include "../naviengine_assp/naviengine.inf"
+
+PRJ_PLATFORMS
+ARM4 ARMV5
+ARM4SMP ARMV5SMP
+
+
+PRJ_EXPORTS
+
+hcr/hcrconfig.h			 	SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+hcr/hcrconfig_mha.h			SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+inc/iolines.h				SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+inc/mconf.h                 SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+inc/variantmediadef.h       SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+
+ne1_tb.oby                  /epoc32/rom/include/                      //
+rom/base_ne1_tb.iby         /epoc32/rom/include/                      //
+rom/naviengine.oby          /epoc32/rom/include/                      //
+rom/header.iby              /epoc32/rom/ne1_tb/                       //
+rom/kernel.iby              /epoc32/rom/ne1_tb/                       //
+nand/variant_nand_plat.h    SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+inc/nand_fbr_offset.h       SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(ne1_tb/)
+
+estart/estart.txt           /epoc32/rom/ne1_tb/
+estart/estarttechview.txt   /epoc32/rom/ne1_tb/
+
+nandboot/quicknand.bat		/epoc32/rom/ne1_tb/	
+nandboot/nandtest_load_rel_autoexec.bat	/epoc32/rom/ne1_tb/		
+
+rom/ne1usbhost.iby			/epoc32/rom/include/	
+
+
+#if !defined(GCCXML) || !defined(NO_GCCXML)
+
+PRJ_MMPFILES
+
+#ifdef SMP
+../../../../os/kernelhwsrv/kernel/eka/nkernsmp/nk_exe
+../../../../os/kernelhwsrv/kernel/eka/nkernsmp/nkern_sa
+#else
+../../../../os/kernelhwsrv/kernel/eka/nkern/nk_exe
+../../../../os/kernelhwsrv/kernel/eka/nkern/nkern_sa
+#endif
+
+../../../../os/kernelhwsrv/kernel/eka/drivers/medint/medint
+../../../../os/kernelhwsrv/kernel/eka/drivers/trace/btracex
+
+gpio
+variant
+watchdog
+monitor
+//datx
+lcdgce
+xyin
+power
+//serialno
+
+// TO DO: (mandatory)
+// There are two sample keyboard drivers; one is polled and the other interrupt-driven.
+// Need to comment out the one that is not appropriate for the hardware
+key_int
+key
+
+medlffs
+soundsc
+soundsc_v2
+//epbus
+//exbusab
+enet
+resmanpsl
+// sdcontroller    // - no mmc directory
+// sdcontroller_v2 // - no mmc directory
+i2s
+keypad
+rebootdrv
+csi
+csi_ctrless
+
+// Hardware Configuration Repository
+hcr/hcr
+
+#ifndef SMP
+// Keyboard translation tables (user side)
+keymap
+
+// Customized ESTART (user side)
+estart
+
+
+#include "memmodel_bld.inf"
+
+// Make the HAL
+PRJ_EXTENSIONS
+start   extension       base/config config
+
+option  HALPATH         $(EXTENSION_ROOT)/../../../../os/kernelhwsrv/halservices/hal/../.
+option  PREFIX          _ne1_tb_
+option  SOURCE          $(EXTENSION_ROOT)/hal
+
+end
+
+PRJ_MMPFILES
+hal/hal
+
+// Build textshell image
+PRJ_EXTENSIONS
+start   extension       base/rom
+option  REE_TARGET      ne1_tb
+option  TYPE    tshell
+end
+
+#endif // SMP
+
+#endif // GCCXML

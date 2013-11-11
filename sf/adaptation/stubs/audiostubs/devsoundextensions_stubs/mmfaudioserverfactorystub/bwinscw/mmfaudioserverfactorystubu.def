@@ -1,0 +1,4 @@
+EXPORTS
+	?ImplementationGroupProxy@@YAPBUTImplementationProxy@@AAH@Z @ 1 NONAME ; struct TImplementationProxy const * ImplementationGroupProxy(int &)
+	?NewL@CMMFAudioServerFactoryStub@@SAPAVMAudioSvrService@@XZ @ 2 NONAME ; class MAudioSvrService * CMMFAudioServerFactoryStub::NewL(void)
+

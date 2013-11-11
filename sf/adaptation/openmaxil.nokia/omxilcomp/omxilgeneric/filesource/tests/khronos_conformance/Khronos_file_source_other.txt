@@ -1,0 +1,84 @@
+;; cc <testname> : conformance test component (sets appropriate flags, adds all tests, tests component) 
+;; st <traceflags>: OMX_CONF_SetTraceflags(<traceflags>);
+;; ol <logfilename>: OMX_OSAL_OpenLogfile(<logfilename>);
+;; cl : OMX_OSAL_CloseLogfile();
+;; at <testname>: OMX_CONF_AddTest(<testname>);
+;; rt <testname>: OMX_CONF_RemoveTest(<testname>);
+;; mi <inputfilename> <portindex> : OMX_CONF_MapInputfile(<inputfilename>,<portindex>);
+;; tc <testname>: OMX_CONF_TestComponent(<testname>);
+;; ps: OMX_CONF_PrintSettings();
+;; h: OMX_CONF_PrintHelp();
+;; lt: list all available tests.
+;; lc: list all available components.
+
+
+; setup tracing, open logfile
+st 0x7F ; (OMX_OSAL_TRACE_PASSFAIL|OMX_OSAL_TRACE_CALLSEQUENCE|OMX_OSAL_TRACE_PARAMTERS|OMX_OSAL_TRACE_INFO|OMX_OSAL_TRACE_ERROR|OMX_OSAL_TRACE_BUFFER|OMX_OSAL_TRACE_WARNING)
+ol c:\file_source_other_output.txt
+
+; add tests
+
+; Base Profile Tests
+
+;; ============
+;; Passed tests
+;; vvvvvvvvvvvv
+at StateTransitionTest
+at ComponentNameTest
+at BaseParameterTest
+at BufferTest
+at BufferFlagTest
+at FlushTest
+at BaseMultiThreadedTest
+at PortCommunicationTest
+;; ^^^^^^^^^^^^
+;; Passed tests
+;; ============
+
+;; at ResourceExhaustionTest - not run as we do not run out of memory within the hardcoded test iteration limit.
+
+; Interop Profile Tests
+
+
+;; ============
+;; Passed tests
+;; vvvvvvvvvvvv
+at InteropParameterTest
+at ValidInputOutputTest
+at InvalidInputOutputTest
+at PortBufferSupplierTest
+at PortDisableEnableTest
+at IncompleteStopTest
+at MinPayloadSizeTest
+at InteropMultiThreadedTest
+at TunnelledUnitTest
+;; ^^^^^^^^^^^^
+;; Passed tests
+;; ============
+
+
+
+;; Problem Resource Manager : Functionality not existent
+; at ResourcePreemptionTest
+; at WaitForResourcesTest
+
+;; Non-applicable tests
+; at ClockComponentTest
+; at SeekingComponentTest
+
+; Standard Component Class Tests
+
+;; ============
+;; Passed tests
+;; vvvvvvvvvvvv
+;; ^^^^^^^^^^^^
+;; Passed tests
+;; ============
+
+;; at StdReaderTest Not run as other_reader.binary is not a standard role, so the test will fail as it is only for standard components as defined in section 8 of the spec.
+
+; test components
+tc OMX.NOKIA.OTHER.FILESOURCE
+
+; close logfile
+cl

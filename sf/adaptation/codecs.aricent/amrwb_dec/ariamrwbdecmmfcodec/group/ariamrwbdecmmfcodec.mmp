@@ -1,0 +1,59 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Project File for AmrWb Decoder Plugin. The file specifies the
+* include paths, source files and libraries to be used to build the 
+* AmrWb Decoder plugin binaries.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET  		ariamrwbdecmmfcodec.dll
+TARGETTYPE		plugin
+UID 			0x10009D8D  0x200298F7 
+
+CAPABILITY 		ALL -TCB
+MACRO 			LOGLEVEL_LOW
+
+
+SOURCEPATH		..\src
+SOURCE 			ariamrwbdecmmfcodec.cpp
+
+USERINCLUDE 	..\inc
+USERINCLUDE		..\..\ariamrwbdecwrapper\export_hdr
+USERINCLUDE   	..\..\..\utilities\log
+
+MW_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE	\epoc32\include\ecom
+SYSTEMINCLUDE	\epoc32\include\mmf\common
+SYSTEMINCLUDE	\epoc32\include\mmf\server
+SYSTEMINCLUDE	\epoc32\include\mmf\plugin
+
+LIBRARY 		euser.lib  
+LIBRARY 		mmfserverbaseclasses.lib
+LIBRARY 		efsrv.lib 	
+LIBRARY 		ECOM.lib
+LIBRARY 		ariamrwbdecwrapper.lib // Wrapper Library
+
+START RESOURCE 	200298F7.rss
+TARGET 			ariamrwbdecmmfcodec.rsc
+END
+
+//-----------------------------------------------------------------------------
+//  End of File
+//-----------------------------------------------------------------------------
+

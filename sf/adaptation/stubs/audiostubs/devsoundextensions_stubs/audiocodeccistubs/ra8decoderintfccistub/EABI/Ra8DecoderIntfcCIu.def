@@ -1,0 +1,10 @@
+EXPORTS
+	_ZN18CRa8DecoderIntfcCI11FrameNumberEv @ 1 NONAME
+	_ZN18CRa8DecoderIntfcCI13SetInitStringER6TDesC8 @ 2 NONAME
+	_ZN18CRa8DecoderIntfcCI4NewLEv @ 3 NONAME
+	_ZN18CRa8DecoderIntfcCID0Ev @ 4 NONAME
+	_ZN18CRa8DecoderIntfcCID1Ev @ 5 NONAME
+	_ZN18CRa8DecoderIntfcCID2Ev @ 6 NONAME
+	_ZTI18CRa8DecoderIntfcCI @ 7 NONAME ; #<TI>#
+	_ZTV18CRa8DecoderIntfcCI @ 8 NONAME ; #<VT>#
+

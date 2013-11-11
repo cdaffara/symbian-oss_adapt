@@ -1,0 +1,81 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+; MENU file toolbar
+; link this into t32.cmm for it to autoload when you start trace 32
+; menu.reprogram c:\t32\scripts-v2\devboards_menus.men
+; 
+; edit with : b::menu.program devboards_menus.men
+; NOTE!! contains an absolute paths of ".." Simon's system has various
+; versions of Trace32 installed in c:\t32\ under subdirectories and this
+; menu file and the scripts installed within the c:\t32\ root.
+
+ADD
+TOOLBAR
+(
+	; ==============================================================================
+	SEPARATOR
+;	TOOLITEM "MMU ON" ":map"
+;		(
+;		 mmu.reset
+;		 mmu.scan 0x0:0x0--0xffffffff
+;		 mmu.cleanup
+;		 mmu.on
+;		)
+	TOOLITEM "Use on-chip breakpoints"        ":breaknew" "break.select.program onchip"
+	TOOLITEM "Browse Symbols"                 ":varref"   "symbol.browse.function \\*"
+	TOOLITEM "Show code pointed to by R14SVC" ":symbols"  "data.list register(R14_svc)"
+	TOOLITEM "Show *this"                     "*t"        "var.view *this"
+
+	; ==============================================================================
+	SEPARATOR
+	TOOLITEM "Config Dialog"                ":image"  "chdir.DO ..\scripts-v2\configdialog.cmm"
+	TOOLITEM "Attach to board"              "A"       "chdir.DO ..\scripts-v2\attach.cmm"
+	TOOLITEM "Attach to board with Symbols" "AS"
+		(
+		ChDir.DO ..\scripts-v2\attach.cmm
+		ChDir.DO ..\scripts-v2\symbolics.cmm
+		)
+	TOOLITEM "Init board"                   "I"       "chdir.DO ..\scripts-v2\init.cmm"
+	TOOLITEM "Load Image to board"          "L"
+		(
+		chdir.DO ..\scripts-v2\load.cmm
+		)
+	TOOLITEM "Enable Symbols"               "SY"      "chdir.DO ..\scripts-v2\symbolics.cmm"
+	SEPARATOR
+	TOOLITEM "Set image 1 as current image" "1"
+		(
+		chdir.DO ..\scripts-v2\setimage.cmm 1
+		)
+	TOOLITEM "Set image 2 as current image" "2"
+		(
+		chdir.DO ..\scripts-v2\setimage.cmm 2
+		)
+	TOOLITEM "Set image 3 as current image" "3"
+		(
+		chdir.DO ..\scripts-v2\setimage.cmm 3
+		)
+	TOOLITEM "Set image 4 as current image" "4"
+		(
+		chdir.DO ..\scripts-v2\setimage.cmm 4
+		)
+	SEPARATOR
+	TOOLITEM "Erase Flash on board"         "FE"      "chdir.DO ..\scripts-v2\flasherase.cmm"
+	TOOLITEM "Flash Image to board"         "FI"      "chdir.DO ..\scripts-v2\flashimage.cmm"
+	; ==============================================================================
+	SEPARATOR
+	TOOLITEM "Detach" ":remove" "sys.down"
+)
+

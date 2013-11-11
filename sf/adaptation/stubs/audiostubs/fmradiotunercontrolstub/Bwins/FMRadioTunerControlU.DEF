@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CFMRadioTunerControl@@SAPAV1@AAVMFMRadioTunerControlObserver@@@Z @ 1 NONAME ; class CFMRadioTunerControl * CFMRadioTunerControl::NewL(class MFMRadioTunerControlObserver &)
+

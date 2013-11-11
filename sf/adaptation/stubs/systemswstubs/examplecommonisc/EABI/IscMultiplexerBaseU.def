@@ -1,0 +1,24 @@
+EXPORTS
+	_ZN19DIscMultiplexerBase10QueueFrameEtPK6TDesC8PKvPv @ 1 NONAME
+	_ZN19DIscMultiplexerBase11FlushQueuesEv @ 2 NONAME
+	_ZN19DIscMultiplexerBase13CancelSendingEtPKv @ 3 NONAME
+	_ZN19DIscMultiplexerBase13ULFlowControlEitPv @ 4 NONAME
+	_ZN19DIscMultiplexerBase14CustomFunctionEttPvPKv @ 5 NONAME
+	_ZN19DIscMultiplexerBase14GetChannelInfoEtR5TDes8 @ 6 NONAME
+	_ZN19DIscMultiplexerBase15CompleteRequestEtiPKv @ 7 NONAME
+	_ZN19DIscMultiplexerBase16CopyToUserBufferEPvRK6TDesC8PKvi @ 8 NONAME
+	_ZN19DIscMultiplexerBase18CopyFromUserBufferERK6TDesC8R5TDes8PKvi @ 9 NONAME
+	_ZN19DIscMultiplexerBase18ReleaseMemoryBlockEP5TDes8 @ 10 NONAME
+	_ZN19DIscMultiplexerBase18ReserveMemoryBlockERP5TDes8t @ 11 NONAME
+	_ZN19DIscMultiplexerBase27SetInitializationParametersERK6TDesC8 @ 12 NONAME
+	_ZN19DIscMultiplexerBase7ConnectEP10DIscDevice @ 13 NONAME
+	_ZN19DIscMultiplexerBase7InstallEv @ 14 NONAME
+	_ZN19DIscMultiplexerBase9IsPendingEtPKv @ 15 NONAME
+	_ZN19DIscMultiplexerBaseC2Ev @ 16 NONAME
+	_ZN19DIscMultiplexerBaseD0Ev @ 17 NONAME
+	_ZN19DIscMultiplexerBaseD1Ev @ 18 NONAME
+	_ZN19DIscMultiplexerBaseD2Ev @ 19 NONAME
+	_ZTI19DIscMultiplexerBase @ 20 NONAME ; #<TI>#
+	_ZTV19DIscMultiplexerBase @ 21 NONAME ; #<VT>#
+	_ZN19DIscMultiplexerBase12GetThreadPtrEPKv @ 22 NONAME
+

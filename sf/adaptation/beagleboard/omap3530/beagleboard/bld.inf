@@ -1,0 +1,74 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// omap3530/beagleboard/bld.inf
+// Master build description file for beagle variant
+//
+
+PRJ_PLATFORMS
+ARMV5
+
+PRJ_EXPORTS
+./variant.mmh			beagle/
+inc/iolines.h			beagle/
+inc/mconf.h			beagle/
+inc/variantmediadef.h		beagle/
+inc/beagle_gpio.h		beagle/
+inc/variant.h			beagle/
+
+rom/beagle.oby		../rom/include/
+rom/base_beagle.iby		../rom/include/
+rom/header.iby		../rom/beagle/
+rom/kernel.iby		../rom/beagle/
+rom/test.iby			../rom/beagle/
+rom/estart.txt		../rom/beagle/
+rom/drive_c.img		../../nvmemory/
+
+PRJ_MMPFILES
+src/vbeagle
+
+// Build MEDINT.PDD - this depends on our variantmediadef.h
+../../../../../../sf/os/kernelhwsrv/kernel/eka/drivers/medint/medint
+
+
+//
+// Call the makefile to build the bootstrap
+//
+
+PRJ_EXTENSIONS
+start		extension		base/bootstrap
+
+#ifdef SYMBIAN_OLD_EXPORT_LOCATION
+option INC_PATH   $(EPOCROOT)epoc32/include
+#else
+option INC_PATH  $(EPOCROOT)epoc32/include/platform
+#endif
+#ifdef GCCE
+option		GCCE			GCCE
+#endif
+#ifdef ARMCC
+option		ARMCC			ARMCC
+#endif
+option		NAME			_beagle_bootrom
+option		CPU			arm
+option		MEMMODEL		multiple
+option		SOURCES			beagle.s
+option		EXTRA_SRC_PATH		$(EXTENSION_ROOT)/bootstrap
+option		EXTRA_INC_PATH		$(EXTENSION_ROOT)/bootstrap
+option		INCLUDES		config.inc
+option		E32PATH			$(EXTENSION_ROOT)/../../../../../../sf/os/kernelhwsrv/kernel
+
+end
+
+
+

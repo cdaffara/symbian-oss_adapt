@@ -1,0 +1,45 @@
+/*
+* Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Project definition file for project ocrsrv
+*
+*/
+
+
+#include <data_caging_paths.hrh>
+#include <platform_paths.hrh>
+
+TARGET          ocrsrv.dll
+TARGETTYPE      dll
+UID             0x1000008D 0x0F41E102
+
+CAPABILITY      CAP_GENERAL_DLL
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      .
+SOURCE          ../src/ocrstubdllmain.cpp
+SOURCE          ../src/ocrstubfactory.cpp
+
+USERINCLUDE     ../inc
+
+// This is a SYSTEMINCLUDE macro containing the middleware
+// layer specific include directories
+MW_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE   ../inc
+
+LIBRARY         euser.lib
+
+LANG            SC
+
+// End Of File

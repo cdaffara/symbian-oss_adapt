@@ -1,0 +1,244 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb\rom\kernel.iby
+* TO DO: (mandatory)
+* This file includes all the kernel files for your base port
+* Important: 'extension' libraries are started at boot time in the order specified
+* in this file, ensure dependencies are considered.
+*
+*/
+
+
+#if defined(PAGED_ROM) || defined(PAGED_CODE)
+#if !defined(_NAND2) && !defined(_NANDTEST2) && !defined(MMC_PAGED_ROM)
+#error Demand paging on h4hrp requires nand2 or mmc support
+#endif
+#endif
+
+// Rom paging config
+#ifdef PAGED_ROM 
+pagedrom 
+compress
+#endif
+
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_KANAVIENGINE.DLL	\sys\bin\kanaviengine.dll
+primary[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##MEMMODEL_VARIANT##_EKERN.EXE		\sys\bin\ekern.exe
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_BTRACEX.LDD	\sys\bin\btracex.ldd
+variant[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_ECUST.DLL		\sys\bin\ecust.dll
+#ifndef WITH_DIRECT_MM
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_HCR.DLL          \sys\bin\hcr.dll
+#else
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_WATCHDOG.DLL \sys\bin\watchdog.dll
+#endif
+//extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_SERIALNO.DLL \sys\bin\serialno.dll
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##MEMMODEL_VARIANT##_EXMONCOMMON.DLL \sys\bin\exmoncommon.dll
+
+#ifdef CRASH_LOG_NAND2
+extension[VARID]=	\epoc32\release\##KMAIN##\##BUILD##\_##VARIANT##_exmonlognand.dll	\sys\bin\exmonlog.dll
+#endif
+
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EXMONDEBUG.DLL \sys\bin\exmondebug.dll
+
+#ifndef WITH_DIRECT_MM
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_POWER.DLL		\sys\bin\power.dll
+#ifdef SYMBIAN_USE_DMA_V2
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_DMA_V2.DLL		\sys\bin\DMA.DLL
+#else
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_DMA.DLL		\sys\bin\DMA.DLL
+#endif
+#endif
+
+// In the initial phases of development, when neither display and keyboard drivers are available
+// you may want to use the VT100 Sreen Driver (which also keyboard input and keyboard translation).
+// In that case just include the following line:
+#ifdef NAVIENGINE_USE_VT100
+#define EDISP_DRV	\EDISP_VT100.DLL
+#else
+#undef	EDISP_DRV
+#endif
+
+#if !defined(EDISP_DRV)
+extension[MAGIC]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_lcdgce.PDD			\sys\bin\DISPLAY0.PDD
+#if defined(SYMBIAN_BASE_USE_GCE) || defined(SYMBIAN_GRAPHICS_USE_GCE)
+device[MAGIC]=\Epoc32\Release\##KMAIN##\##BUILD##\display.ldd							\sys\bin\DISPLAY0.LDD
+#endif
+#ifdef UBOOTLDR_ROM
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_UBOOTLDRKEYB.DLL	\sys\bin\ekeyb.dll
+#else
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_VSERIALKEYB.DLL	\sys\bin\ekeyb.dll
+#endif
+#endif
+
+//extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EKEYB.DLL		\sys\bin\ekeyb.dll
+file[VARID]=		\Epoc32\Release\##MAIN##\##BUILD##\_##VARIANT##_EKDATA.DLL		\sys\bin\ekdata.dll
+
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EUART.PDD		\sys\bin\euart.pdd
+
+#ifndef WITH_DIRECT_MM
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_GPIO.DLL		\sys\bin\gpio.dll
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EXYIN.DLL		\sys\bin\exyin.dll
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\ENET.LDD \sys\bin\enet.ldd
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_ETHERNET.PDD		\sys\bin\ethernet.pdd
+extension[VARID]= 		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_KEYPAD.DLL    	\sys\bin\keypad.dll
+extension[VARID]= 		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_I2S.DLL    	\sys\bin\i2s.dll
+#endif
+
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\ELOCD.LDD					\sys\bin\elocd.ldd
+#if !defined(WITH_DIRECT_MM) && !defined(INST_ARM4)
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\EVFP.DLL					\sys\bin\evfp.dll
+#endif
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_MEDINT.PDD		\sys\bin\medint.pdd
+
+// ne1_tb estart file
+#ifndef WITH_DIRECT_MM
+file=\Epoc32\Release\##MAIN##\##BUILD##\_##VARIANT##_e32strt.exe					sys\bin\estart.exe HEAPMAX(0x2000)
+#endif
+
+//Adding Unistore2 XSR NAND support to the NaviEngine hardware platform
+#if defined(_NAND2) || defined(_NANDTEST2)
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_REBOOT.LDD			\Sys\Bin\REBOOT.LDD
+#include "ne1nand2.iby"
+#elif !defined(WITH_DIRECT_MM)
+data=\epoc32\rom\##VARIANT##\estart.txt		\Sys\Data\ESTART.TXT
+#endif
+
+// //extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUS.DLL		\sys\bin\epbus.dll
+// //extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUSV.DLL		\sys\bin\epbusv.dll
+// //extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_MEDLFS.PDD		\sys\bin\medlfs.pdd
+// //device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_MEDATA.PDD		\sys\bin\medata.pdd
+
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\ECOMM.LDD					\sys\bin\ecomm.ldd
+device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\PIPELIB.LDD					\sys\bin\pipelib.ldd
+device[VARID]= 		\Epoc32\Release\##KMAIN##\##BUILD##\ESOUNDSC.LDD				\sys\bin\esoundsc.ldd
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\EXSTART.DLL					\sys\bin\exstart.dll
+extension[VARID] =	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_RESMANPSL.PDD	\sys\bin\resman.pdd
+#ifndef WITH_DIRECT_MM
+extension[VARID] =	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_PCI.DLL		\sys\bin\pci.dll
+#endif
+
+#ifndef WITH_DIRECT_MM
+#ifdef CSI_STANDALONE_CHANNEL
+
+#ifdef CSITESTS_INCLUDED
+device[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_d_csi_ctrless.ldd 			\sys\bin\d_csi.ldd
+#endif
+
+#else // CONTROLLER-present
+
+extension[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\IIC.DLL   				\sys\bin\iic.dll
+extension[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_CSI.dll    		\sys\bin\csi.dll
+
+#ifdef SYMBIAN_USE_DMA_V2
+device[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_SOUNDSC_V2.PDD    	\sys\bin\soundsc.pdd
+#else
+device[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_SOUNDSC.PDD    	\sys\bin\soundsc.pdd
+#endif
+
+#ifdef CSITESTS_INCLUDED
+device[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_d_csi.ldd 	\sys\bin\d_csi.ldd
+#endif
+
+#endif // CSI_STANDALONE_CHANNEL
+#endif // WITH_DIRECT_MM
+
+#if defined(PCI_TEST)
+extension[VARID] =	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_PCI-test.DLL		\sys\bin\pci-test.dll
+#endif
+
+#ifdef ENABLE_RESTRICTED_CODE
+// USB Client
+//device[VARID]=		\Epoc32\Release\##KMAIN##\##BUILD##\USBC.LDD					\sys\bin\EUSBC.LDD
+// USB Device Driver
+//extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_USBCC.DLL		\sys\bin\USBCC.DLL
+
+#ifndef __USB
+REM Feature USB is not included in this ROM
+#else 
+#ifdef SYMBIAN_ENABLE_USB_OTG_HOST
+#include <rom/include/ne1usbhost.iby>
+#endif // SYMBIAN_ENABLE_USB_OTG_HOST
+
+// USB Device Driver
+// USB LDD
+// (The target file name has to be lower case, for otherwise it collides with the macro 'EUSBC'!)
+device[VARID]= \Epoc32\Release\##KMAIN##\##BUILD##\USBC.LDD				 	\Sys\Bin\eusbc.ldd
+#ifdef USE_HSUSB
+// USB external transceiver driver
+extension[VARID]= \Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_FIBULA.DLL			\Sys\Bin\FIBULA.DLL
+#else 
+// USB PDD
+extension[VARID]= \Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_USBCC.DLL			\sys\bin\USBCC.DLL
+#endif // USE_HSUSB, SYMBIAN_ENABLE_USB_OTG_HOST
+#endif // __USB
+
+//SD Media Driver
+#ifndef WITH_DIRECT_MM
+#ifdef MMC_PAGED_ROM
+#ifdef SYMBIAN_USE_DMA_V2
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUSSDIOVDP_V2.DLL	\sys\bin\MMC.DLL
+#else
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUSSDIOVDP.DLL	\sys\bin\MMC.DLL
+#endif
+#else
+#ifdef SYMBIAN_USE_DMA_V2
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUSSDIOV_V2.DLL		\sys\bin\MMC.DLL
+#else
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_EPBUSSDIOV.DLL		\sys\bin\MMC.DLL
+#endif
+#endif
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\EPBUSSD.DLL				\sys\bin\EPBUSM.DLL
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\MEDSD.PDD				\sys\bin\MEDMMC.PDD
+#if defined(USE_NFE)
+extension[VARID]=	\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_medtestnfe.pdd		\Sys\Bin\medtestnfe.pdd
+#endif
+#endif // WITH_DIRECT_MM
+#endif // ENABLE_RESTRICTED_CODE
+
+// Use correct euser
+#ifdef SMP
+#define	EUSER_DLL	euser_v6k_smp.dll
+// allow to specify maximum number of CPU cores used in system
+#ifdef SMP_NUM_CPUS
+patchdata ekern.exe @ KSMPNumCpus ##SMP_NUM_CPUS##
+#endif
+#else
+#define	EUSER_DLL	euser_v6k.dll
+#endif
+
+#ifdef E32TESTS_INCLUDED
+// Include optional test drivers for e32test
+#ifndef WITH_DIRECT_MM
+#ifdef SYMBIAN_USE_DMA_V2
+device[VARID]=		\epoc32\release\##KMAIN##\##BUILD##\d_dma2.ldd					\sys\bin\d_dma2.ldd
+device[VARID]=		\epoc32\release\##KMAIN##\##BUILD##\d_dma_compat.ldd			\sys\bin\d_dma_compat.ldd
+#else
+device[VARID]=		\epoc32\release\##KMAIN##\##BUILD##\d_dma.ldd					\sys\bin\d_dma.ldd
+device[VARID]=		\epoc32\release\##KMAIN##\##BUILD##\d_dma2_compat.ldd			\sys\bin\d_dma2_compat.ldd
+#endif // SYMBIAN_USE_DMA_V2
+#endif // WITH_DIRECT_MM
+
+#ifdef ENABLE_RESTRICTED_CODE
+device[VARID]=		\epoc32\release\##KMAIN##\##BUILD##\d_medch.ldd					\sys\bin\d_medch.ldd
+#endif // ENABLE_RESTRICTED_CODE
+
+// this CSI_CTRLESS.dll should be included because of some dependency problems found in BTB,
+// that autotest picks up d_csi_ctrless.ldd automatically, which needs this dll in the rom.
+extension[VARID]=\Epoc32\Release\##KMAIN##\##BUILD##\_##VARIANT##_CSI_CTRLESS.dll    	\sys\bin\_##VARIANT##_csi_ctrless.dll
+#endif  // E32TESTS_INCLUDED
+
+#ifdef CSITESTS_INCLUDED
+// Include optional test drivers for csi
+file=\Epoc32\Release\##KMAIN##\##BUILD##\t_csi.exe 	\sys\bin\t_csi.exe
+#endif

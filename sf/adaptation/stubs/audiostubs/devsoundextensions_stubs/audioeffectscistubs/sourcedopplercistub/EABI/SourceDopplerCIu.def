@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN16CSourceDopplerCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZN16CSourceDopplerCI4NewLEv @ 2 NONAME
+	_ZTI16CSourceDopplerCI @ 3 NONAME ; #<TI>#
+	_ZTV16CSourceDopplerCI @ 4 NONAME ; #<VT>#
+

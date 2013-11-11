@@ -1,0 +1,8 @@
+EXPORTS
+	_ZN14CAudioOutputCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZN14CAudioOutputCI4NewLEv @ 2 NONAME
+	_ZTI14CAudioOutputCI @ 3 NONAME ; #<TI>#
+	_ZTI17CAudioOutputTimer @ 4 NONAME ; #<TI>#
+	_ZTV14CAudioOutputCI @ 5 NONAME ; #<VT>#
+	_ZTV17CAudioOutputTimer @ 6 NONAME ; #<VT>#
+

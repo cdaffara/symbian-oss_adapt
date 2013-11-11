@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CSourceOrientationCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CSourceOrientationCI * CSourceOrientationCI::NewL(class CMMFDevSound &)
+	?NewL@CSourceOrientationCI@@SAPAV1@XZ @ 2 NONAME ; class CSourceOrientationCI * CSourceOrientationCI::NewL(void)
+

@@ -1,0 +1,50 @@
+//
+// Metabld specification for building the variant and assp layers
+// Make sure you have the assp code before running this script
+// Invoke using the following command line: metabld beagle.mbc
+//
+
+SECTION_COMMANDS
+
+bldmake bldfiles
+abld export
+abld makefile
+abld clean
+abld reallyclean
+bldmake clean
+bldmake bldfiles
+abld export
+abld makefile
+abld library
+abld target
+
+SECTION_DIRS
+
+..\assp
+..\omap3530_drivers\gpio
+..\omap3530_drivers\i2c
+..\omap3530_drivers\prcm
+//..\omap3530_drivers\prm
+..\omap3530_drivers\uart
+..\omap3530_drivers\usbcc
+..\shared\monitor
+..\shared\mstick
+..\shared\serialkeyb
+..\shared\tps65950
+..\beagleboard
+..\beagle_drivers\hal
+..\beagle_drivers\keytran
+..\beagle_drivers\lcd
+..\beagle_drivers\led
+//.\beagle_drivers\prm
+..\beagle_drivers\serialmouse
+..\beagle_drivers\usbv
+..\beagle_drivers\medstaticrd
+..\kernel
+
+
+
+
+
+
+

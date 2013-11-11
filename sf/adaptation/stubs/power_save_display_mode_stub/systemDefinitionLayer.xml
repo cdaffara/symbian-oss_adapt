@@ -1,0 +1,7 @@
+<layer name="power_save_display_mode_stub">
+  <module name="group_power_save_display_mode_stub">
+    <component name="group_power_save_display_mode_stub">
+      <unit unitID="power_save_display_mode_stub" mrp="" filter="!no_stubs" bldFile="&layer_real_source_path;\group" name="power_save_display_mode_stub" />
+    </component>
+  </module>
+</layer>

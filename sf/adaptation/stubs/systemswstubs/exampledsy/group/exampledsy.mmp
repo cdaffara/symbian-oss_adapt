@@ -1,0 +1,49 @@
+/*
+* Copyright (c) 2002 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          ExampleDSY.dsy
+
+TARGETTYPE      DLL
+UID             0x1000008D 0x101f6efe
+VENDORID        VID_DEFAULT
+
+CAPABILITY      CAP_GENERAL_DLL
+
+LANG            SC
+SOURCEPATH      ../src
+USERINCLUDE     ../inc
+
+OS_LAYER_SYSTEMINCLUDE
+
+SOURCE        DsyFactory.cpp
+SOURCE        DsyExtension.cpp
+
+SOURCE        DsySysUtils.cpp
+SOURCE        DsyHelper.cpp
+SOURCE        DsyMtc.cpp
+SOURCE        DsySelfTest.cpp
+
+SOURCE        Dsysae.cpp
+
+LIBRARY       euser.lib
+LIBRARY       DosSrv.lib
+LIBRARY       efsrv.lib
+
+DEBUGLIBRARY  flogger.lib     // File logging services

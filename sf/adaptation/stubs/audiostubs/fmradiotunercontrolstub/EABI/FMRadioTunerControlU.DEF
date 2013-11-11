@@ -1,0 +1,5 @@
+EXPORTS
+	_ZN20CFMRadioTunerControl4NewLER28MFMRadioTunerControlObserver @ 1 NONAME
+	_ZTI11CAdaptation @ 2 NONAME ; #<TI>#
+	_ZTV11CAdaptation @ 3 NONAME ; #<VT>#
+

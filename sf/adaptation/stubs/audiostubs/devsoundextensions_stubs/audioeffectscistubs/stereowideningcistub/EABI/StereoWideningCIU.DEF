@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN17CStereoWideningCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI17CStereoWideningCI @ 2 NONAME ; #<TI>#
+	_ZTV17CStereoWideningCI @ 3 NONAME ; #<VT>#
+	_ZN17CStereoWideningCI4NewLEv @ 4 NONAME
+

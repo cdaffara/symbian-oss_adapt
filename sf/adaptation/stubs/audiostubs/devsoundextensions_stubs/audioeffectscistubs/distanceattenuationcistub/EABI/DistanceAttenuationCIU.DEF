@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN22CDistanceAttenuationCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI22CDistanceAttenuationCI @ 2 NONAME ; #<TI>#
+	_ZTV22CDistanceAttenuationCI @ 3 NONAME ; #<VT>#
+	_ZN22CDistanceAttenuationCI4NewLEv @ 4 NONAME
+

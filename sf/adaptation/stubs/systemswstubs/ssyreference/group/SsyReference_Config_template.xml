@@ -1,0 +1,148 @@
+<!-- SsyReference configuration file template -->
+<!-- ********************************************************** -->
+<!-- * NOTE. DO NOT LEFT ANY COMMENTS INTO ACTUAL CONFIG FILE * -->
+<!-- ********************************************************** -->
+<SsyReferenceConfig>
+    <SsyGeneralInformation>
+        <!-- General information for SSY itself -->
+        <Properties>
+        <!-- General properties of the sensor -->
+    	  <!-- TSensrvProperty. Each property has its own item defined in here -->
+        	
+        	<!-- Property example 1 -->
+        	<PropertyItem PropertyId="TSensrvPropertyId"
+        	    ItemIndex="Item index in channel data structure"
+        		PropertyValue="Value of the property"
+        		MaxValue="Maximum value of data"
+        		MinValue="Minimum value of data"
+        		ReadOnly="Read only or modifiable"
+        		PropertyType="TSensrvPropertyType">
+            </PropertyItem>
+            <!-- Property example 2 -->
+        	<PropertyItem PropertyId="TSensrvPropertyId"
+        		ItemIndex="Item index in channel data structure"
+        		PropertyValue="Value of the property"
+        		MaxValue="Maximum value of data"
+        		MinValue="Minimum value of data"
+        		ReadOnly="Read only or modifiable"
+        		PropertyType="TSensrvPropertyType">
+            </PropertyItem>
+        </Properties>
+    </SsyGeneralInformation>
+    <ChannelInformationGroup ChannelCount="2">
+    	<!-- Channel definitions. Each channel item contains all information of one channel -->
+    	<!-- Channel example 1 -->
+    	<ChannelItem 
+    		ChannelId="This value is updated runtime when Sensrv has defined channel IDs" 
+    		ContextType="TSensrvContextType" 
+    		Quantity="TSensrvQuantity" 
+    		ChannelType="TSensrvChannelTypeId" 
+    		Location="Location of the sensor" 
+    		Vendor="Vendor ID"
+    		DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h">
+    		  <!-- One channel definition. Each channel has its own item block -->
+        	<!-- TSensrvChannelInfo. Contains information of this channel; Context type, Quantity etc. --> 
+        	
+        	<!-- Contains properties of this channel. -->
+        	<Properties>
+        	  <!-- TSensrvProperty. Each property has its own item defined in here -->
+        		<!-- Property example 3 -->
+    		    <PropertyItem PropertyId="TSensrvPropertyId"
+    		      ItemIndex="Item index in channel data structure"
+    		      PropertyValue="Value of the property"
+    		      MaxValue="Maximum value of data"
+    		      MinValue="Minimum value of data"
+    		      ReadOnly="Read only or modifiable"
+    		      PropertyType="TSensrvPropertyType">
+        		</PropertyItem>
+    		    <!-- Property example 4 -->
+    		    <PropertyItem PropertyId="TSensrvPropertyId"
+    		      ItemIndex="Item index in channel data structure"
+    		      PropertyValue="Value of the property"
+    		      MaxValue="Maximum value of data"
+    		      MinValue="Minimum value of data"
+    		      ReadOnly="Read only or modifiable"
+    		      PropertyType="TSensrvPropertyType">
+        		</PropertyItem>
+        	</Properties>
+
+            <!-- Channel data. Information of generated data by this channel.  -->
+            <!-- There may be several different (yet same type) data items. Next data item is added to  -->
+            <!-- buffer after the previous data items (all according to count) are added and last Interval is passed -->
+             
+            <ChannelData StartIntervalMs="Time in milliseconds to start filling buffer after StartChannelData()">
+                <ChannelDataItem DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h" count="Number of this data items to be added into buffer (with the same values)" 
+    			     									 IntervalMs="Time in milliseconds after next data item is added into buffer">
+                    <!-- Content of this channel item is dependent on the type of this channel. It must be one and only one of the following -->
+                    <SsyRefChannelDataAxis XAxis="Integer value of X Axis" YAxis="Integer value of Y Axis" ZAxis="Integer value of Z Axis" ><!-- This type has DataTypeID 0x00010001 --></SsyRefChannelDataAxis>
+                    <SsyRefChannelDataTapping Direction="direction of tapping"><!-- This type has DataTypeID 0x00010002 --></SsyRefChannelDataTapping>
+                </ChannelDataItem>
+
+                <!-- Next channel data item -->
+                <ChannelDataItem DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h" count="Number of this data items to be added into buffer (with the same values)" 
+    			     									 IntervalMs="Time in milliseconds after next data item is added into buffer">
+                    <!-- Content of this channel item is dependent on the type of this channel. It must be one and only one of the following -->
+                    <SsyRefChannelDataAxis XAxis="Integer value of X Axis" YAxis="Integer value of Y Axis" ZAxis="Integer value of Z Axis" ><!-- This type has DataTypeID 0x00010001 --></SsyRefChannelDataAxis>
+                    <SsyRefChannelDataTapping Direction="direction of tapping"><!-- This type has DataTypeID 0x00010002 --></SsyRefChannelDataTapping>
+                </ChannelDataItem>
+            </ChannelData>
+    	</ChannelItem>
+    	<!-- Channel example 2 -->
+    	<ChannelItem 
+    		ChannelId="This value is updated runtime when Sensrv has defined channel IDs" 
+    		ContextType="TSensrvContextType" 
+    		Quantity="TSensrvQuantity" 
+    		ChannelType="TSensrvChannelTypeId" 
+    		Location="Location of the sensor" 
+    		Vendor="Vendor ID"
+    		DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h">
+    		<!-- One channel definition. Each channel has its own item block -->
+        	<!-- TSensrvChannelInfo. Contains information of this channel; Context type, Quantity etc. -->
+        	
+            <!-- Contains properties of this channel. -->
+        	<Properties>
+        	  	 <!-- TSensrvProperty. Each property has its own item defined in here -->
+        		 <!-- Property example 5 -->
+    		    <PropertyItem PropertyId="TSensrvPropertyId"
+    		      ItemIndex="Item index in channel data structure"
+    		      PropertyValue="Value of the property"
+    		      MaxValue="Maximum value of data"
+    		      MinValue="Minimum value of data"
+    		      ReadOnly="Read only or modifiable"
+    		      PropertyType="TSensrvPropertyType">
+        		</PropertyItem>
+
+        		<!-- Property example 6 -->
+    		    <PropertyItem PropertyId="TSensrvPropertyId"
+    		      ItemIndex="Item index in channel data structure"
+    		      PropertyValue="Value of the property"
+    		      MaxValue="Maximum value of data"
+    		      MinValue="Minimum value of data"
+    		      ReadOnly="Read only or modifiable"
+    		      PropertyType="TSensrvPropertyType">
+        	    </PropertyItem>
+        	</Properties>
+
+            <!-- Channel data. Information of generated data by this channel.  -->
+            <!-- There may be several different (yet same type) data items. Next data item is added to  -->
+            <!-- buffer after the previous data items (all according to count) are added and last Interval is passed -->
+             
+            <ChannelData StartIntervalMs="Time in milliseconds to start filling buffer after StartChannelData()">
+                <ChannelDataItem DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h" count="Number of this data items to be added into buffer (with the same values)" 
+    			     									 IntervalMs="Time in milliseconds after next data item is added into buffer">
+                    <!-- Content of this channel item is dependent on the type of this channel. It must be one and only one of the following -->
+                    <SsyRefChannelDataAxis XAxis="Integer value of X Axis" YAxis="Integer value of Y Axis" ZAxis="Integer value of Z Axis" ><!-- This type has DataTypeID 0x00010001 --></SsyRefChannelDataAxis>
+                    <SsyRefChannelDataTapping Direction="direction of tapping"><!-- This type has DataTypeID 0x00010002 --></SsyRefChannelDataTapping>
+                    </ChannelDataItem>
+
+                <!-- Next channel data item -->
+                <ChannelDataItem DataTypeId="data type ID identifies data type defined here. See sensrvchanneldatatypes.h" count="Number of this data items to be added into buffer (with the same values)" 
+    			     									 IntervalMs="Time in milliseconds after next data item is added into buffer">
+                    <!-- Content of this channel item is dependent on the type of this channel. It must be one and only one of the following -->
+                    <SsyRefChannelDataAxis XAxis="Integer value of X Axis" YAxis="Integer value of Y Axis" ZAxis="Integer value of Z Axis" ><!-- This type has DataTypeID 0x00010001 --></SsyRefChannelDataAxis>
+                    <SsyRefChannelDataTapping Direction="direction of tapping"><!-- This type has DataTypeID 0x00010002 --></SsyRefChannelDataTapping>
+                </ChannelDataItem>
+            </ChannelData>
+    	</ChannelItem>
+    </ChannelInformationGroup>
+</SsyReferenceConfig>

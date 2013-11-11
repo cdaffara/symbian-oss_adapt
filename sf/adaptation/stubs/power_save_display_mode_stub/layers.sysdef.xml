@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "sf/adaptation/stubs/power_save_display_mode_stub" >
+]>
+
+<SystemDefinition name="power_save_display_mode_stub" schema="1.4.0">
+  <systemModel>
+    <layer name="stubs_layer">
+      <module name="power_save_display_mode_stub">
+        <unit unitID="abs.power_save_display_mode_stub" mrp="" bldFile="&layer_real_source_path;/group" name="power_save_display_mode_stub" />
+      </module>
+    </layer>
+  </systemModel>
+</SystemDefinition>

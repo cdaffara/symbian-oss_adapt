@@ -1,0 +1,29 @@
+/*
+* Copyright (c) 2002-2004 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  ?Description
+*
+*/
+
+
+#ifndef ISC_IF_DRIVERS_REFERENCE_IBY
+#define ISC_IF_DRIVERS_REFERENCE_IBY    
+
+device[VARID]=KERNEL_DIR\BUILD_DIR\IscDriver.ldd                SHARED_LIB_DIR\IscDriver.ldd
+device[VARID]=KERNEL_DIR\BUILD_DIR\IscDriverExtension.ldd       SHARED_LIB_DIR\IscDriverExtension.ldd
+device[VARID]=KERNEL_DIR\BUILD_DIR\IscMultiplexerBase.dll       SHARED_LIB_DIR\IscMultiplexerBase.dll
+device[VARID]=KERNEL_DIR\BUILD_DIR\IscDataTransmissionBase.dll  SHARED_LIB_DIR\IscDataTransmissionBase.dll
+
+#endif // ISC_IF_DRIVERS_REFERENCE_IBY
+
+//  End of File 

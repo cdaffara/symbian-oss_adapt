@@ -1,0 +1,48 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+&CpuType="arm11mpcoresmp4"
+&JtagClock="rtck"
+
+&NumberOfCpus="4"
+
+&OnChipTriggerFiq=""
+&OnChipTriggerIrq=""
+&OnChipTriggerDabort=""
+&OnChipTriggerPabort=""
+&OnChipTriggerSwi=""
+&OnChipTriggerUndef="off"
+&OnChipTriggerReset=""
+&OnChipTriggerAlignment=""
+&OnChipTriggerStepvector=""
+&OnChipTriggerAddress=""
+&OnChipTriggerError=""
+
+&SystemOptionEnreset="off"
+&SystemOptionTurbo="off"
+&SystemOptionDismode=""
+&SystemOptionNoircheck=""
+&SystemOptionWaitreset=""
+&SystemOptionResbreak=""
+&SystemOptionDacr=""
+&SystemOptionTidbgen=""
+
+&FlashType="AM29LV256"
+&FlashBlockSize=0x20000
+&FlashStart=0x00000000
+&FlashLength=0x3FFFFFF
+&FlashEnd=&FlashStart+&FlashLength
+&FlashWidth="word"
+&FlashOptionTarget="yes"

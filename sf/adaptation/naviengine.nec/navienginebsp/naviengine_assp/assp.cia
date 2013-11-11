@@ -1,0 +1,77 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* naviengine_assp\assp.cia
+*
+*/
+
+
+
+#include <e32cia.h>
+#include <naviengine_priv.h>
+#include <naviengine.h>
+#include "navienginecia.h"
+#include <upd35001_timer.h>
+
+
+__NAKED__ void MsTimerTick(TAny* aPtr)
+	{
+	// Service 1ms tick interrupt
+#ifdef TOGLE_UART_DTR_LINE
+    asm("ldr r2, 3f");
+    asm("add r2,r2,#0x10");             // KHwRoGpio_Port_Value
+    asm("ldr r2, [r2]");
+    asm("mov r3,#%a0" : : "i" ((TInt)(1<<9))); 
+    asm("ands r2,r2,r3");
+    asm("ldr r2, 3f");
+    asm("add r2,r2,#0xc");               //r2 has KHwWoGpio_Port_Set_Clear_Lo
+    asm("movne r3,r3,lsl #16");
+    asm("str r3,[r2]");
+#endif
+    asm("ldr r1, 1f ");					// Base address of timer 0
+	asm("mov r2, #%a0" : : "i" ((TInt)KNETimerGTIInt_TCI));
+	asm("str r2, [r1, #%a0]" : : "i" _FOFF(NETimer,iGTInterrupt));	// clear interrupt
+    asm("ldr r2, 2f ");                 // set period again  needed due to idle tick 
+    asm("str r2, [r1, #%a0]" : : "i" _FOFF(NETimer,iTimerReset));	// supression
+	asm("b  " CSM_ZN7NTimerQ4TickEv);	// Tick the millisecond timer
+
+	asm("1: ");
+	asm(".word %a0" : : "i" ((TInt)KHwTimersBase));
+	asm("2: ");
+	asm(".word %a0" : : "i" ((TInt)66666));
+#ifdef TOGLE_UART_DTR_LINE
+	asm("3: ");
+	asm(".word %a0" : : "i" ((TInt)KHwGPIOBase));
+#endif
+	}
+
+
+__NAKED__ TUint64 DoRead64(TLinAddr /*aAddr*/)
+	{	
+	asm("ldmia	r0, {r0-r1} ");
+	__JUMP(,lr);	
+	}
+	
+
+__NAKED__ void DoWrite64(TLinAddr aAddr, TUint64 aValue)
+	{
+#ifdef __EABI__
+	asm("stmia	r0, {r2-r3} ");
+#else
+	asm("stmia	r0, {r1-r2} ");
+#endif
+	__JUMP(,lr);	            
+	}
+	
+

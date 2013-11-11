@@ -1,0 +1,154 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// Generic ROM image loading script with automatic attaching and symbol loading.
+// This is designed to be used in conjunction with the board configuration
+// system to be found in configdialog.cmm.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+print "======================================================================="
+print "Generic ROM image loading script"
+
+; Declare the global variables used by the system and read the current config into them
+do globals.cmm
+
+; Special check so that people do not try to download images to the h6 or labrador, which is not supported
+if ("&Platform"=="34xx_sdp"||"&Platform"=="34xx_lab")
+	(
+	dialog.ok "Image downloading not supported for &Platform"
+	enddo
+	)
+
+if "&RamImage"==""
+	(
+	print "No image selected"
+	enddo
+	)
+
+; Attach to the board and reset its hardware completely
+do init.cmm
+
+; Clean up some image specific details
+task.reset
+mmu.reset
+
+; Detected from image file
+&fileName="&RamImage"
+&fileSize=os.file.size(&fileName)
+&fileDate=os.file.date(&fileName)
+
+print "========================================================="
+print "Filename: &fileName"
+print "Date:     &fileDate"
+print "Size:     &fileSize"
+print "RAM addr: &RamAddr"
+print "========================================================="
+
+; Load first few bytes of the image into ram and see whether it has a header on the front
+data.load.binary "&fileName" &RamAddr++0x200
+&firstWord=(data.long(sd:&RamAddr))
+&skipHeader="false"
+
+if ((&firstWord)==0x434F5045)
+	(
+	print "File has EPOC Image header (will skip it)"
+	&skipHeader="true"
+	)
+else
+	(
+	print "No EPOC header present on file &fileName"
+	)
+
+print "Started download: " CLOCK.TIME()
+
+; Turbo mode will disable cpu checks after each system speed memory access
+if ("&SystemOptionTurbo"!="")
+	(
+	sys.option turbo &SystemOptionTurbo
+	)
+
+; Udate the screen
+screen
+
+if "&skipHeader"=="true"
+	(
+	data.load.binary "&fileName" &RamAddr /SKIP 100
+	)
+else
+	(
+	data.load.binary "&fileName" &RamAddr
+	)
+
+if os.file("&PlatformsDir\&Platform\postload.cmm")
+	(
+	do &PlatformsDir\&Platform\postload.cmm
+	)
+
+sys.option turbo off
+
+print "Finished load: " CLOCK.TIME()
+
+; Set all CPUs to point at the entrypoint of the ROM, stored in RamAddr
+&currentCPU=&NumberOfCpus-1
+print "Setting PC of &NumberOfCpus CPU core(s) to &RamAddr"
+
+while &currentCPU>=0
+	(
+	; Only change the current core if there is more than one or it will cause an error
+	if &NumberOfCpus>1
+		core &currentCPU
+
+	; Now set the PC address for the current core
+	register.set PC &RamAddr
+	&currentCPU=&currentCPU-1
+	)
+
+; How do we decide whether this is a debug image or not?  if we check for a 'D'
+; in the filename it could match on anything whilst if we match on *D.IMG we'll
+; get most of the debug images but not all of them...
+if string.scan(string.lwr("&fileName"),"techview.img",0)==-1
+	(
+	; Logic doesn't work for Techview
+	if string.scan(string.lwr("&fileName"),"d.img",0)==-1
+		(
+		; .SYM files are not normally produced for UREl builds, but we might have a .SYMBOL
+		; file that we can pull in. See if there is a .symbol file matching the filename.
+		&_SYMBOLBASENAME=string.cut("&fileName",-string.len(os.file.extension(&fileName)))
+		&_SYMBOLFILENAME="&_SYMBOLBASENAME"+".symbol"
+		if os.file("&_SYMBOLFILENAME")
+			(
+			; This was recently added by Lauterbach so it is not in all versions of the software
+			data.load.symbian "&_SYMBOLFILENAME" &RamAddr /nocode
+			print "UREL image, .symbol file loaded, finished everything: " CLOCK.TIME()
+			ENDDO
+			)
+
+		print "UREL image, no .symbol file, finished everything: " CLOCK.TIME()
+		enddo
+		)
+	)
+
+; Switch the windows in to showing source (if available) rather than mixed
+mode.hll
+
+; Sase disassemble method on symbol data rather than CPU access mode
+sys.OPTION DISMODE AUTO
+
+do symbolics.cmm
+
+enddo

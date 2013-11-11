@@ -1,0 +1,4 @@
+EXPORTS
+	CreatePhysicalDevice__Fv @ 1 NONAME
+	RegisterCallback__16DLcdPowerHandlerP16TLcdUserCallBack @ 2 NONAME
+	DeRegisterCallback__16DLcdPowerHandlerP16TLcdUserCallBack @ 3 NONAME

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="ocrsrv_stub" name="OCR Services Stub">
+    <collection id="ocrsrv_stub_info" name="OCR Services Stub Info">
+      <component id="ocrsrv_stub_build" name="OCR Services Stub Build" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

@@ -1,0 +1,19 @@
+EXPORTS
+	?DataRate@CVisualization@@QBEKXZ @ 1 NONAME ; unsigned long CVisualization::DataRate(void) const
+	?DataRateRange@CVisualization@@QAEXAAK0@Z @ 2 NONAME ; void CVisualization::DataRateRange(unsigned long &, unsigned long &)
+	?EnableFrequencyData@CVisualization@@QAEXH@Z @ 3 NONAME ; void CVisualization::EnableFrequencyData(int)
+	?EnableWaveformData@CVisualization@@QAEXH@Z @ 4 NONAME ; void CVisualization::EnableWaveformData(int)
+	?FreqencyBandCount@CVisualization@@QBEKXZ @ 5 NONAME ; unsigned long CVisualization::FreqencyBandCount(void) const
+	?FrequencyBandCountRange@CVisualization@@QAEXAAK0@Z @ 6 NONAME ; void CVisualization::FrequencyBandCountRange(unsigned long &, unsigned long &)
+	?IsFrequencyDataEnabled@CVisualization@@QBEHXZ @ 7 NONAME ; int CVisualization::IsFrequencyDataEnabled(void) const
+	?IsWaveformDataEnabled@CVisualization@@QBEHXZ @ 8 NONAME ; int CVisualization::IsWaveformDataEnabled(void) const
+	?NewL@CVisualization@@SAPAV1@AAVMVisualizationObserver@@@Z @ 9 NONAME ; class CVisualization * CVisualization::NewL(class MVisualizationObserver &)
+	?SamplingRate@CVisualization@@QBEKXZ @ 10 NONAME ; unsigned long CVisualization::SamplingRate(void) const
+	?SetDataRateL@CVisualization@@QAEXK@Z @ 11 NONAME ; void CVisualization::SetDataRateL(unsigned long)
+	?SetFrequencyBandCountL@CVisualization@@QAEXK@Z @ 12 NONAME ; void CVisualization::SetFrequencyBandCountL(unsigned long)
+	?SetWaveformDataLengthL@CVisualization@@QAEXK@Z @ 13 NONAME ; void CVisualization::SetWaveformDataLengthL(unsigned long)
+	?StartL@CVisualization@@QAEXXZ @ 14 NONAME ; void CVisualization::StartL(void)
+	?StopL@CVisualization@@QAEXXZ @ 15 NONAME ; void CVisualization::StopL(void)
+	?WaveformDataLength@CVisualization@@QBEKXZ @ 16 NONAME ; unsigned long CVisualization::WaveformDataLength(void) const
+	?WaveformDataLengthRange@CVisualization@@QAEXAAK0@Z @ 17 NONAME ; void CVisualization::WaveformDataLengthRange(unsigned long &, unsigned long &)
+

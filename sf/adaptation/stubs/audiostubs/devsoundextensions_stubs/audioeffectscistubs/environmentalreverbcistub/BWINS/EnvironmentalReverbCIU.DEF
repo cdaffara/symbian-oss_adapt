@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CEnvironmentalReverbCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CEnvironmentalReverbCI * CEnvironmentalReverbCI::NewL(class CMMFDevSound &)
+	?NewL@CEnvironmentalReverbCI@@SAPAV1@XZ @ 2 NONAME ; class CEnvironmentalReverbCI * CEnvironmentalReverbCI::NewL(void)
+

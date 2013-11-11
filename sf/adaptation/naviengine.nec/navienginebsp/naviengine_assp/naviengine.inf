@@ -1,0 +1,62 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* naviengine_assp/naviengine.inf
+*
+*/
+
+
+
+PRJ_PLATFORMS
+ARM4 ARMV5
+
+PRJ_EXPORTS
+
+naviengine.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+naviengine.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/direct/)
+naviengine.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/multiple/)
+naviengine.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/flexible/)
+naviengine_priv.h					SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+navienginedma.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+variant_timestamp.h					SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/nkern/)
+highrestimer.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/nkern/)
+naviengine_lcd.h					SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+upd35001_timer.h					SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+watchdog.h							SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+pci/pci.h							SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+hcr/hcrconfig_assp.h				SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+// Exports of private internal component settings for HCR so the 3 NE1 variants 
+// when building HCR can find this file.
+csi/hcrconfig_csi.h					SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+
+
+staticextension.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/)
+staticextension.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/nkern/)
+
+#if !defined(GCCXML) || !defined(NO_GCCXML)
+
+PRJ_MMPFILES
+kanaviengine
+dma
+dma_v2
+usbcc
+uart/uart.mmp
+uart/vserialkeyb.mmp
+uart/ubootldrkeyb.mmp
+pci/pci.mmp
+
+PRJ_TESTMMPFILES
+pci/pci-test.mmp
+
+#endif

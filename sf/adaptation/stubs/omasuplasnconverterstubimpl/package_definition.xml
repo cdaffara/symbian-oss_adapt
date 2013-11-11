@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="omasuplasnconverterstubimpl" name="OMA SUPL ASN Converter Stub Implementation">
+    <collection id="omasuplasnconverterstubimpl_info" name="OMA SUPL ASN Converter Stub Implementation Info">
+      <component id="omasuplasnconverterstubimpl_build" name="OMA SUPL ASN Converter Stub Implementation Build" filter="s60,sf_build">
+        <unit bldFile="group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

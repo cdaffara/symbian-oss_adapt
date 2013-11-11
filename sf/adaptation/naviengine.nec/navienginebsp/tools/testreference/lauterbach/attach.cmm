@@ -1,0 +1,54 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// This script will attach to the board for debugging.  It is designed to be
+// used in conjunction with the board configuration system to be found in
+// configdialog.cmm.
+//
+// Change History:
+//
+// 11/11/2008 1.0 : Initial version
+// 06/02/2009 1.1 : Tidied up in readiness for putting into Nokia's distribution system
+//
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.1
+
+print "======================================================================="
+print "Generic attach script version &scriptversion"
+
+; Declare the global variables used by the system and read the current config into them
+do globals.cmm
+
+; Reset t32 symbolics
+system.reset
+
+; Turn on spotlight everywhere
+setup.var.%SPOTLIGHT.on
+
+; Now do the platform specific operations
+if os.file("&PlatformsDir\&Platform\attach.cmm")
+	(
+	do &PlatformsDir\&Platform\attach.cmm
+	)
+else
+	(
+	print "No platform specific attach script available, trying generic attaching"
+	sys.mode.attach
+	)
+
+print "Trace32 is now attached to the board"

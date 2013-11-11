@@ -1,0 +1,50 @@
+/*
+* Copyright (c) 2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+* Gareth Long - Symbian Foundation
+*
+* Description:
+*
+*/
+
+#include "beagle/variant.mmh"
+#include "kernel/kern_ext.mmh"
+
+TARGET			VariantTarget(medstaticrd,pdd)
+TARGETTYPE		pdd
+//TARGETTYPE		kext
+ROMTARGET		staticrd.dll
+
+systeminclude		+/include/drivers
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+SYSTEMINCLUDE	AsspNKernIncludePath
+
+SOURCEPATH		.
+SOURCE			beagle_medstaticrd.cpp
+
+//LIBRARY			ekern.lib
+//LIBRARY			AsspTarget(PlatformLib)
+LIBRARY			elocd.lib
+
+//NOEXPORTLIBRARY
+
+//DEFFILE			../e32/~/empty.def
+//DEFFILE			./~/exkey.def
+
+//NOSTRICTDEF
+
+epocallowdlldata
+
+UID				0x100039cf 0x100000db
+VENDORID        0x70000001
+
+CAPABILITY		all

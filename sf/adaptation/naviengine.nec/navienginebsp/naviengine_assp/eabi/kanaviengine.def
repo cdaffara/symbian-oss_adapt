@@ -1,0 +1,34 @@
+EXPORTS
+	_Z14AsicInitialisev @ 1 NONAME
+	_ZN11TNaviEngine10SetRtcDataEj @ 2 NONAME
+	_ZN11TNaviEngine12CpuVersionIdEv @ 3 NONAME
+	_ZN11TNaviEngine12VideoRamPhysEv @ 4 NONAME
+	_ZN11TNaviEngine13DebugPortAddrEv @ 5 NONAME
+	_ZN11TNaviEngine13StartupReasonEv @ 6 NONAME
+	_ZN11TNaviEngine19ProcessorPeriodInPsEv @ 7 NONAME
+	_ZN11TNaviEngine20BootWaitMilliSecondsEi @ 8 NONAME
+	_ZTV14NaviEngineAssp @ 9 NONAME
+	_ZN11TNaviEngine7RtcDataEv @ 10 NONAME
+	_ZN12AsspRegister6Read64Em @ 11 NONAME
+	_ZN12AsspRegister7Modify8Emhh @ 12 NONAME
+	_ZN12AsspRegister7Write64Emy @ 13 NONAME
+	_ZN12AsspRegister8Modify16Emtt @ 14 NONAME
+	_ZN12AsspRegister8Modify32Emmm @ 15 NONAME
+	_ZN12AsspRegister8Modify64Emyy @ 16 NONAME
+	_ZN14NaviEngineAssp11DebugOutputEj @ 17 NONAME
+	_ZN14NaviEngineAssp12MsTickPeriodEv @ 18 NONAME
+	_ZN14NaviEngineAssp13StartupReasonEv @ 19 NONAME
+	_ZN14NaviEngineAssp19NanoWaitCalibrationEv @ 20 NONAME
+	_ZN14NaviEngineAssp27SystemTimeInSecondsFrom2000ERi @ 21 NONAME
+	_ZN14NaviEngineAssp30SetSystemTimeInSecondsFrom2000Ei @ 22 NONAME
+	_ZN14NaviEngineAssp5Init1Ev @ 23 NONAME
+	_ZN14NaviEngineAssp5Init3Ev @ 24 NONAME
+	_ZN14NaviEngineAsspC2Ev @ 25 NONAME
+	_ZN9Interrupt11SetPriorityEii @ 26 NONAME
+	_ZN9Interrupt4BindEiPFvPvES0_ @ 27 NONAME
+	_ZN9Interrupt5ClearEi @ 28 NONAME
+	_ZN9Interrupt6EnableEi @ 29 NONAME
+	_ZN9Interrupt6UnbindEi @ 30 NONAME
+	_ZN9Interrupt7DisableEi @ 31 NONAME
+	_ZTI14NaviEngineAssp @ 32 NONAME
+

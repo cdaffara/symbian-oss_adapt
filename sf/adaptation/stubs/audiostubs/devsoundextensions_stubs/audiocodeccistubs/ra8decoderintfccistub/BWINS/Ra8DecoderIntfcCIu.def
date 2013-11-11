@@ -1,0 +1,6 @@
+EXPORTS
+	??1CRa8DecoderIntfcCI@@UAE@XZ @ 1 NONAME ; CRa8DecoderIntfcCI::~CRa8DecoderIntfcCI(void)
+	?FrameNumber@CRa8DecoderIntfcCI@@UAEHXZ @ 2 NONAME ; int CRa8DecoderIntfcCI::FrameNumber(void)
+	?NewL@CRa8DecoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CRa8DecoderIntfcCI * CRa8DecoderIntfcCI::NewL(void)
+	?SetInitString@CRa8DecoderIntfcCI@@UAEHAAVTDesC8@@@Z @ 4 NONAME ; int CRa8DecoderIntfcCI::SetInitString(class TDesC8 &)
+

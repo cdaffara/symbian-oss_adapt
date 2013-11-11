@@ -1,0 +1,51 @@
+/*
+* Copyright (c) 2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: CI Stub plugin mmp
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET		  	cistubplugin.dll
+TARGETTYPE	  	PLUGIN
+UID			 	0x10009D8D 0x10207C70
+CAPABILITY 		ALL -TCB
+VENDORID        VID_DEFAULT
+
+
+USERINCLUDE		../inc
+USERINCLUDE		../../inc
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE	/epoc32/include/ecom
+SYSTEMINCLUDE	/epoc32/include/mmf/server
+SYSTEMINCLUDE	/epoc32/include/mmf/common 
+
+LIBRARY			euser.lib
+LIBRARY			ecom.lib
+LIBRARY			efsrv.lib
+LIBRARY			RestrictedAudioOutputCI.lib
+LIBRARY			AudioOutputCI.lib
+LIBRARY			AudioInputCI.lib
+
+SOURCEPATH	  	../src
+
+SOURCE		  	cistubplugin.cpp
+SOURCE 			cistubpluginMain.cpp
+
+SOURCEPATH	  	../data
+START RESOURCE 	cistubplugin.rss
+TARGET 			cistubplugin.rsc
+END
+

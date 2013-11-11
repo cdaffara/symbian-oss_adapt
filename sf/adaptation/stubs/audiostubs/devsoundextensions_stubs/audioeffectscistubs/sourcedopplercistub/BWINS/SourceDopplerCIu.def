@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CSourceDopplerCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CSourceDopplerCI * CSourceDopplerCI::NewL(class CMMFDevSound &)
+	?NewL@CSourceDopplerCI@@SAPAV1@XZ @ 2 NONAME ; class CSourceDopplerCI * CSourceDopplerCI::NewL(void)
+

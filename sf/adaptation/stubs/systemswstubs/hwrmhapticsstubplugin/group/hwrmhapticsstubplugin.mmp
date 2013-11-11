@@ -1,0 +1,50 @@
+/*
+* Copyright (c) 2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Haptics (adaptation) stub plugin project definition file
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          hapticsadaptation.dll
+TARGETTYPE      PLUGIN
+
+UID             0x10009D8D 0x2001CB6D
+
+VENDORID        VID_DEFAULT
+
+CAPABILITY      CAP_ECOM_PLUGIN
+
+SOURCEPATH      ../src
+SOURCE          proxy.cpp
+SOURCE          hwrmhapticsstubplugin.cpp
+SOURCE          hwrmhapticsstubpluginidleresponder.cpp
+
+START RESOURCE  ../data/2001CB6D.rss
+TARGET          hapticsadaptation.rsc
+END
+
+USERINCLUDE     ../inc
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/ecom
+
+LIBRARY         euser.lib 
+LIBRARY         ecom.lib
+LIBRARY         estor.lib
+LIBRARY         hwrmhapticspluginservice.lib
+
+LANG            SC
+

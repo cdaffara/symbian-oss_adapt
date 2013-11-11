@@ -1,0 +1,14 @@
+EXPORTS
+	_ZN23CAddedDevSoundControlCI13PauseAndFlushEv @ 1 NONAME
+	_ZN23CAddedDevSoundControlCI14SetHwAwarenessEi @ 2 NONAME
+	_ZN23CAddedDevSoundControlCI4NewLEv @ 3 NONAME
+	_ZN23CAddedDevSoundControlCID0Ev @ 4 NONAME
+	_ZN23CAddedDevSoundControlCID1Ev @ 5 NONAME
+	_ZN23CAddedDevSoundControlCID2Ev @ 6 NONAME
+	_ZTI23CAddedDevSoundControlCI @ 7 NONAME ; #<TI>#
+	_ZTV23CAddedDevSoundControlCI @ 8 NONAME ; #<VT>#
+	_ZThn4_N23CAddedDevSoundControlCI13PauseAndFlushEv @ 9 NONAME ; #<thunk>#
+	_ZThn4_N23CAddedDevSoundControlCI14SetHwAwarenessEi @ 10 NONAME ; #<thunk>#
+	_ZThn4_N23CAddedDevSoundControlCID0Ev @ 11 NONAME ; #<thunk>#
+	_ZThn4_N23CAddedDevSoundControlCID1Ev @ 12 NONAME ; #<thunk>#
+

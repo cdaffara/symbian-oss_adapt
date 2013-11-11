@@ -1,0 +1,36 @@
+/*
+* Copyright (c) 2006-2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs - 
+*
+*/
+
+
+
+#include "../aacdecoderconfigcistub/group/bld.inf"
+//#include "../audiovibracontrolcistub/group/bld.inf" //Audio vibra Control API is deprecated
+#include "../eaacplusdecoderintfccistub/Group/bld.inf"
+#include "../errorconcealmentintfccistub/group/bld.inf"
+#include "../g711decoderintfccistub/group/bld.inf"
+#include "../g711encoderintfccistub/group/bld.inf"
+#include "../g729decoderintfccistub/group/bld.inf"
+#include "../g729encoderintfccistub/group/bld.inf"
+#include "../ilbcdecoderintfccistub/group/bld.inf"
+#include "../ilbcencoderintfccistub/group/bld.inf"
+#include "../sbcencoderintfccistub/Group/bld.inf"
+#include "../speechencoderconfigcistub/group/bld.inf"
+#include "../ra8decoderintfccistub/Group/bld.inf"
+#include "../wmadecodercintfccistub/group/bld.inf"
+
+//  End of File
+

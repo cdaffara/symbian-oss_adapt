@@ -1,0 +1,35 @@
+/*
+* Copyright (c) 2002-2004 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Project file for RadioServer Console Test
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          FMRadioTunerControl.dll
+CAPABILITY 	CAP_GENERAL_DLL
+TARGETTYPE	DLL
+UID		0x1000008d 0x2000C0C0
+VENDORID	VID_DEFAULT
+
+SOURCEPATH	../Src
+SOURCE          FMRadioTunerControlStub.cpp
+
+USERINCLUDE	../Src
+
+OS_LAYER_SYSTEMINCLUDE
+
+LIBRARY         euser.lib
+

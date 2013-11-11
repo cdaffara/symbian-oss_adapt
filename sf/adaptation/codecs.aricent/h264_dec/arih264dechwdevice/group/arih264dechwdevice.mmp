@@ -1,0 +1,64 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description:
+* Project file for H264 Video Decode HwDevice.
+*
+*/
+
+
+#include <platform_paths.hrh>
+#include "..\inc\arih264dechwdeviceuid.hrh"
+
+TARGET			arih264dechwdevice.dll
+
+TARGETTYPE		PLUGIN
+
+UID 			0x10009D8D KUidH264DecoderHwDeviceDllUid
+
+CAPABILITY  ALL -TCB
+
+SOURCEPATH		..\src
+SOURCE			arih264dechwdevice.cpp
+
+START RESOURCE  20029904.rss
+#ifdef SYMBIAN_SECURE_ECOM
+TARGET			arih264dechwdevice.rsc
+#endif
+END
+
+MACRO LOGLEVEL_CRITICAL
+
+USERINCLUDE	..\inc
+//wrapper includes
+USERINCLUDE     ..\..\arih264decwrapper\export_hdr
+//utilities includes
+USERINCLUDE	    ..\..\..\Utilities\Log
+USERINCLUDE     ..\..\..\Utilities\ariprocessengine\inc
+USERINCLUDE     ..\..\..\Utilities\aristatemachine\inc
+
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\libc
+SYSTEMINCLUDE	\epoc32\include\ecom
+SYSTEMINCLUDE	\epoc32\include\mmf\devvideo
+SYSTEMINCLUDE	\epoc32\include\oem
+
+MW_LAYER_SYSTEMINCLUDE
+
+LIBRARY			euser.lib estlib.lib
+LIBRARY			efsrv.lib
+LIBRARY			aristatemachine.lib
+LIBRARY			devvideo.lib
+LIBRARY			arih264decwrapper.lib 
+LIBRARY			ariprocessengine.lib
+

@@ -1,0 +1,846 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// This script will display a dialog box to the user that is the central point
+// for configuring the path of the ROM image that is to be loaded onto the
+// different boards supported by the Symbian T32 scripts.  It is also used to
+// select the current target board.  Once this has been done, all operations
+// such as attaching, loading etc. will be performed on that board, according
+// to the settings saved by this script.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+//
+// 1) load current environment into temporary variables
+//        if environment not set, take defaults
+// 2) initialise dialog with current environment
+//        ... dialog runs at this point ...
+// 3) when dialog exits, update current environment
+//
+
+; Declare the global variables used by the system and read the current config into them
+do globals.cmm
+
+GLOBAL &platformList
+GLOBAL &ConfigDialogOpen
+&ConfigDialogOpen="false"
+
+// I'm saving this as a global for now so that I can change the default extension for testing...
+GLOBAL &defaultExt
+&defaultExt="*.bin;*.img"
+
+&currentConfigFile="currentconfig.cmm"
+
+global &dialogMode
+
+gosub LoadPlatformFromFile "currentconfig.cmm"
+
+// Stop command prevents script from exiting before user has pressed anything...
+stop
+
+enddo
+
+//=============================================================================
+// Dialog Box Definition
+//=============================================================================
+OpenDialog:
+
+	gosub GeneratePlatformList
+	//print "Setting platform list to " "&platformList"
+	do sourcepaths.cmm
+
+	dialog
+(&
+		header "Current Configuration"
+
+//*****************************Definition***************************************
+
+		//---------- Platform ----------
+		pos 1. 0. 9.
+		text "Target Board"
+		pos 1. 1. 25. 1.
+PLATFORM: PULLDOWN "&platformList" "gosub LoadPlatformFromFile"
+
+		//---------- Platform Defaults Box ----------
+		pos 27. 0. 17. 3.
+		box "Target Board Defaults"
+
+			//---------- Defaults Button ----------
+			pos 28. 1. 7. 1.
+			BUTTON "Reload"
+			(
+				gosub LoadPlatformFromFile
+			)
+
+			//---------- Save As Defaults Button ----------
+			pos 36. 1. 7. 1.
+			BUTTON "Save"
+			(
+				gosub SavePlatform
+			)
+
+
+		//---------- Custom Config Box ----------
+		pos 45. 0. 19. 3.
+		box "Custom Config"
+
+			//---------- Load Button ----------
+			pos 46. 1. 8. 1.
+			BUTTON "Load..."
+			(
+				dialog.file "*.cmm"
+				entry &fileName
+
+				if "&fileName"!=""
+					(
+					gosub LoadPlatformFromFile &fileName
+					)
+			)
+
+			//---------- Save Button ----------
+			pos 55. 1. 8. 1.
+			BUTTON "Save As..."
+			(
+				dialog.filew "*.cmm"
+				entry &fileName
+				if ("&fileName"!="")
+				(
+					gosub SavePlatformToFile &fileName
+				)
+			)
+
+		//---------- Source Paths and Autoload Module ----------
+		pos 0. 2. 75. 4.
+		box "Source Paths and Autoload Module"
+
+		//---------- Source Paths ----------
+		pos 1. 3. 12. 1.
+		text "Source Paths"
+		pos 20. 3. 7. 1.
+LIST_SOURCEPATHS: BUTTON "List" "gosub ListSourcePaths"
+		pos 28. 3. 7.
+EDIT_SOURCEPATHS:	BUTTON "Edit" "gosub EditSourcePath"
+		pos 36. 3. 7. 1.
+RELOAD_SOURCEPATHS: BUTTON "Reload" "gosub ReloadSourcePaths"
+		pos 44. 3. 7
+DEFAULT_SOURCEPATHS: BUTTON "Default" "gosub DefaultSourcePaths"
+		pos 52. 3. 7
+SAVE_SOURCEPATHS: BUTTON "Save" "gosub SaveSourcePaths"
+
+		//---------- Autoload Module ----------
+		pos 1. 4. 15.
+		text "Autoload Module"
+		pos 20. 4. 54. 1.
+AUTOLOAD_MODULE: EDIT "" ""
+
+		//-------- RAM Image -------
+		pos 0. 6. 90. 10.
+		box "RAM Images"
+		pos 1. 7. 15. 1.
+		text "Load Address 1"
+		pos 20. 7. 20. 1.
+RAMADDR1:        EDIT "" ""
+		pos 1. 8. 15. 1.
+		text "Filename 1"
+		pos 20. 8. 65. 1.
+RAMIMAGE1:        EDIT "" ""
+		pos 86. 8. 3.
+		BUTTON "..."
+		(
+			gosub GetImageFromUser RAMIMAGE1
+		)
+
+		pos 1. 9. 15. 1.
+		text "Load Address 2"
+		pos 20. 9. 20. 1.
+RAMADDR2:        EDIT "" ""
+		pos 1. 10. 15. 1.
+		text "Filename 2"
+		pos 20. 10. 65. 1.
+RAMIMAGE2:        EDIT "" ""
+		pos 86. 10. 3.
+		BUTTON "..."
+		(
+			gosub GetImageFromUser RAMIMAGE2
+		)
+
+		pos 1. 11. 15. 1.
+		text "Load Address 3"
+		pos 20. 11. 20. 1.
+RAMADDR3:        EDIT "" ""
+		pos 1. 12. 15. 1.
+		text "Filename 3"
+		pos 20. 12. 65. 1.
+RAMIMAGE3:        EDIT "" ""
+		pos 86. 12. 3.
+		BUTTON "..."
+		(
+			gosub GetImageFromUser RAMIMAGE3
+		)
+
+		pos 1. 13. 15. 1.
+		text "Load Address 4"
+		pos 20. 13. 20. 1.
+RAMADDR4:        EDIT "" ""
+		pos 1. 14. 15. 1.
+		text "Filename 4"
+		pos 20. 14. 65. 1.
+RAMIMAGE4:        EDIT "" ""
+		pos 86. 14. 3.
+		BUTTON "..."
+		(
+			gosub GetImageFromUser RAMIMAGE4
+		)
+
+		//-------- NOR Flash Image -------
+		pos 0. 15. 90. 5.
+		box "NOR Flash Image"
+		pos 1. 16. 15. 1.
+		text "Load Address"
+		pos 20. 16. 20. 1.
+FLASHADDR:        EDIT "" ""
+		pos 1. 17. 15. 1.
+		text "Filename"
+		pos 20. 17. 65. 1.
+FLASHIMAGE:        EDIT "" ""
+		pos 86. 17. 3.
+GETFLASHIMAGE:		BUTTON "..."
+		(
+			gosub GetImageFromUser FLASHIMAGE
+		)
+		pos 1. 18. 19. 1.
+		text "Warning Dialogs"
+		pos 20. 18. 10. 1.
+FLASHWRITEPROTECT:	CHECKBOX "Flash Write"
+		(
+			print "Write Prot: &FlashWriteProtect"
+		)
+		pos 35. 18. 10. 1.
+FLASHERASEPROTECT:	CHECKBOX "Flash Erase"
+		(
+			print "Erase Prot: &FlashEraseProtect"
+		)
+
+
+		//---------- Bottom Row of Buttons ----------
+		//---------- OK Button ----------
+		pos 1. 20. 6.
+		DEFBUTTON "OK"
+		(
+			gosub CloseDialog save
+			continue
+		)
+
+		//---------- Cancel Button ----------
+		pos 8. 20. 10.
+		BUTTON "Cancel"
+		(
+			; Reload the current config from disk
+			do currentconfig.cmm
+
+			; Close the dialog and reset the symbolics sourcepath
+			gosub CloseDialog
+			continue
+		)
+
+		//---------- Advanced/Basic Button ----------
+		pos 65. 20. 11.
+ADV_BASIC: BUTTON "Toggle Advanced" "gosub ToggleDialogMode"
+)
+
+	; Set a flag to indicate that the dialig is open, seeing that there doesn't seem to be
+	; a way of querying T32 about it
+	&ConfigDialogOpen="true"
+
+	; Initialise any dialog controls that were not filled in automatically when creating the
+	; dialog and enable or disable the advanced ones as appropriate
+	gosub SetupDialogDefaults
+
+	RETURN
+
+//==============================================================================
+LoadPlatformFromFile:
+	ENTRY &fileName
+	LOCAL &platform
+
+	; Load the platform configuration from the filename passed in, if any
+	if "&fileName"!=""
+		(
+		if os.file(&fileName)
+			(
+			do &fileName
+			)
+		)
+	else
+		(
+		; Otherwise see what the currently selected platform is in the platforms drop down and load its configuration
+		&platform=dialog.string(PLATFORM)
+		if os.file(&PlatformsDir\&platform\&UserConfigCmm)
+			(
+			do &PlatformsDir\&platform\&UserConfigCmm
+			)
+		else
+			(
+			print "No platform specific user config defined; using blank defaults"
+			&Platform="&platform"
+			&RamImage=""
+			&RamAddr="0"
+			&RamImage1=""
+			&RamAddr1="0"
+			&RamImage2=""
+			&RamAddr2="0"
+			&RamImage3=""
+			&RamAddr3="0"
+			&RamImage4=""
+			&RamAddr4="0"
+			)
+		)
+
+	; And re-open the dialog so that it displays the newly loaded configuration
+	gosub CloseDialog
+	gosub OpenDialog
+
+	return
+
+//==============================================================================
+SetAdvancedDialogOptions:
+
+	dialog.enable LIST_SOURCEPATHS
+	dialog.enable EDIT_SOURCEPATHS
+	dialog.enable RELOAD_SOURCEPATHS
+	dialog.enable DEFAULT_SOURCEPATHS
+	dialog.enable SAVE_SOURCEPATHS
+	dialog.enable AUTOLOAD_MODULE
+	dialog.enable RAMADDR1
+	dialog.enable RAMADDR2
+	dialog.enable RAMADDR3
+	dialog.enable RAMADDR4
+	dialog.enable FLASHADDR
+	dialog.enable FLASHIMAGE
+	dialog.enable GETFLASHIMAGE
+	dialog.enable FLASHWRITEPROTECT
+	dialog.enable FLASHERASEPROTECT
+	&dialogMode="advanced"
+
+	return
+
+//==============================================================================
+SetBasicDialogOptions:
+
+	dialog.disable LIST_SOURCEPATHS
+	dialog.disable EDIT_SOURCEPATHS
+	dialog.disable RELOAD_SOURCEPATHS
+	dialog.disable DEFAULT_SOURCEPATHS
+	dialog.disable SAVE_SOURCEPATHS
+	dialog.disable AUTOLOAD_MODULE
+	dialog.disable RAMADDR1
+	dialog.disable RAMADDR2
+	dialog.disable RAMADDR3
+	dialog.disable RAMADDR4
+	dialog.disable FLASHADDR
+	dialog.disable FLASHIMAGE
+	dialog.disable GETFLASHIMAGE
+	dialog.disable FLASHWRITEPROTECT
+	dialog.disable FLASHERASEPROTECT
+	&dialogMode="basic"
+
+	return
+
+/==============================================================================
+ToggleDialogMode:
+
+	if ("&dialogMode"=="advanced")
+		(
+		gosub SetBasicDialogOptions
+		)
+	else
+		(
+		gosub SetAdvancedDialogOptions
+		)
+
+	return
+
+//==============================================================================
+CloseDialog:
+	ENTRY &save
+
+	if ("&save"=="save")
+		(
+		; Read the dialog controls that might have changed and save the configuration to disk
+		gosub ReadDialog
+		gosub SavePlatformToFile "&currentConfigFile"
+		do PrintConfig.cmm
+		)
+
+	; This function can be called safely even if the dialog is not open.  To allow this we must
+	; manually keep track of whether the dialog is open, as T32 will give an error if you try to
+	; close a dialog that is not open
+	if "&ConfigDialogOpen"!="false"
+		(
+		&ConfigDialogOpen="false"
+		dialog.end
+		)
+
+	return
+
+//==============================================================================
+SetupDialogDefaults:
+
+	; Display or hide the advanced controls according to the user's preference
+	if ("&dialogMode"=="advanced")
+		(
+		gosub SetAdvancedDialogOptions
+		)
+	else
+		(
+		gosub SetBasicDialogOptions
+		)
+
+	; And initialise any not yet initialised controls to their default
+	dialog.set PLATFORM				"&Platform"
+	dialog.set AUTOLOAD_MODULE		"&AutoloadModule"
+	dialog.set RAMADDR1				"&RamAddr1"
+	dialog.set RAMIMAGE1			"&RamImage1"
+	dialog.set RAMADDR2				"&RamAddr2"
+	dialog.set RAMIMAGE2			"&RamImage2"
+	dialog.set RAMADDR3				"&RamAddr3"
+	dialog.set RAMIMAGE3			"&RamImage3"
+	dialog.set RAMADDR4				"&RamAddr4"
+	dialog.set RAMIMAGE4			"&RamImage4"
+	dialog.set FLASHADDR			"&FlashAddr"
+	dialog.set FLASHIMAGE			"&FlashImage"
+	dialog.set FLASHERASEPROTECT	"&FlashEraseProtect"
+	dialog.set FLASHWRITEPROTECT	"&FlashWriteProtect"
+	
+
+	return
+
+//==============================================================================
+ReadDialog:
+
+	// Read dialog box config into global environment variables
+	&Platform=dialog.string(PLATFORM)
+	&AutoloadModule=dialog.string(AUTOLOAD_MODULE)
+	&RamImage1=dialog.string(RAMIMAGE1)
+	&RamAddr1=dialog.string(RAMADDR1)
+	&RamImage2=dialog.string(RAMIMAGE2)
+	&RamAddr2=dialog.string(RAMADDR2)
+	&RamImage3=dialog.string(RAMIMAGE3)
+	&RamAddr3=dialog.string(RAMADDR3)
+	&RamImage4=dialog.string(RAMIMAGE4)
+	&RamAddr4=dialog.string(RAMADDR4)
+	&FlashAddr=dialog.string(FLASHADDR)
+	&FlashImage=dialog.string(FLASHIMAGE)
+
+	if "&RamImage"==""
+	(
+		&RamImage="&RamImage1"
+		&RamAddr="&RamAddr1"
+	)
+	&FlashEraseProtect=dialog.boolean(FLASHERASEPROTECT)
+	if dialog.boolean(FLASHERASEPROTECT)==(0==0)
+	(
+		&FlashEraseProtect="ON"
+	)
+	else
+	(
+		&FlashEraseProtect="OFF"
+	)
+
+	&FlashWriteProtect=dialog.boolean(FLASHWRITEPROTECT)
+	if dialog.boolean(FLASHWRITEPROTECT)==(0==0)
+	(
+		&FlashWriteProtect="ON"
+	)
+	else
+	(
+		&FlashWriteProtect="OFF"
+	)
+
+	; Make sure that target addresses have been specified and if not, use a sensible default that will
+	; work on at least some platforms
+	if ("&RamAddr1"=="")
+	(
+		&RamAddr1="0x80000000"
+	)
+
+	if ("&RamAddr2"=="")
+	(
+		&RamAddr2="0x80000000"
+	)
+
+	if ("&RamAddr3"=="")
+	(
+		&RamAddr3="0x80000000"
+	)
+
+	if ("&RamAddr4"=="")
+	(
+		&RamAddr4="0x80000000"
+	)
+
+	if ("&FlashAddr"=="")
+	(
+		&FlashAddr="0"
+	)
+
+	return
+
+//==============================================================================
+SavePlatformToFile:
+	ENTRY &filename
+
+	gosub ReadDialog
+
+	// Open the config file for writing
+	open #1 &filename /Create
+
+	// Write the config to the file in script format for loading later
+	write #1 "&"+"Platform="+'"'+"&Platform"+'"'
+	write #1 "&"+"AutoloadModule="+'"'+"&AutoloadModule"+'"'
+	write #1 "&"+"RamAddr="+'"'+"&RamAddr"+'"'
+	write #1 "&"+"RamImage="+'"'+"&RamImage"+'"'
+	write #1 "&"+"RamAddr1="+'"'+"&RamAddr1"+'"'
+	write #1 "&"+"RamImage1="+'"'+"&RamImage1"+'"'
+	write #1 "&"+"RamAddr2="+'"'+"&RamAddr2"+'"'
+	write #1 "&"+"RamImage2="+'"'+"&RamImage2"+'"'
+	write #1 "&"+"RamAddr3="+'"'+"&RamAddr3"+'"'
+	write #1 "&"+"RamImage3="+'"'+"&RamImage3"+'"'
+	write #1 "&"+"RamAddr4="+'"'+"&RamAddr4"+'"'
+	write #1 "&"+"RamImage4="+'"'+"&RamImage4"+'"'
+	write #1 "&"+"FlashAddr="+'"'+"&FlashAddr"+'"'
+	write #1 "&"+"FlashImage="+'"'+"&FlashImage"+'"'
+	write #1 "&"+"FlashWriteProtect="+'"'+"&FlashWriteProtect"+'"'
+	write #1 "&"+"FlashEraseProtect="+'"'+"&FlashEraseProtect"+'"'
+
+	// All done, so close the file
+	close #1
+
+	// Do any tidyup
+	// type &filename
+
+	RETURN
+
+
+//==============================================================================
+SavePlatform:
+
+	//gosub PrintSeperator
+	//print "saving platform "+dialog.string(PLATFORM)
+
+	// Open the config file for writing
+	&filename="&PlatformsDir\"+dialog.string(PLATFORM)+"\&UserConfigCmm"
+
+	print "Saving platform to &filename"
+	gosub SavePlatformToFile &filename
+	RETURN
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// GeneratePlatformList
+//
+// Generate the list of platforms from a directory listing of the platforms
+// script dir.
+//
+//////////////////////////////////////////////////////////////////////////////
+GeneratePlatformList:
+	LOCAL &data
+	LOCAL &dirList
+	LOCAL &blanks
+
+	&filename="&TMPDIR\platformList.txt"
+	prt.file &filename
+	winprint.dir &PlatformsDir
+
+	&blanks=0
+	open #1 &filename /Read
+
+	// discard first line as it is the header & directory name
+	READ #1 %line &data
+
+	// read the file line at a time, process it and add directory entries to the list of supported platforms
+	RePeaT
+	(
+		READ #1 %line &data
+
+		; Okay, this is because there isn't a way of the read returning EOF
+		; the easiest solution is to count the number of blank lines and if
+		; it crosses a threshold assume that the end was reached.
+		if "&data"==""
+			(
+			&blanks=&blanks+1
+			if &blanks>10
+				(
+				goto endloop
+				)
+			)
+
+		// Remove all dots
+		gosub ReplaceAll "&data" "." ""
+		entry &tmp
+		&data=&tmp
+
+		// Replace multiple spaces with one space
+		gosub ReplaceAll "&data" "  " " "
+		entry &tmp
+		&data=&tmp
+
+		// Remove leading spaces
+		gosub RemoveLeadingChars "&data" " "
+		entry &tmp
+		&data=&tmp
+
+		// Replace all spaces with a comma
+		gosub ReplaceAll "&data" " " ","
+		entry &tmp
+		&data=&tmp
+
+		if ("&dirList"=="")
+		(
+			&dirList="&data"
+		)
+		else
+		(
+			&dirList="&dirList,&data"
+		)
+	)
+endloop: CLOSE #1
+
+	&platformList="&dirList"
+
+	RETURN
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////////////////////
+RemoveLeadingChars:
+	LOCAL &inStr &removeStr &pos1 &pos2 &outStr
+	ENTRY &inStr &removeStr
+
+//	print "REMOVE: &inStr &removeStr"
+
+	&pos1=string.scan(&inStr,&removeStr,0)
+//	print "pos1=&pos1"
+
+	if (&pos1==0)
+	(
+//		print "found!!!!!!!!"
+
+		&len1=string.len(&inStr)
+		&len2=string.len(&removeStr)
+
+//		print "len1=&len1"
+//		print "len2=&len2"
+
+		&start=string.mid("&inStr",0,&pos1+1)
+		&end=string.mid("&inStr",&pos1+&len2+1,&len1)
+
+//		print "start : &start"
+//		print "end   : &end"
+
+		&outStr="&start&end"
+//		print "outStr: &outStr"
+	)
+	else
+	(
+		&outStr="&inStr"
+
+	)
+	return &outStr
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// ReplaceAll
+//
+// Repeatedly call ReplaceInString to replace all occurrences of a given
+// string (removeStr) with the new string (removeStr).
+//
+// Parameters:
+//	&inStr		    original string where replacements should be made
+//  &removeStr      string to remove
+//  &replaceStr     string to add in replacement for &removeStr
+//
+// Returns:
+//  string, in quotes.  These quotes have to be stripped off to make the
+//  returned string useful.
+//
+// Example usage:
+//
+//      &spaceStr="1 2 3 4 5 6 7 8 9"
+//	    gosub ReplaceAll "&spaceStr" " " ","
+//	    entry &retStr              // this string has extra quotes
+//	    &commaStr=&retStr          // this strips the extra quotes from the string
+//
+// The expected output will be:
+//    "1,2,3,4,5,6,7,8,9"
+//
+//////////////////////////////////////////////////////////////////////////////
+ReplaceAll:
+	ENTRY &inStr &removeStr &replaceStr
+
+	LOCAL &ret
+
+	repeat
+	(
+		gosub ReplaceInString &inStr &removeStr &replaceStr
+		entry &ret
+
+		if (&inStr==&ret)
+		(
+			goto allreplaced
+		)
+		&inStr="&ret"
+	)
+allreplaced:
+	return &inStr
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// ReplaceInString
+//
+// Within a given string (inStr), replace a single instance of a
+// string (removeStr) with a new string (replaceStr).
+//
+// Parameters:
+//	&inStr		    original string where replacements should be made
+//  &removeStr      string to remove
+//  &replaceStr     string to add in replacement for &removeStr
+//
+// Returns:
+//  string, in quotes.  These quotes have to be stripped off to make the
+//  returned string useful.
+//
+// Example usage:
+//      &spaceStr="1 2 3 4 5 6 7 8 9"
+//		gosub ReplaceInString &spaceStr " " ","
+//		entry &ret
+//		&commaStr=&ret
+//
+// The expected output will be:
+//    "1,2 3 4 5 6 7 8 9"
+//
+//////////////////////////////////////////////////////////////////////////////
+ReplaceInString:
+	LOCAL &inStr &removeStr &pos1 &pos2 &outStr
+	ENTRY &inStr &removeStr &replaceStr
+
+	&pos1=string.scan(&inStr,&removeStr,0)
+
+	if (&pos1==-1)
+	(
+		&outStr="&inStr"
+	)
+	else
+	(
+		&len1=string.len(&inStr)
+		&len2=string.len(&removeStr)
+
+		&start=string.mid("&inStr",0,&pos1+1)
+		&middle=string.mid("&inStr",&pos1+1,&pos1+1+&len2)
+		&end=string.mid("&inStr",&pos1+&len2+1,&len1)
+
+		&outStr="&start"+&replaceStr+"&end"
+	)
+	return &outStr
+
+
+//==============================================================================
+GetImageFromUser:
+	ENTRY &dialogElement
+
+	LOCAL &tmpRamImg
+	LOCAL &tmp1
+	LOCAL &tmpfile
+
+	&tmpRamImg=dialog.string(&dialogElement)
+
+	&tmp1=os.file.path("&tmpRamImg")+"\"+"&defaultExt"
+
+	dialog.file "&tmp1"
+	entry &tmpfile
+	if ("&tmpfile"!="")
+	(
+		&tmpRamImg="&tmpfile"
+
+		dialog.set &dialogElement "&tmpRamImg"
+	)
+	return
+
+//==============================================================================
+ListSourcePaths:
+	symbol.sourcepath.list
+	return
+
+//==============================================================================
+ReloadSourcePaths:
+	do sourcepaths.cmm
+	return
+
+//==============================================================================
+EditSourcePath:
+
+	if os.file("&PlatformsDir\&Platform\customsourcepaths.cmm")
+		(
+		print "Editing custom source paths"
+		)
+	else
+		(
+		if os.file("&PlatformsDir\&Platform\defaultsourcepaths.cmm")
+			(
+			print "No custom source paths defined for this platform. Creating from default source paths."
+			copy &PlatformsDir\&Platform\defaultsourcepaths.cmm &PlatformsDir\&Platform\customsourcepaths.cmm
+
+			// without this delay, the user gets prompted to reload the file
+			wait 0.5s
+			)
+		)
+	edit &PlatformsDir\&Platform\customsourcepaths.cmm
+	return
+
+//==============================================================================
+DefaultSourcePaths:
+	if os.file("&PlatformsDir\&Platform\customsourcepaths.cmm")
+		(
+		print "Removing custom source paths"
+		del &PlatformsDir\&Platform\customsourcepaths.cmm
+		)
+	else
+		(
+		print "Already using default source paths, nothing to do..."
+		)
+	return
+
+//==============================================================================
+SaveSourcePaths:
+	print "Saving custom source paths to file &PlatformsDir\&Platform\customsourcepaths.cmm"
+	store &PlatformsDir\&Platform\customsourcepaths.cmm SPATH
+	return
+

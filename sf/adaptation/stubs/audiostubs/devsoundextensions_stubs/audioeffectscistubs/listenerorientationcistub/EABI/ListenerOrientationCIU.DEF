@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN22CListenerOrientationCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI22CListenerOrientationCI @ 2 NONAME ; #<TI>#
+	_ZTV22CListenerOrientationCI @ 3 NONAME ; #<VT>#
+	_ZN22CListenerOrientationCI4NewLEv @ 4 NONAME
+

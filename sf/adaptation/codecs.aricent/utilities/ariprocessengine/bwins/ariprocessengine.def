@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CBaseEngine@@SAPAV1@PAVMProcessEngineObserver@@PAVMBaseCodec@@HH@Z @ 1 NONAME ; class CBaseEngine * CBaseEngine::NewL(class MProcessEngineObserver *, class MBaseCodec *, int, int)
+

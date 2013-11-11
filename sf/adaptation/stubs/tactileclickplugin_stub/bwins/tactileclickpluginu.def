@@ -1,0 +1,4 @@
+EXPORTS
+	?CreateClickMakerL@@YAPAVCClickMaker@@XZ @ 1 NONAME ; class CClickMaker * CreateClickMakerL(void)
+	?Instance@MTactileFeedbackServer@@SAPAV1@XZ @ 2 NONAME ; class MTactileFeedbackServer * MTactileFeedbackServer::Instance(void)
+

@@ -1,0 +1,52 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb\specific\power.cia
+* NE1_TBVariant Power Management
+*
+*/
+
+
+
+#ifdef __SMP__
+
+#include <kernel.h>
+#include "ne1_tb_power.h"
+#include <naviengine.h>
+#include <naviengine_priv.h>
+
+__NAKED__  TInt DNE1_TBPowerController::ClearTimerInterrupt()  
+    {
+    asm("ldr r1, __KHwTimersBase ");					// Base address of timer 0
+	asm("mov r2, #%a0" : : "i" ((TInt)KNETimerGTIInt_TCI));
+	asm("str r2, [r1, #%a0]" : : "i" _FOFF(NETimer,iGTInterrupt));	// clear interrupt
+  	asm("ldr    r1,__KGICAddr");
+    asm("ldr    r0, [r1, #%a0]" : : "i" ((TInt) (((KIntIdOstMatchMsTimer>>5)<<2)+ _FOFF(GicDistributor, iPendingClear))));
+    asm("orr    r0,r0,#%a0" : : "i" ((TInt) (0x1<<(KIntIdOstMatchMsTimer&0x1f))));
+    asm("str    r0, [r1, #%a0]" : : "i" ((TInt) (((KIntIdOstMatchMsTimer>>5)<<2)+ _FOFF(GicDistributor, iPendingClear))));
+	__JUMP(,lr);
+    asm("__KHwTimersBase: ");
+	asm(".word %a0" : : "i" ((TInt)KHwTimersBase));
+    asm("__KGICAddr:");
+    asm(".word %a0" : : "i" ((TInt)KHwBaseGlobalIntDist));
+    }
+
+
+extern "C" __NAKED__ void __arm_sev()
+	{
+	ARM_SEV;
+	__JUMP(,	lr);
+	}
+
+#endif // ifdef __SMP__

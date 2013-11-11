@@ -1,0 +1,6 @@
+EXPORTS
+	??1CAddedDevSoundControlCI@@UAE@XZ @ 1 NONAME ; CAddedDevSoundControlCI::~CAddedDevSoundControlCI(void)
+	?NewL@CAddedDevSoundControlCI@@SAPAV1@XZ @ 2 NONAME ; class CAddedDevSoundControlCI * CAddedDevSoundControlCI::NewL(void)
+	?PauseAndFlush@CAddedDevSoundControlCI@@UAEHXZ @ 3 NONAME ; int CAddedDevSoundControlCI::PauseAndFlush(void)
+	?SetHwAwareness@CAddedDevSoundControlCI@@UAEHH@Z @ 4 NONAME ; int CAddedDevSoundControlCI::SetHwAwareness(int)
+

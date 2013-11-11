@@ -1,0 +1,89 @@
+/*
+* Copyright (c) 2006-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Build file for WM DRM Keystorage
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+PRJ_EXPORTS
+
+#if (defined __WINDOWS_MEDIA_DRM)
+
+../wmdrmkeystorage/armv5/urel/wmdrmkeystorage.dll /epoc32/release/armv5/urel/wmdrmkeystorage.dll
+../wmdrmkeystorage/armv5/udeb/wmdrmkeystorage.dll /epoc32/release/armv5/udeb/wmdrmkeystorage.dll
+../wmdrmkeystorage/armv5/lib/wmdrmkeystorage.lib /epoc32/release/armv5/lib/wmdrmkeystorage.lib
+../wmdrmkeystorage/armv5/lib/wmdrmkeystorage.dso /epoc32/release/armv5/lib/wmdrmkeystorage.dso
+../wmdrmkeystorage/armv5/lib/wmdrmkeystorage{000a0000}.dso /epoc32/release/armv5/lib/wmdrmkeystorage{000a0000}.dso
+
+../wmdrmkeystorage/winscw/urel/wmdrmkeystorage.dll /epoc32/release/winscw/urel/wmdrmkeystorage.dll
+../wmdrmkeystorage/winscw/udeb/wmdrmkeystorage.dll /epoc32/release/winscw/udeb/wmdrmkeystorage.dll
+../wmdrmkeystorage/winscw/udeb/wmdrmkeystorage.lib /epoc32/release/winscw/udeb/wmdrmkeystorage.lib
+
+
+../wmdrmpd/armv5/urel/wmdrmpd.dll /epoc32/release/armv5/urel/wmdrmpd.dll
+../wmdrmpd/armv5/udeb/wmdrmpd.dll /epoc32/release/armv5/udeb/wmdrmpd.dll
+../wmdrmpd/armv5/lib/wmdrmpd.lib /epoc32/release/armv5/lib/wmdrmpd.lib
+../wmdrmpd/armv5/lib/wmdrmpd.dso /epoc32/release/armv5/lib/wmdrmpd.dso
+../wmdrmpd/armv5/lib/wmdrmpd{000a0000}.dso /epoc32/release/armv5/lib/wmdrmpd{000a0000}.dso
+
+../wmdrmpd/winscw/urel/wmdrmpd.dll /epoc32/release/winscw/urel/wmdrmpd.dll
+../wmdrmpd/winscw/udeb/wmdrmpd.dll /epoc32/release/winscw/udeb/wmdrmpd.dll
+../wmdrmpd/winscw/udeb/wmdrmpd.lib /epoc32/release/winscw/udeb/wmdrmpd.lib
+
+// WM DRM agent
+../wmdrmpd/data/resource/plugins/wmdrmagent.rsc /epoc32/data/z/resource/plugins/wmdrmagent.rsc
+../wmdrmpd/data/resource/plugins/wmdrmagent.rsc /epoc32/release/winscw/udeb/z/resource/plugins/wmdrmagent.rsc
+../wmdrmpd/data/resource/plugins/wmdrmagent.rsc /epoc32/release/winscw/urel/z/resource/plugins/wmdrmagent.rsc
+
+../wmdrmpd/winscw/udeb/wmdrmagent.dll /epoc32/release/winscw/udeb/wmdrmagent.dll
+../wmdrmpd/winscw/urel/wmdrmagent.dll /epoc32/release/winscw/urel/wmdrmagent.dll
+
+../wmdrmpd/armv5/udeb/wmdrmagent.dll /epoc32/release/armv5/udeb/wmdrmagent.dll
+../wmdrmpd/armv5/urel/wmdrmagent.dll /epoc32/release/armv5/urel/wmdrmagent.dll
+
+../wmdrmpd/armv5/urel/cameseutility.dll /epoc32/release/armv5/urel/cameseutility.dll
+../wmdrmpd/armv5/udeb/cameseutility.dll /epoc32/release/armv5/udeb/cameseutility.dll
+../wmdrmpd/armv5/lib/cameseutility.lib /epoc32/release/armv5/lib/cameseutility.lib
+../wmdrmpd/armv5/lib/cameseutility.dso /epoc32/release/armv5/lib/cameseutility.dso
+../wmdrmpd/armv5/lib/cameseutility{000a0000}.dso /epoc32/release/armv5/lib/cameseutility{000a0000}.dso
+../wmdrmpd/armv5/lib/cameseutility{000a0000}.lib /epoc32/release/armv5/lib/cameseutility{000a0000}.lib
+
+../wmdrmpd/winscw/urel/cameseutility.dll /epoc32/release/winscw/urel/cameseutility.dll
+../wmdrmpd/winscw/udeb/cameseutility.dll /epoc32/release/winscw/udeb/cameseutility.dll
+../wmdrmpd/winscw/udeb/cameseutility.lib /epoc32/release/winscw/udeb/cameseutility.lib
+
+../wmdrmpd/armv5/urel/wmdrmdla.dll /epoc32/release/armv5/urel/wmdrmdla.dll
+../wmdrmpd/armv5/udeb/wmdrmdla.dll /epoc32/release/armv5/udeb/wmdrmdla.dll
+../wmdrmpd/armv5/lib/wmdrmdla.lib /epoc32/release/armv5/lib/wmdrmdla.lib
+../wmdrmpd/armv5/lib/wmdrmdla.dso /epoc32/release/armv5/lib/wmdrmdla.dso
+../wmdrmpd/armv5/lib/wmdrmdla{000a0000}.dso /epoc32/release/armv5/lib/wmdrmdla{000a0000}.dso
+../wmdrmpd/armv5/lib/wmdrmdla{000a0000}.lib /epoc32/release/armv5/lib/wmdrmdla{000a0000}.lib
+
+../wmdrmpd/winscw/urel/wmdrmdla.dll /epoc32/release/winscw/urel/wmdrmdla.dll
+../wmdrmpd/winscw/udeb/wmdrmdla.dll /epoc32/release/winscw/udeb/wmdrmdla.dll
+../wmdrmpd/winscw/udeb/wmdrmdla.lib /epoc32/release/winscw/udeb/wmdrmdla.lib
+
+// iby files
+
+../rom/wmdrmpd_dist.iby            CORE_MW_LAYER_IBY_EXPORT_PATH( wmdrmpd_dist.iby )
+../rom/wmdrmkeystorage_dist.iby    CORE_MW_LAYER_IBY_EXPORT_PATH( wmdrmkeystorage_dist.iby )
+
+#endif // __WINDOWS_MEDIA_DRM
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_MMPFILES

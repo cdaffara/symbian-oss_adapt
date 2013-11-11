@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ All rights reserved.
+ This component and the accompanying materials are made available
+ under the terms of "Eclipse Public License v1.0"
+ which accompanies this distribution, and is available
+ at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+ Initial Contributors:
+ Nokia Corporation - initial contribution.
+
+ Contributors:
+
+ Description: For use by Sirocco build system
+
+-->
+
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "/sf/adapt/openmaxil.nokia" >
+]>
+
+<SystemDefinition name="openmaxil.nokia" schema="1.4.0">
+  <systemModel>
+    <layer name="ncp_layer">
+      <module name="openmaxil.nokia">
+        <component name="omxilcomp">
+          <unit unitID="omxilcomp.omxilcomp" name="OpenMAX IL Components" mrp="" bldFile="&layer_real_source_path;/omxilcomp/omxilgeneric/group"/>
+          <unit unitID="omxilcomp.omxilaudioemulator" name="OpenMAX IL Emulator Components" mrp="" bldFile="&layer_real_source_path;/omxilcomp/omxilaudioemulator/group"/>
+          <unit unitID="omxilcomp.omxiltestcomp" name="OpenMAX IL Test Components" mrp="" bldFile="&layer_real_source_path;/omxilcomp/omxiltestcomp/group"/>
+        </component>
+      </module>
+    </layer>
+  </systemModel>
+</SystemDefinition>

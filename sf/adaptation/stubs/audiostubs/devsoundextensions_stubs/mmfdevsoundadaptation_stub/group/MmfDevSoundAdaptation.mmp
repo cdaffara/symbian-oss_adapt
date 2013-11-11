@@ -1,0 +1,71 @@
+/*
+* Copyright (c) 2006-2008 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  Project specification file for MmfDevSoundAdaptation_Stub
+*  Version     : %version: bh1mmcf#32 %
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          MmfDevSoundAdaptation_Stub.dll
+CAPABILITY      MultimediaDD ProtServ UserEnvironment
+TARGETTYPE      DLL
+
+UID             0x101F4549 0x10207ABC
+VENDORID        VID_DEFAULT
+
+SOURCEPATH      ../src
+SOURCE          MmfDevSoundAdaptation.cpp
+SOURCE          MmfDevSoundAdaptationBody.cpp
+SOURCE          MmfHwDeviceStub.cpp
+SOURCE          ToneGenerator.cpp
+SOURCE          DevSoundUtility.cpp
+SOURCE          TonePlayCompleteTimer.cpp
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../inc
+
+START RESOURCE  FixedSequence.rss
+TARGETPATH      Resource/DevSound
+HEADER
+END
+
+OS_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE   /epoc32/include/ecom
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+SYSTEMINCLUDE   /epoc32/include/mmf/server
+
+LIBRARY         euser.lib
+LIBRARY         mmfserverbaseclasses.lib
+LIBRARY         mmfcontrollerframework.lib
+LIBRARY         bafl.lib
+LIBRARY         efsrv.lib
+LIBRARY         ecom.lib
+
+LIBRARY         AudioInputCI.lib
+LIBRARY         AudioOutputCI.lib
+LIBRARY         G711DecoderIntfcCI.lib
+LIBRARY         G729DecoderIntfcCI.lib
+LIBRARY         IlbcDecoderIntfcCI.lib
+LIBRARY         G711EncoderIntfcCI.lib
+LIBRARY         G729EncoderIntfcCI.lib
+LIBRARY         IlbcEncoderIntfcCI.lib
+LIBRARY         ErrorConcealmentIntfcCI.lib
+LIBRARY         SpeechEncoderConfigCI.lib
+
+deffile         MmfDevSoundAdaptation.def
+nostrictdef
+
+// End of File

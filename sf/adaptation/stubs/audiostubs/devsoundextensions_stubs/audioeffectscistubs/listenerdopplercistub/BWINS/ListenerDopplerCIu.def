@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CListenerDopplerCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CListenerDopplerCI * CListenerDopplerCI::NewL(class CMMFDevSound &)
+	?NewL@CListenerDopplerCI@@SAPAV1@XZ @ 2 NONAME ; class CListenerDopplerCI * CListenerDopplerCI::NewL(void)
+

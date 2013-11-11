@@ -1,0 +1,49 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+// This macro is required to enable domain specific code
+MACRO OMXIL_OTHER_FILESOURCE
+
+
+#include 				"../inc/omxilfilesource.hrh"
+
+TARGET		  			omxilotherfilesource.dll
+CAPABILITY	  			ALL -TCB
+TARGETTYPE	  			PLUGIN
+UID           			0x10009D8D KUidNokiaOmxILOtherFileSourceDll
+VENDORID                0x70000001
+
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+OS_LAYER_ESTLIB_SYSTEMINCLUDE
+
+USERINCLUDE	 			../inc
+
+SOURCEPATH	  			../src
+
+SOURCE		  			omxilfilesource.cpp
+SOURCE		  			omxilfilesourceprocessingfunction.cpp
+SOURCE		  			omxilfilesourceconfigmanager.cpp 
+SOURCE		  			omxilotherfilesourceopb0port.cpp
+
+RESOURCE				omxilotherfilesource.rss
+
+LIBRARY		 			euser.lib
+LIBRARY		 			efsrv.lib
+LIBRARY		 			inetprotutil.lib
+LIBRARY		 			ecom.lib
+LIBRARY					estlib.lib
+LIBRARY         		omxilcomponentcommon.lib
+STATICLIBRARY			omxilcomponentif.lib

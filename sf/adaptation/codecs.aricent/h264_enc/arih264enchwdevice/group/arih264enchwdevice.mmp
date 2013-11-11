@@ -1,0 +1,55 @@
+
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Project file for H264 encoder. The file specifies the
+* include paths, source files and libraries to be used to build the 
+* H264 encoder plugin binaries.
+*
+*/
+
+#include <platform_paths.hrh>
+#include "../inc/arih264enchwdeviceuids.hrh"
+
+TARGET			arih264enchwdevice.dll
+TARGETTYPE		PLUGIN
+
+UID 			0x10009D8D KUidH264EncoderHwDeviceDllUid
+
+CAPABILITY 		All -TCB
+
+SOURCEPATH		../src
+SOURCE			arih264enchwdeviceimpl.cpp
+START RESOURCE  20001C12.rss
+TARGET			arih264enchwdevice.rsc
+END
+
+MACRO 			LOGLEVEL_CRITICAL
+
+USERINCLUDE	    ../inc
+USERINCLUDE 	../../../utilities/ariprocessengine/inc
+USERINCLUDE     ../../../utilities/aristatemachine/inc
+USERINCLUDE     ../../../utilities/log
+USERINCLUDE     ../../arih264encwrapper/export_hdr
+
+MW_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE	\epoc32\include\ecom
+SYSTEMINCLUDE	\epoc32\include\mmf\devvideo
+SYSTEMINCLUDE	\epoc32\include
+
+LIBRARY		euser.lib 
+LIBRARY		devvideo.lib
+LIBRARY		aristatemachine.lib
+LIBRARY		ariprocessengine.lib  
+LIBRARY		arih264encwrapper.lib

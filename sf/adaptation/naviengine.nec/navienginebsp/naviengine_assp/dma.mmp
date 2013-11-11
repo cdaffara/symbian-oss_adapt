@@ -1,0 +1,57 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* naviengine_assp/dma.mmp
+*
+*/
+
+
+
+#include		<variant.mmh>
+#include		"kernel/kern_ext.mmh"
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+
+target			VariantTarget(dma,dll)
+targettype		kext
+linkas			dma.dll
+noexportlibrary
+
+sourcepath		../../../../os/kernelhwsrv/kernel/eka/drivers/dma
+source			dmapil.cpp
+
+sourcepath		.
+source			dmapsl.cpp
+
+library			VariantTarget(kanaviengine,lib)
+
+deffile			../../../../os/kernelhwsrv/kernel/eka/~/dma.def
+
+epocallowdlldata
+
+capability		all
+
+VENDORID 0x70000001
+
+// Comment out the following macro to run dma driver in single buffered mode
+//macro NE1_DMA_DOUBLE_BUFFER
+
+// This macro prevents the PIL from trying to recover from a missed
+// IRQ
+// If enabled, the PSL must ensure that no IRQs are missed
+macro DISABLE_MISSED_IRQ_RECOVERY
+
+SMPSAFE

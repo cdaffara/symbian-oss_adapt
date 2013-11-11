@@ -1,0 +1,56 @@
+/*
+* Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  AudioServerFactoryStub ECOM plugin resource registry definition.
+*
+*/
+
+//  RESOURCE IDENTIFIER
+
+//  INCLUDES
+#include <registryinfov2.rh>
+#include <mmfaudiosvrservice.hrh> // For KUidA3fAudioServicePlugin
+
+#include "mmfaudioserverfactorystub.hrh"
+
+//  RESOURCE DEFINITIONS
+// -----------------------------------------------------------------------------
+//
+// Identifies adapters for ECOM.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE REGISTRY_INFO theInfo
+    {
+    resource_format_version = RESOURCE_FORMAT_VERSION_2;
+    dll_uid = KMMFAudioServiceFactoryStubUID;
+    interfaces =
+        {
+        INTERFACE_INFO
+            {
+            interface_uid = KUidA3fAudioServicePlugin;
+            implementations =
+                {
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = KMMFAudioServiceFactoryStubImplementationUID;
+                    version_no = 1;
+                    display_name = "Telephony Audio Routing Manager Service";
+                    rom_only = 1;
+                    }
+                };
+            }
+        };
+    }
+
+// End of File

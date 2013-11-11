@@ -1,0 +1,4 @@
+EXPORTS
+	_Z10CompensateRK22TTiltCompensationInputR23TTiltCompensationOutputs @ 1 NONAME
+	_Z10CompensateRK22TTiltCompensationInputR23TTiltCompensationOutputsRK6RArrayIdE @ 2 NONAME
+

@@ -1,0 +1,82 @@
+/*
+* Copyright (c) 2002-2005 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Hardware Resource Manager stub plugins ECom resource file
+*
+*/
+
+
+#include "ecom/registryinfov2.rh"
+
+// Declares info for two implementations
+RESOURCE REGISTRY_INFO theInfo
+    {
+    // UID for the DLL. See HWRMStubPlugins.mmp
+    resource_format_version = RESOURCE_FORMAT_VERSION_2;
+    dll_uid = 0x10205040;
+    interfaces = 
+        {
+        INTERFACE_INFO
+            {
+            // UID of interface that is implemented
+            interface_uid = 0x10205028;
+            implementations = 
+                {
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = 0x1020503F;
+                    version_no = 1;
+                    display_name = "Light plugin stub";
+                    default_data = "HWRMLight";      
+                    opaque_data = "";
+                    rom_only = 1;
+                    },
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = 0x1020503E;
+                    version_no = 1;
+                    display_name = "Vibra plugin stub";
+                    default_data = "HWRMVibra";      
+                    opaque_data = "";
+                    rom_only = 1;
+                    },
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = 0x2000BF15;
+                    version_no = 1;
+                    display_name = "Fmtx plugin stub";
+                    default_data = "HWRMFmTx";      
+                    opaque_data = "";
+                    rom_only = 1;
+                    }
+                };
+            },
+        INTERFACE_INFO
+            {
+            // UID of interface that is implemented
+            interface_uid = 0x10205042;
+            implementations = 
+                {
+                IMPLEMENTATION_INFO
+                    {
+                    implementation_uid = 0x1020503D;
+                    version_no = 1;
+                    display_name = "Power State Test plugin";
+                    default_data = "HWRMPowerState";
+                    opaque_data = "";
+                    rom_only = 1;
+                    }
+                };
+            }
+        };
+    }

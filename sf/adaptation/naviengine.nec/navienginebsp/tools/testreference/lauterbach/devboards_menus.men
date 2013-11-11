@@ -1,0 +1,110 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+;********************************************************************************
+;*
+;* devboards_menu.men
+;*
+;* Generic RAM download script with automatic attaching and symbol loading.
+;*
+;********************************************************************************
+
+;********************************************************************************
+;* Devboards dropdown menu
+;********************************************************************************
+ADD
+MENU
+	(
+	POPUP "&Devboards"
+		(
+		MENUITEM "[:symbols]Enable Symbols"
+			(
+			ChDir.DO ..\scripts-v2\attach.cmm
+			ChDir.DO ..\scripts-v2\symbolics.cmm
+			)
+		MENUITEM "[:find]Toggle EKA2 awareness" "DO ..\scripts-v2\Toggle_SymbianAwareness.cmm"
+
+		MENUITEM "[:list]List Symbol Modules" "symbol.autoload.list"
+
+		; ==============================================================================
+		SEPARATOR
+		MENUITEM "[:image]Config Dialog"               "chdir.DO ..\scripts-v2\configdialog.cmm"
+		MENUITEM "[:right]Attach to board"             "chdir.DO ..\scripts-v2\attach.cmm"
+		MENUITEM "[:left]Attach to board with Symbols"
+			(
+			ChDir.DO ..\scripts-v2\attach.cmm
+			ChDir.DO ..\scripts-v2\symbolics.cmm
+			)
+		MENUITEM "[:init]Init board"                   "chdir.DO ..\scripts-v2\init.cmm"
+		MENUITEM "[:load]Load Image to board"          "chdir.DO ..\scripts-v2\load.cmm"
+		MENUITEM "[:symbols]Enable Symbols"            "chdir.DO ..\scripts-v2\symbolics.cmm"
+
+		SEPARATOR
+
+		MENUITEM "[:load]Set image 1 as current image" "chdir.DO ..\scripts-v2\setimage.cmm 1"
+		MENUITEM "[:load]Set image 2 as current image" "chdir.DO ..\scripts-v2\setimage.cmm 2"
+		MENUITEM "[:load]Set image 3 as current image" "chdir.DO ..\scripts-v2\setimage.cmm 3"
+		MENUITEM "[:load]Set image 4 as current image" "chdir.DO ..\scripts-v2\setimage.cmm 4"
+
+		SEPARATOR
+
+		MENUITEM "[:flash]Erase Flash on board"        "chdir.DO ..\scripts-v2\flasherase.cmm"
+		MENUITEM "[:flash]Flash Image to board"        "chdir.DO ..\scripts-v2\flashimage.cmm"
+		; ==============================================================================
+		SEPARATOR
+		MENUITEM "[:remove]Detach" "sys.down"
+
+		SEPARATOR
+
+		popup "H&2"
+			(
+			; These will only work on H2
+			menuitem "View FrameBuffer 8BPP"  "data.image asd:0x20002200 240. 320. /PALETTE256X12 asd:0x20002000"
+			menuitem "View FrameBuffer 16BPP" "data.image asd:0x20002200 240. 320. /RGB565LE"
+			)
+
+		POPUP "H&4"
+			(
+			; These will only work on H4
+			MENUITEM "View FrameBuffer 16 BPP"
+				(
+				; Read the location of the framebuffer out of the display controller
+				local &_FRAMEBUFFERADDR
+				&_FRAMEBUFFERADDR=data.long(asd:0x48050480)
+				data.image asd:&_FRAMEBUFFERADDR 240. 320. // RGB565LE
+				)
+
+			MENUITEM "View FrameBuffer 24 BPP"
+				(
+				; Read the location of the framebuffer out of the display controller
+				local &_FRAMEBUFFERADDR
+				&_FRAMEBUFFERADDR=data.long(asd:0x48050480)
+				data.image asd:&_FRAMEBUFFERADDR 240. 320. // RGBX888LE
+				)
+
+			MENUITEM "View FrameBuffer 16 BPP Landscape"
+				(
+				; Read the location of the framebuffer out of the display controller
+				local &_FRAMEBUFFERADDR
+				&_FRAMEBUFFERADDR=data.long(asd:0x48050480)
+				data.image asd:&_FRAMEBUFFERADDR 320. 240. // RGB565LE
+				)
+			)
+
+		SEPARATOR
+		MENUITEM "Edit menus"    "b::menu.program ..\scripts-v2\devboards_menus.men"
+		MENUITEM "Refresh menus" "b::menu.reprogram ..\scripts-v2\devboards_menus.men"
+		)
+	)

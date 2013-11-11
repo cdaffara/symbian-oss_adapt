@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN12CRoomLevelCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZN12CRoomLevelCI4NewLEv @ 2 NONAME
+	_ZTI12CRoomLevelCI @ 3 NONAME ; #<TI>#
+	_ZTV12CRoomLevelCI @ 4 NONAME ; #<VT>#
+

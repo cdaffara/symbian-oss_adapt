@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN22CEnvironmentalReverbCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI22CEnvironmentalReverbCI @ 2 NONAME ; #<TI>#
+	_ZTV22CEnvironmentalReverbCI @ 3 NONAME ; #<VT>#
+	_ZN22CEnvironmentalReverbCI4NewLEv @ 4 NONAME
+

@@ -1,0 +1,56 @@
+/*
+* Copyright (c) 2004-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* naviengine_assp/usbcc.mmp
+*
+*/
+
+
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+
+target				VariantTarget(usbcc,dll)
+targettype			kext
+linkas				usbcc.dll
+noexportlibrary
+
+USERINCLUDE     traces_usbcc
+
+sourcepath			../../../../os/kernelhwsrv/kernel/eka/drivers/usbcc
+source				chapter9.cpp
+source				descriptors.cpp
+source				misc.cpp
+source				ps_usbc.cpp
+source				queue.cpp
+
+sourcepath			.
+source				pa_usbc.cpp
+
+library				dma2.lib
+library				VariantTarget(kanaviengine,lib)
+
+deffile				../../../../os/kernelhwsrv/kernel/eka/~/usbcc.def
+
+epocallowdlldata
+
+capability			all
+uid             0x100039d0 0x1000015f
+VENDORID 0x70000001
+
+MACRO DMA_APIV2

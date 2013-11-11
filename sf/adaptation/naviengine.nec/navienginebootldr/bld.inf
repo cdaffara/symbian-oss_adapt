@@ -1,0 +1,79 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* base/bsp/hwip_nec_naviengine/ne1_tb_bootloader/bld.inf
+* Purpose build the bootloader features of NE1_TB baseport
+*
+*/
+
+
+
+PRJ_PLATFORMS
+ARM4 ARM4SMP ARMV5 ARMV5SMP
+
+#if !defined(GCCXML) || !defined(NO_GCCXML)
+
+PRJ_EXTENSIONS
+
+#if 0 //#ifdef SBSV2 // If using SBSv2 with bootstrap FLM, MEMMODEL MUST begin with a capital letter
+
+start   extension       base.bootstrap bootstrap
+
+option  NAME            _ne1_tb_bootloader_bootrom
+option  CPU             arm
+option  MEMMODEL        Multiple
+option  SOURCES         ../navienginebsp/ne1_tb/bootstrap/ne1_tb.s ../navienginebsp/ne1_tb/bootstrap/miniboot.s
+option  EXTRA_SRC_PATH  ../navienginebsp/ne1_tb/bootstrap
+option  INCLUDES        ./config.inc 
+
+option  EXTRA_EPOC32_INC_PATH   $(EPOCROOT)epoc32/include/platform/assp/naviengine
+option  GENINCLUDES_HEADERS     ../../../os/kernelhwsrv/kernel/eka/include/kernel/arm/arm_types.h ../navienginebsp/naviengine_assp/naviengine.h
+option  E32PATH                 ../../../os/kernelhwsrv/kernel/eka/../.
+
+end
+
+#else // !SBSV2
+
+start   extension       base/bootstrap bootstrap
+
+#ifdef SYMBIAN_OLD_EXPORT_LOCATION
+option INC_PATH   $(EPOCROOT)epoc32/include
+#else
+option INC_PATH  $(EPOCROOT)epoc32/include/platform
+#endif
+
+option  NAME            _ne1_tb_bootloader_bootrom
+option  CPU             arm
+option  MEMMODEL        multiple
+option  SOURCES         ne1_tb.s miniboot.s
+option  EXTRA_SRC_PATH  $(EXTENSION_ROOT)/../navienginebsp/ne1_tb/bootstrap
+option  INCLUDES        $(EXTENSION_ROOT)/config.inc 
+
+option  EXTRA_INC_PATH  $(EPOCROOT)epoc32/include/platform/assp/naviengine
+option  GENINCLUDES     arm_types.inc naviengine.inc
+option  E32PATH         $(EXTENSION_ROOT)/../../../os/kernelhwsrv/kernel/eka/../.
+
+end
+
+#endif // !SBSV2
+
+PRJ_MMPFILES
+
+#ifndef SMP
+ubootldr
+#endif
+
+ubootldrldd
+
+#endif

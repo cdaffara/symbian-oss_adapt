@@ -1,0 +1,10 @@
+EXPORTS
+	_ZN20CAudioVibraControlCI10StartVibraEv @ 1 NONAME
+	_ZN20CAudioVibraControlCI4NewLEv @ 2 NONAME
+	_ZN20CAudioVibraControlCI9StopVibraEv @ 3 NONAME
+	_ZN20CAudioVibraControlCID0Ev @ 4 NONAME
+	_ZN20CAudioVibraControlCID1Ev @ 5 NONAME
+	_ZN20CAudioVibraControlCID2Ev @ 6 NONAME
+	_ZTI20CAudioVibraControlCI @ 7 NONAME ; #<TI>#
+	_ZTV20CAudioVibraControlCI @ 8 NONAME ; #<VT>#
+

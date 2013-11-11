@@ -1,0 +1,8 @@
+EXPORTS
+	??1CG711DecoderIntfcCI@@UAE@XZ @ 1 NONAME ; CG711DecoderIntfcCI::~CG711DecoderIntfcCI(void)
+	?GetCng@CG711DecoderIntfcCI@@UAEHAAH@Z @ 2 NONAME ; int CG711DecoderIntfcCI::GetCng(int &)
+	?NewL@CG711DecoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CG711DecoderIntfcCI * CG711DecoderIntfcCI::NewL(void)
+	?SetCng@CG711DecoderIntfcCI@@UAEHH@Z @ 4 NONAME ; int CG711DecoderIntfcCI::SetCng(int)
+	?SetDecoderMode@CG711DecoderIntfcCI@@UAEHW4TDecodeMode@CG711DecoderIntfc@@@Z @ 5 NONAME ; int CG711DecoderIntfcCI::SetDecoderMode(enum CG711DecoderIntfc::TDecodeMode)
+	?SetPlc@CG711DecoderIntfcCI@@UAEHH@Z @ 6 NONAME ; int CG711DecoderIntfcCI::SetPlc(int)
+

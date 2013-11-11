@@ -1,0 +1,421 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// This script configures the autoloader for full symbolic debugging.  It is
+// designed to be used in conjunction with the board configuration system to
+// be found in configdialog.cmm.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+print "======================================================================="
+print "Generic symbol autoloader configuration script"
+
+global &_IS_BOOTLOADER
+global &_T32ROMDIR
+global &IsTextshell
+
+&IsTextshell=(0==1)
+
+if "&_IS_BOOTLOADER"==""
+	(
+	&_IS_BOOTLOADER=(0==1)
+	)
+
+; Start from clean
+symbol.reset
+symbol.autoload.reset
+
+; Add some special labels to various addresses so if an exception occurs it will me
+; immediately obvious as to what caused it
+symbol.new.function VECTORS 0xFFFF0000++0x1C
+symbol.new.label RESET 0xFFFF0000
+symbol.new.label UNDEF 0xFFFF0004
+symbol.new.label SWI 0xFFFF0008
+symbol.new.label PREFETCH_ABORT 0xFFFF000C
+symbol.new.label DATA_ABORT 0xFFFF0010
+symbol.new.label IRQ 0xFFFF0018
+symbol.new.label FIQ 0xFFFF001C
+
+; Get the image filename
+&_DIALOG_PATH=os.env(T32ROMDIR)
+
+if "&_DIALOG_PATH"==""
+	(
+	if "&_T32ROMDIR"==""
+		(
+		&_DIALOG_PATH="*.IMG"
+		)
+		else
+		(
+		&_DIALOG_PATH="&_T32ROMDIR"+"\*.IMG"
+		)
+	)
+else
+	(
+	&_DIALOG_PATH="&_DIALOG_PATH"+"\*.IMG"
+	)
+
+local &_SYMBOLICS_FILENAME
+&_SYMBOLICS_FILENAME="&RamImage"
+
+local &_SYMBOLICS_LOAD_ADDRESS
+&_SYMBOLICS_LOAD_ADDRESS="&RamAddr"
+
+if "&_SYMBOLICS_FILENAME"==""
+	(
+	print "Select EPOC image that is currently running:"
+
+	dialog.file &_DIALOG_PATH
+	entry &_SYMBOLICS_FILENAME
+
+	if "&_SYMBOLICS_FILENAME"==""
+		(
+		 ; disconnect from the board
+		 print "*** Aborted (no ROM image filename specified) ***"
+		 enddo
+		)
+	)
+
+; Check for a logfile with the same path and stem as the ROM name and if found use that.  Failing
+; that, check for a logfile with the same path but called romfile.log and if found, use that
+&_LOGBASENAME=string.cut("&_SYMBOLICS_FILENAME",-string.len(os.file.extension(&_SYMBOLICS_FILENAME)))
+&_LOGFILENAME="&_LOGBASENAME"+".log"
+
+if !os.file("&_LOGFILENAME")
+	(
+	&_LOGFILENAME=string.cut("&_SYMBOLICS_FILENAME",-string.len(os.file.name(&_SYMBOLICS_FILENAME)))
+	&_LOGFILENAME="&_LOGFILENAME"+"rombuild.log"
+
+	if !os.file("&_LOGFILENAME")
+		(
+		print "*** Log file not found.  Select logfile for this image ***"
+		&_DIALOG_PATH="&_SYMBOLICS_FILENAME"+"\*.log"
+		dialog.file &_DIALOG_PATH
+		entry &_LOGFILENAME
+		)
+	)
+
+if os.file("&_LOGFILENAME")
+	(
+	print "Using &_LOGFILENAME for symbols"
+	)
+else
+	(
+	print "*** Aborted (no logfile name specified) ***"
+	enddo
+	)
+
+; It's possible that the script guesses a right logfilename but the user has let
+; the log get out of date when compared to the image. Do a very quick compare on
+; the timestamps - this will reject guessed filenames if the minute rolls over.
+local &_DATE_IMAGE
+local &_DATE_LOG
+
+&_DATE_IMAGE=string.cut(os.file.date(&_SYMBOLICS_FILENAME), -2)
+&_DATE_LOG=string.cut(os.file.date(&_LOGFILENAME), -2)
+
+if "&_DATE_IMAGE"!="&_DATE_LOG"
+	(
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	print "Would guess logfile was &_LOGFILENAME but not perfect time match"
+	print "Date image: &_DATE_IMAGE"
+	print "Date log: &_DATE_LOG"
+	print "Select rombuild.log for this image:"
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	&_DIALOG_PATH="&_SYMBOLICS_FILENAME"+"\*.log"
+	dialog.file &_DIALOG_PATH
+	entry &_LOGFILENAME
+
+	if "&_LOGFILENAME"==""
+		(
+		print "*** Aborted (no logfile name specified) ***"
+		enddo
+		)
+
+	if os.file("&_LOGFILENAME")
+		(
+		print "Now using &_LOGFILENAME for symbols"
+		)
+	else
+		(
+		print "*** Aborted (no logfile name specified) ***"
+		enddo
+		)
+	)
+
+; parse the rombuild.log file to extract the rom checksum
+LOCAL &data &_BLANKS &_LOG_CHECKSUM
+&_BLANKS=0
+
+OPEN #1 &_LOGFILENAME /Read
+REPEAT
+(
+	READ #1 %line &data
+	; Okay, this is because there isn't a way of the read returning EOF
+	; the easiest solution is to count the number of blank lines and if
+	; it crosses a threshold assume that the end was reached.
+	if "&data"==""
+		(
+		 &_BLANKS=&_BLANKS+1
+		 if &_BLANKS>10
+		 (
+		  print "10 blank lines, assume EOF"
+		  goto endloop
+		 )
+		)
+	else
+		(
+		 &_BLANKS=0
+		 )
+
+	if (string.scan("&data", "bootldr",0)!=-1)
+		(
+		 &_IS_BOOTLOADER=(1==1)
+		)
+
+	if (string.scan("&data", "Checksum word:",0)!=-1)
+		(
+		 &_LOG_CHECKSUM=string.cut("&data", 25.)
+		 goto endloop
+		)
+)
+endloop:
+CLOSE #1
+
+if ("&_LOG_CHECKSUM"=="")
+	(
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	print "Can't get checksum from rombuild.log - aborting"
+	print "Log: &_LOG_CHECKSUM"
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	enddo
+	)
+
+if ("&_LOG_CHECKSUM"!="")
+	(
+	 &_LOG_CHECKSUM="0x"+string.upr("&_LOG_CHECKSUM")
+	)
+
+; Get the checksum from the board.  Yes, duplicating two lines - it takes more
+; lines of code to do the conditionals and variables required to record state
+; and it looks very strange
+local &_ROM_CHECKSUM
+
+; TODO - Temporary hack to get around NaviEngine problems
+if "&Platform"!="ne1_tb"
+	(
+	if run()
+		(
+		break
+		&_ROM_CHECKSUM=&_SYMBOLICS_LOAD_ADDRESS+0xA8
+		&_ROM_CHECKSUM=data.long(ad:&_ROM_CHECKSUM)
+		go
+		)
+	else
+		(
+		&_ROM_CHECKSUM=&_SYMBOLICS_LOAD_ADDRESS+0xA8
+		&_ROM_CHECKSUM=data.long(ad:&_ROM_CHECKSUM)
+		)
+
+	if (&_ROM_CHECKSUM!=&_LOG_CHECKSUM)
+		(
+		print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+		print "Checksums don't match"
+		print "Rom: &_ROM_CHECKSUM"
+		print "Log: &_LOG_CHECKSUM"
+		print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+		)
+	)
+
+; Try and find the root of the source.  This works relative to the "os" directory
+; to take into account different source code layouts.  It will work with substed
+; and non substed drives, and with Perforce style and CBR style source layouts.
+;
+; The root is determined from the value of the fully qualified ROM name as setup
+; in the &RamImage variable, as specified in the configdialog.cmm script.  This is
+; to take into account different source layouts and the fact that EPOCROOT may not
+; be == \
+
+local &epoc32
+local &os
+
+; Start by finding the "os" directory in the current qualified ROM name
+print "Scanning "+os.file.path(&_SYMBOLICS_FILENAME)+" for os source directory"
+&os=string.scan(os.file.path(&_SYMBOLICS_FILENAME),"os",0.)
+
+if (&os>=0x00)
+	(
+	&_BASELOC=string.mid(os.file.path(&_SYMBOLICS_FILENAME),0,&os)
+
+	if os.dir("&_BASELOC")
+		(
+		&IsTextshell=(1==1)
+		print "Using path &_BASELOC as a relative path to source"
+		)
+	else
+		(
+		&_BASELOC=""
+		)
+	)
+else
+	(
+	; Not found so assume we are using a CBR build and try for epoc32
+	print "Scanning "+os.file.path(&_SYMBOLICS_FILENAME)+" for epoc32 directory"
+	&epoc32=string.scan(os.file.path(&_SYMBOLICS_FILENAME),"epoc32",0.)
+
+	if (&epoc32>=0x00)
+		(
+		&_BASELOC=string.mid(os.file.path(&_SYMBOLICS_FILENAME),0,&epoc32)
+
+		if os.dir("&_BASELOC")
+			(
+			print "Using path &_BASELOC as a relative path to source"
+			)
+		else
+			(
+			&_BASELOC=""
+			)
+		)
+	)
+
+if "&_BASELOC"==""
+	(
+	print "No os source path found, guessing it is one of the usual ones..."
+	&_BASELOC="&driveletter\os"
+	if os.dir("&_BASELOC")
+		(
+		)
+	else
+		(
+		&_BASELOC="&driveletter\sf\os"
+		)
+	print "Using path &_BASELOC as a relative path to source"
+	)
+
+&_AUTOLOAD="/autoload"	; handles arm4 and armv5
+
+; Try to determine from the ROM name the CPU architecture is in use.  If we can't then assume that it's
+; the upcoming armv7
+local &_ARCH
+
+&flexible=""
+
+if string.scan(string.lwr("&_SYMBOLICS_FILENAME"),"arm4",0)!=-1
+	(
+	&_ARCH="arm4"
+	)
+else if string.scan(string.lwr("&_SYMBOLICS_FILENAME"),"armv5smp",0)!=-1
+	(
+	&_ARCH="armv5smp"
+	if ("&Platform"=="ne1_tb")
+		(
+		print "Detected Flexible Memory Model for NaviEngine SMP image"
+		&flexible="f"
+		)
+	)
+else if string.scan(string.lwr("&_SYMBOLICS_FILENAME"),"armv7",0)!=-1
+	(
+	&_ARCH="armv7"
+	)
+else
+	(
+	&_ARCH="armv5"
+	if ("&Platform"=="ne1_tb"&&string.scan(string.lwr("&_SYMBOLICS_FILENAME"),"fne1_tb",0)!=-1)
+		(
+		print "Detected Flexible Memory Model for NaviEngine unicore image"
+		&flexible="f"
+		)
+	)
+
+; Setup the source paths as determined automatically and also as specified by the user
+do sourcepaths.cmm
+
+local &epocRoot
+if os.dir("&driveletter\epoc32")
+(
+	&epocRoot="&driveletter\"
+)
+else
+(
+	&epocRoot="&_BASELOC"
+)
+
+; Determine the name of the bootstrap binary, using special handling if this is a bootloader image
+local &bootStrapFileName
+
+if &_IS_BOOTLOADER
+	(
+	&bootStrapFileName="&epocRoot"+"epoc32\release\"+"&_ARCH"+"\_"+"&flexible&Platform"+"_bootloader_bootrom.bin"
+	)
+else
+	(
+	&bootStrapFileName="&epocRoot"+"epoc32\release\"+"&_ARCH"+"\_"+"&flexible&Platform"+"_bootrom.bin"
+	)
+
+; Determine whether to use SBSv1 or SBSv2 symbol file
+local &symfilename
+
+do checksymbols.cmm "&bootStrapFileName"
+if "&symfilename"!=""
+	(
+	&bootStrapFileName="&symfilename"
+	)
+
+; Scan rombuild log file for modules & addresses
+symbol.AutoLoad.LOADEPOC &_LOGFILENAME "do "+os.ppd()+"&_AUTOLOAD "
+symbol.AutoLoad.CHECKEPOC "do "+os.ppd()+"&_AUTOLOAD " ; define dynamic autoloader
+symbol.AutoLoad.CHECK OFF				; switch off automatic process detection
+
+; If we are running a textshell image then we are probably a base engineer who has compile the image him
+; or herself, so the kernel symbolics will be available.  If so then load them now
+if &IsTextshell
+	(
+	symbol.autoload.touch "*ekern.exe*"
+	)
+
+; If the user has specified to load symbols for a particular module, load them now
+if "&AutoloadModule"!=""
+	(
+	print "Autoloading symbols for &AutoloadModule"
+	symbol.autoload.touch "&AutoloadModule"
+	)
+
+; Breakpoint on kernel faults - do this before any other symbol files get loaded
+; otherwise it could match on stub functions
+if (y.exist("Kern::Fault"))
+	(
+	B.S Kern::Fault /P /ONCHIP
+	)
+
+; Again, if we are running a textshell image then load the variant and bootstrap symbols
+if &IsTextshell
+	(
+	symbol.AutoLoad.TOUCH "*ecust*"
+
+	if os.file(&bootStrapFileName)
+		(
+		print "Loading bootstrap symbolics for &bootStrapFileName"
+		data.load.auto &bootStrapFileName &_SYMBOLICS_LOAD_ADDRESS /nocode /strippart 3 /noclear
+		)
+	else
+		(
+		print "*** Skipping bootstrap symbolics (can't find &bootStrapFileName) ***"
+		)
+	)
+
+symbol.cleanup
+enddo

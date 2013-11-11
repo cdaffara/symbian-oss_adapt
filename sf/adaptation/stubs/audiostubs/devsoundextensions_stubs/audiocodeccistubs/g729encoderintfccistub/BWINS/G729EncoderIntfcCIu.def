@@ -1,0 +1,6 @@
+EXPORTS
+	??1CG729EncoderIntfcCI@@UAE@XZ @ 1 NONAME ; CG729EncoderIntfcCI::~CG729EncoderIntfcCI(void)
+	?GetVadMode@CG729EncoderIntfcCI@@UAEHAAH@Z @ 2 NONAME ; int CG729EncoderIntfcCI::GetVadMode(int &)
+	?NewL@CG729EncoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CG729EncoderIntfcCI * CG729EncoderIntfcCI::NewL(void)
+	?SetVadMode@CG729EncoderIntfcCI@@UAEHH@Z @ 4 NONAME ; int CG729EncoderIntfcCI::SetVadMode(int)
+

@@ -1,0 +1,32 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+
+&Platform="ne1_tb"
+&AutoloadModule=""
+&RamAddr="0x80000000"
+&RamImage="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\FNE1_TBARMV5SMP-TSHELL-D.IMG"
+&RamAddr1="0x80000000"
+&RamImage1="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\SNE1_TBARMV5-TSHELL-D.IMG"
+&RamAddr2="0x80000000"
+&RamImage2="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\NE1_TBARMV5-TSHELL-D.IMG"
+&RamAddr3="0x80000000"
+&RamImage3="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\FNE1_TBARMV5-TSHELL-D.IMG"
+&RamAddr4="0x80000000"
+&RamImage4="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\FNE1_TBARMV5SMP-TSHELL-D.IMG"
+&FlashAddr="0"
+&FlashImage="X:\sf\os\kernelhwsrv\kernel\eka\rombuild\NE1_TBARMV5D-BOOTLDR-FAT32-D.IMG"
+&FlashWriteProtect="ON"
+&FlashEraseProtect="ON"

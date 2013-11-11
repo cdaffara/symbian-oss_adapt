@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN19CListenerLocationCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI19CListenerLocationCI @ 2 NONAME ; #<TI>#
+	_ZTV19CListenerLocationCI @ 3 NONAME ; #<VT>#
+	_ZN19CListenerLocationCI4NewLEv @ 4 NONAME
+

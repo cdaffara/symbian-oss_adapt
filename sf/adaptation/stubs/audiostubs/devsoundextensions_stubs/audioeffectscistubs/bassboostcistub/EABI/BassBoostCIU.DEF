@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN12CBassBoostCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI12CBassBoostCI @ 2 NONAME ; #<TI>#
+	_ZTV12CBassBoostCI @ 3 NONAME ; #<VT>#
+	_ZN12CBassBoostCI4NewLEv @ 4 NONAME
+

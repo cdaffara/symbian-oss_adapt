@@ -1,0 +1,3 @@
+EXPORTS
+	?LibEntryL@@YAPAVCDosFactoryBase@@XZ @ 1 NONAME ; class CDosFactoryBase * LibEntryL(void)
+

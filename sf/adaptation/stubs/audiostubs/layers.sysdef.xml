@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "sf/adaptation/stubs/audiostubs" >
+]> 
+
+<SystemDefinition name="audiostubs" schema="1.4.0">
+	<systemModel>
+  <!-- Common file for prebuild layers-->
+  	<layer name="stubs_layer">
+			<module name="audiostubs">
+				<unit unitID="audiostubs" mrp="" bldFile="&layer_real_source_path;/group" name="audiostubs" />
+			</module>
+    </layer>
+
+  	<layer name="stubs_audiostubs_layer">
+			<module name="audiostubs_group">
+				<unit unitID="audiostubs_group" mrp="" bldFile="&layer_real_source_path;/group"  name="audiostubs_group" />
+			</module>
+    </layer>
+    
+  </systemModel>
+</SystemDefinition>

@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN18CListenerDopplerCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZN18CListenerDopplerCI4NewLEv @ 2 NONAME
+	_ZTI18CListenerDopplerCI @ 3 NONAME ; #<TI>#
+	_ZTV18CListenerDopplerCI @ 4 NONAME ; #<VT>#
+

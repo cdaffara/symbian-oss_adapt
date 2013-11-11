@@ -1,0 +1,57 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Project file for Mpeg4SP/H263 encoder. The file specifies the
+* include paths, source files and libraries to be used to build the 
+* Mpeg4SP/H263 encoder plugin binaries.
+*
+*/
+
+#include "..\inc\arimp4spenchwdeviceuids.hrh"
+#include <platform_paths.hrh>
+
+TARGET			arimp4spenchwdevice.dll
+
+TARGETTYPE		PLUGIN
+
+UID 			0x10009D8D KUidMpeg4H263EncoderHwDeviceDllUid
+
+CAPABILITY      All -TCB
+
+SOURCEPATH		..\src
+SOURCE			arimp4spenchwdeviceimpl.cpp 
+
+START RESOURCE  200298FD.rss
+TARGET			arimp4spenchwdevice.rsc
+END
+
+MACRO LOGLEVEL_CRITICAL
+
+USERINCLUDE		..\inc
+USERINCLUDE 	..\..\..\utilities\ariprocessengine\inc
+USERINCLUDE     ..\..\arimp4spencwrapper\export_hdr
+USERINCLUDE     ..\..\..\utilities\aristatemachine\inc
+USERINCLUDE     ..\..\arimp4spencwrapper\codec\export_hdr
+USERINCLUDE     ..\..\..\utilities\log
+
+MW_LAYER_SYSTEMINCLUDE
+SYSTEMINCLUDE		\epoc32\include\ecom
+SYSTEMINCLUDE		\epoc32\include\mmf\devvideo
+SYSTEMINCLUDE		\epoc32\include
+
+LIBRARY			euser.lib 
+LIBRARY			devvideo.lib
+LIBRARY			aristatemachine.lib
+LIBRARY			ariprocessengine.lib  
+LIBRARY			arimp4spencwrapper.lib

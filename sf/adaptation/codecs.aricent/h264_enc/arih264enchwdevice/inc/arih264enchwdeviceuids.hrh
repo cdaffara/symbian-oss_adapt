@@ -1,0 +1,26 @@
+/*
+* Copyright (c) 2009 Aricent and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Aricent - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* This file defines the Uids used in H264 encoder plugin.
+*
+*/
+
+#ifndef  ARIH264ENCHWDEVICEUIDS_H
+#define  ARIH264ENCHWDEVICEUIDS_H
+
+#define KUidH264EncoderHwDeviceImplUid 				0x2002AD85   
+#define KUidH264EncoderHwDeviceDllUid 				0x2002AD86  
+
+
+#endif //ARIH264ENCHWDEVICEUIDS_H

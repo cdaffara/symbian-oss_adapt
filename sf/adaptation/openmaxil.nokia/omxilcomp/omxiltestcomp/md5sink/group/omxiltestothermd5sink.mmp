@@ -1,0 +1,44 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:
+*
+*/
+
+
+#include "../src/omxiltestmd5sink.hrh"
+
+TARGET omxiltestothermd5sink.dll
+TARGETTYPE PLUGIN
+UID 0x10009D8D KUidSymbianOmxILTestOtherMD5SinkDll
+CAPABILITY All -TCB
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+
+USERINCLUDE ../src
+
+SOURCEPATH ../src
+SOURCE omxiltestmd5sink.cpp
+SOURCE omxiltestmd5sinkport.cpp
+SOURCE omxiltestmd5sinkconfigmanager.cpp
+SOURCE omxiltestmd5sinkprocessingfunction.cpp
+
+RESOURCE omxiltestothermd5sink.rss
+
+nostrictdef
+
+LIBRARY euser.lib hash.lib ecom.lib
+LIBRARY omxilcomponentcommon.lib
+STATICLIBRARY omxilcomponentif.lib
+
+MACRO DOMAIN_OTHER

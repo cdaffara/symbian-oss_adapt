@@ -1,0 +1,4 @@
+EXPORTS
+	?CreateOCREngineL@OCREngineFactory@@SAPAVMOCREngineInterface@@AAVMOCREngineObserver@@VTOcrEngineEnv@@W4TEngineType@1@@Z @ 1 NONAME ; class MOCREngineInterface * OCREngineFactory::CreateOCREngineL(class MOCREngineObserver &, class TOcrEngineEnv, enum OCREngineFactory::TEngineType)
+	?ReleaseOCREngine@OCREngineFactory@@SAXPAVMOCREngineInterface@@@Z @ 2 NONAME ; void OCREngineFactory::ReleaseOCREngine(class MOCREngineInterface *)
+

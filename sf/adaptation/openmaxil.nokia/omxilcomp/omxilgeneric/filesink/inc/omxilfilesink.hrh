@@ -1,0 +1,39 @@
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+//
+
+
+
+#ifndef OMXILFILESINK_HRH_
+#define OMXILFILESINK_HRH_
+
+
+#define KUidNokiaOmxILAudioFileSinkDll     0x2002EAA4
+#define KUidNokiaOmxILAudioFileSink        0x2002EAA5
+
+
+#define KUidNokiaOmxILVideoFileSinkDll     0x2002EAA6
+#define KUidNokiaOmxILVideoFileSink        0x2002EAA7
+
+
+#define KUidNokiaOmxILImageFileSinkDll     0x2002EAA8
+#define KUidNokiaOmxILImageFileSink        0x2002EAA9
+
+
+#define KUidSymbianOmxIOtherLFileSinkDll     0x10285C92
+#define KUidSymbianOmxILOtherFileSink        0x10285C93
+
+
+
+#endif /*OMXILFILESINK_HRH_*/

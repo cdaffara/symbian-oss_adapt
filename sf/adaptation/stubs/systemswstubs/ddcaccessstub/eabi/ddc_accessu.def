@@ -1,0 +1,4 @@
+EXPORTS
+	_ZN14CDdcPortAccess10ApiVersionEv @ 1 NONAME
+	_ZN14CDdcPortAccess4NewLEv @ 2 NONAME
+

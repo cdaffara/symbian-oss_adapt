@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE SystemDefinition SYSTEM "sysdef_1_4_0.dtd" [
+  <!ENTITY layer_real_source_path "sf/adaptation/stubs/posmsgpluginreferenceimpl" >
+]>
+
+<SystemDefinition name="posmsgpluginreferenceimpl" schema="1.4.0">
+  <systemModel>
+    <layer name="stubs_layer">
+      <module name="posmsgpluginreferenceimpl">
+        <unit unitID="lodo.posmsgpluginreferenceimpl" mrp="" bldFile="&layer_real_source_path;/group" name="posmsgpluginreferenceimpl" />
+      </module>
+    </layer>
+  </systemModel>
+</SystemDefinition>

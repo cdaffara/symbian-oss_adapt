@@ -1,0 +1,98 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+// Generic NOR Flash writing script.
+//
+// Change History:
+//
+// 01/01/2008 1.0 : Initial version
+// 12/02/2009 1.1 : Updated to initialise board and load globals before doing
+//                  anything else
+//
+//////////////////////////////////////////////////////////////////////////////
+
+&scriptversion=1.1
+
+print "======================================================================="
+print "Generic NOR flashing script version &scriptversion"
+
+; Declare the global variables used by the system and read the current config into them
+do globals.cmm
+
+; Make sure that flashing is supported on the target platform
+if os.file("&PlatformsDir\&Platform\flash.cmm")
+	(
+	local &result
+
+	; Make sure the user really does want to overwrite out their NOR flash!
+	if "&FlashWriteProtect"!="OFF"
+	(
+		dialog.yesno "Are you *sure* you want to erase NOR flash and write this image: &FlashImage?"
+		entry &result
+	)
+	else
+	(
+		&result=(0==0)
+	)
+
+	if &result
+		(
+		; Attach to the board and reset its hardware completely
+		do init.cmm
+
+		; Make sure a filename has been specified
+		if "&FlashImage"==""
+			(
+			print "Select ROM image to flash"
+
+			dialog.file "*.bin;*.img"
+			entry &FlashImage
+
+			if "&FlashImage"==""
+				(
+				print "*** Aborted (no ROM image filename specified) ***"
+				enddo
+				)
+			)
+
+		print "&Platform hardware configured for flashing"
+
+		; Load first few bytes of the image into ram and see whether it has an EPOC header on the front
+		data.load.binary "&FlashImage" &RamAddr++0x200
+		&firstWord=(data.long(sd:&RamAddr))
+		&skipHeader="false"
+
+		if ((&firstWord)==0x434F5045)
+			(
+			print "File &FlashImage has EPOC header (will skip it)"
+			&skipHeader="true"
+			)
+		else
+			(
+			print "No EPOC header present on file &FlashImage"
+			)
+
+		; Now do the platform specific operations
+		do &PlatformsDir\&Platform\flash.cmm "&FlashImage" &FlashAddr &skipHeader
+		)
+	)
+else
+	(
+	dialog.ok "NOR flashing not supported for platform &Platform"
+	)
+
+enddo

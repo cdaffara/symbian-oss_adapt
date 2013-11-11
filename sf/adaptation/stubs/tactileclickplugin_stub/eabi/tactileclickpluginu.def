@@ -1,0 +1,4 @@
+EXPORTS
+	_Z17CreateClickMakerLv @ 1 NONAME
+	_ZN22MTactileFeedbackServer8InstanceEv @ 2 NONAME
+

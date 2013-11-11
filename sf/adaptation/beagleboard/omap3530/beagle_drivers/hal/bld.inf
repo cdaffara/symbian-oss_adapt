@@ -1,0 +1,34 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// beagle/beagle_drivers/hal/bld.inf
+// This must be built as ARMv5 because of assumptions in other IBY files
+//
+
+PRJ_PLATFORMS
+ARMV5
+
+PRJ_EXTENSIONS
+start		extension		base/config
+
+option		HALPATH			$(EXTENSION_ROOT)/../../../../../../../sf/os/kernelhwsrv/halservices
+option		PREFIX			_beagle_
+option		SOURCE			$(EXTENSION_ROOT)/.
+
+end
+
+PRJ_MMPFILES
+hal
+
+
+

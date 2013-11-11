@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CListenerLocationCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CListenerLocationCI * CListenerLocationCI::NewL(class CMMFDevSound &)
+	?NewL@CListenerLocationCI@@SAPAV1@XZ @ 2 NONAME ; class CListenerLocationCI * CListenerLocationCI::NewL(void)
+

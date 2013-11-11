@@ -1,0 +1,43 @@
+/*
+* Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*
+*/
+
+#include			<variant.mmh>
+#include			"kernel/kern_ext.mmh"
+
+SYMBIAN_BASE_SYSTEMINCLUDE(drivers)
+
+SYMBIAN_ASSP_SYSTEMINCLUDE(naviengine)
+SYMBIAN_BASE_SYSTEMINCLUDE(ne1_tb)
+SYMBIAN_NE1_TB_SYSTEMINCLUDE(specific)
+USERINCLUDE inc
+
+targettype			kext
+linkas				serialno.dll
+target				VariantTarget(serialno,dll)
+
+sourcepath			serialno
+source				serialno.cpp
+
+library				VariantTarget(kanaviengine,lib)
+library				VariantTarget(ecust,lib)
+
+epocallowdlldata
+uid					0x1000008d 0x100039e5
+capability			all
+VENDORID 0x70000001
+
+SMPSAFE

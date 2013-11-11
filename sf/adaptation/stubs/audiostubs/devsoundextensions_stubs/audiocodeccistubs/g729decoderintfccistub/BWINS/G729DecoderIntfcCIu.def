@@ -1,0 +1,5 @@
+EXPORTS
+	??1CG729DecoderIntfcCI@@UAE@XZ @ 1 NONAME ; CG729DecoderIntfcCI::~CG729DecoderIntfcCI(void)
+	?BadLsfNextBuffer@CG729DecoderIntfcCI@@UAEHXZ @ 2 NONAME ; int CG729DecoderIntfcCI::BadLsfNextBuffer(void)
+	?NewL@CG729DecoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CG729DecoderIntfcCI * CG729DecoderIntfcCI::NewL(void)
+

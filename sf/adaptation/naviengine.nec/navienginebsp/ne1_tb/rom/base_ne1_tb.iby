@@ -1,0 +1,198 @@
+/*
+* Copyright (c) 2008-2010 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+* ne1_tb\rom\base_ne1_tb.iby
+*
+*/
+
+
+
+#define HEAPMAX(x)
+#define FIXED
+
+#if (defined(CRAZYSCHEDDELAY) || defined(CRAZYSCHEDPRIO)) && defined(SMP)
+#error The crazy scheduler cannot be used with SMP!
+#endif
+
+#ifdef CRAZYSCHEDDELAY
+kerneltrace 0x80000000 0 0x20
+#else
+kerneltrace 0x80000000
+#endif
+#ifdef CRAZYSCHEDPRIO
+CRAZYSCHEDULING(on)
+#endif
+
+#if defined(SMPCOMPATMODE) && defined(SMPCOMPATCPU0)
+#error "Can't have SMPCOMPATMODE and SMPCOMPATCPU0 at once!"
+#endif
+#ifdef SMPCOMPATMODE
+SMPUNSAFECOMPAT(on)
+#endif
+#ifdef SMPCOMPATCPU0
+SMPUNSAFECPU0(on)
+#endif
+#ifndef SMPUNLOCKTHREADSCORE0
+SMPLOCKKERNELTHREADSCPU0(on)
+#endif
+
+#ifdef WITH_FLEXIBLE_MM
+memmodel flexible 0x100000 0x1000 -0x4000
+dlldatatop 0x7f000000
+#else
+memmodel multiple 0x100000
+#endif
+
+multikernel
+
+#ifdef DEBUGPORT
+debugport DEBUGPORT
+#else
+debugport 0
+#endif
+
+bootbinary=KERNEL_DIR\_MEMMODEL_PLATFORM_NAME_bootrom.bin
+
+romlinearbase=0x80000000
+romalign=0x10
+kerneldataaddress=0xC8000000
+kernelheapmin=0x1000			// calculated at boot time
+kernelheapmax=0x00FFF000
+dataaddress=0x400000
+defaultstackreserve=0x200000
+romchecksum=0x12345678
+
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_kanaviengine.dll		\sys\bin\kanaviengine.dll
+#if defined(CRAZYSCHEDDELAY) || defined(CRAZYSCHEDPRIO)
+primary[VARID]	=KERNEL_DIR\udeb\_MEMMODEL_PLATFORM_NAME_ekern.exe				\sys\bin\ekern.exe
+#else
+primary[VARID]	=KERNEL_DIR\DEBUG_DIR\_MEMMODEL_PLATFORM_NAME_ekern.exe				\sys\bin\ekern.exe
+#endif
+variant[VARID]	=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_ecust.dll				\sys\bin\ecust.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_hcr.dll				\sys\bin\hcr.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_watchdog.dll			\sys\bin\watchdog.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_MEMMODEL_PLATFORM_NAME_exmoncommon.dll		\sys\bin\exmoncommon.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_exmondebug.dll			\sys\bin\exmondebug.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_power.dll				\sys\bin\power.dll
+#ifdef SYMBIAN_USE_DMA_V2
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_dma_v2.dll				\sys\bin\dma.dll
+#else
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_dma.dll				\sys\bin\dma.dll
+#endif
+
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_lcdgce.PDD				\sys\bin\DISPLAY0.PDD
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\display.ldd							\sys\bin\DISPLAY0.LDD
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_vserialkeyb.dll		\sys\bin\ekeyb.dll
+//extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_ekeyb.dll				\sys\bin\ekeyb.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_exyin.dll				\sys\bin\exyin.dll
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_euart.pdd				\sys\bin\euart1.pdd	  // not EUART.PDD, unlike text shell ROMs
+#ifdef SYMBIAN_USE_DMA_V2
+device[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_soundsc_v2.pdd			\sys\bin\soundsc.pdd
+#else
+device[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_soundsc.pdd			\sys\bin\soundsc.pdd
+#endif
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_gpio.dll 				\sys\bin\gpio.dll
+#ifdef HAS_ETHERNET
+device[VARID]=KERNEL_DIR\DEBUG_DIR\enet.ldd									\sys\bin\enet.ldd
+device[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_ethernet.pdd				\sys\bin\ethernet.pdd
+#endif
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_keypad.dll				\sys\bin\keypad.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_i2s.dll			   	\sys\bin\i2s.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\elocd.ldd								\sys\bin\elocd.ldd
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_medint.pdd				\sys\bin\medint.pdd
+//extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_epbus.dll				\sys\bin\epbus.dll
+//extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_epbusv.dll				\sys\bin\epbusv.dll
+//extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_medlfs.pdd				\sys\bin\medlfs.pdd
+//device[VARID]	=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_medata.pdd					\sys\bin\medata.pdd
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\ecomm.ldd								\sys\bin\ecomm.ldd
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\esoundsc.ldd							\sys\bin\esoundsc.ldd
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\pipelib.ldd							\sys\bin\pipelib.ldd
+device[VARID]	=KERNEL_DIR\DEBUG_DIR\minkda.ldd							\sys\bin\minkda.ldd
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\exstart.dll							\sys\bin\exstart.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_resmanpsl.PDD			\sys\bin\resman.pdd
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_PCI.DLL  \sys\bin\pci.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\IIC.DLL                 \sys\bin\IIC.dll
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_CSI.dll  \sys\bin\CSI.dll
+#ifndef INST_ARM4
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\evfp.dll								\sys\bin\evfp.dll
+#endif
+
+// Rom paging config
+#ifdef PAGED_ROM
+pagedrom
+compress
+#endif
+
+#ifdef BTRACE
+#define BTRACE_INCLUDED
+extension[VARID]=KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_btracex.ldd			\sys\bin\btracex.ldd
+file=ABI_DIR\DEBUG_DIR\btracec.dll											\sys\bin\btracec.dll
+#endif
+define BTRACEX_LDD _PLATFORM_NAME_btracex.ldd
+
+#ifdef ENABLE_RESTRICTED_CODE
+// USB Drivers
+#ifndef __USB
+	REM Feature USB is not included in this ROM
+#elif defined(SYMBIAN_ENABLE_USB_OTG_HOST) && defined(SYMBIAN_INCLUDE_USB_OTG_HOST)
+extension[VARID]=	KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_USBCC.DLL			\Sys\Bin\USBCC.DLL
+#else
+	REM USB has neither been explicitely included nor excluded
+#endif
+#endif // ENABLE_RESTRICTED_CODE
+
+//#endif // __USB
+
+#ifdef ENABLE_RESTRICTED_CODE
+//SD Media Driver
+#ifdef SYMBIAN_USE_DMA_V2
+extension[VARID]=	KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_epbussdiov_v2.dll		\sys\bin\mmc.dll
+#else
+extension[VARID]=	KERNEL_DIR\DEBUG_DIR\_PLATFORM_NAME_epbussdiov.dll		\sys\bin\mmc.dll
+#endif
+extension[VARID]=	KERNEL_DIR\DEBUG_DIR\epbussd.dll						\sys\bin\epbusm.dll
+extension[VARID]=	KERNEL_DIR\DEBUG_DIR\medsd.pdd							\sys\bin\medmmc.pdd
+#endif // ENABLE_RESTRICTED_CODE
+
+#if defined(_NAND2)
+#ifdef WITH_FLEXIBLE_MM
+#include "../fne1_tb/base_ne1nand2.iby" 
+#else
+#include "../ne1_tb/base_ne1nand2.iby" 
+#endif
+
+#else
+data=EPOCROOT##epoc32\rom\##VARIANT##\estarttechview.txt					\sys\data\estart.txt
+#endif
+
+// Use correct euser
+#ifdef SMP
+#define	EUSER_DLL				euser_v6k_smp.dll
+#else
+#define	EUSER_DLL				euser_v6k.dll
+#endif
+
+define	HAL_DLL			_PLATFORM_NAME_hal.dll
+define	ESTART_EXE		_PLATFORM_NAME_e32strt.exe
+define	KEYMAP_FILE		_PLATFORM_NAME_ekdata
+
+#if !defined(SYMBIAN_GRAPHICS_USE_GCE)
+define SCDV_DLL  _omapqvga_scdv.dll
+#else
+#ifdef __TEXTSHELL_OBY__
+define SCDV_DLL  _omapqvga_scdv.dll
+#else
+define SCDV_DLL  _generic_scdv.dll
+#endif
+#endif //!SYMBIAN_GRAPHICS_USE_GCE

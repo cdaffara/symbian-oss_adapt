@@ -1,0 +1,66 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// omap3530/beagleboard/rom/header.iby
+//
+
+#define BASE_TEXT_SHELL_BUILD
+
+// Relative variant path from base
+#define VARIANT_PATH beagle\beagle_variant
+
+// The Variant ID
+#define VARID		0x09080001
+#define MAGIC		0x09080001
+#define ALL			0x09080001
+version=0.01
+
+trace 0x10
+collapse arm gcc 0
+
+#define HEAPMAX(x)
+
+#define FIXED
+
+kerneltrace 0x80000000
+debugport 2
+
+multikernel
+nowrapper
+
+version=0.01
+bootbinary=\Epoc32\Release\ARMV5\_beagle_bootrom.bin
+memmodel multiple 0x100000
+
+// These values in super page are for multiple memory model:
+romsize=0x2000000
+romlinearbase=0x80000000
+romalign=0x10
+kerneldataaddress=0xC8000000
+kernelheapmin=0x1000			// calculated at boot time
+kernelheapmax=0x00FFF000
+dataaddress=0x400000
+defaultstackreserve=0x200000
+romchecksum=0x12345678
+
+//#define WITH_LFFS
+//#define WITH_EXTENSION
+//#define WITH_ROFS
+//#define WITH_COMP
+
+//MMC/SD not used, exclude MMC partition Library
+#define USE_CUSTOM_MMC_PARTITION    // "none" is a form of customisation
+
+#ifdef UNICODE
+unicode
+#endif

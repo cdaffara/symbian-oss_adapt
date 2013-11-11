@@ -1,0 +1,17 @@
+EXPORTS
+	_Z9LibEntryLv @ 1 NONAME
+	_ZTI14CDosMtcExample @ 2 NONAME ; #<TI>#
+	_ZTI14CDosSaeExample @ 3 NONAME ; #<TI>#
+	_ZTI17CDosHelperExample @ 4 NONAME ; #<TI>#
+	_ZTI18CDosFactoryExample @ 5 NONAME ; #<TI>#
+	_ZTI19CDosSelfTestExample @ 6 NONAME ; #<TI>#
+	_ZTI19CDosSysUtilsExample @ 7 NONAME ; #<TI>#
+	_ZTI20CDosExtensionExample @ 8 NONAME ; #<TI>#
+	_ZTV14CDosMtcExample @ 9 NONAME ; #<VT>#
+	_ZTV14CDosSaeExample @ 10 NONAME ; #<VT>#
+	_ZTV17CDosHelperExample @ 11 NONAME ; #<VT>#
+	_ZTV18CDosFactoryExample @ 12 NONAME ; #<VT>#
+	_ZTV19CDosSelfTestExample @ 13 NONAME ; #<VT>#
+	_ZTV19CDosSysUtilsExample @ 14 NONAME ; #<VT>#
+	_ZTV20CDosExtensionExample @ 15 NONAME ; #<VT>#
+

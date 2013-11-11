@@ -1,0 +1,16 @@
+EXPORTS
+	?IsInDeadState@CStateMachine@@QAEHXZ @ 1 NONAME ; int CStateMachine::IsInDeadState(void)
+	?IsPaused@CStateMachine@@QAEHXZ @ 2 NONAME ; int CStateMachine::IsPaused(void)
+	?Reset@CStateMachine@@QAEXXZ @ 3 NONAME ; void CStateMachine::Reset(void)
+	?IsInitializing@CStateMachine@@QAEHXZ @ 4 NONAME ; int CStateMachine::IsInitializing(void)
+	?Transit@CStateMachine@@QAEHW4TCommand@1@@Z @ 5 NONAME ; int CStateMachine::Transit(enum CStateMachine::TCommand)
+	?IsInInitializedState@CStateMachine@@QAEHXZ @ 6 NONAME ; int CStateMachine::IsInInitializedState(void)
+	?IsInitialized@CStateMachine@@QAEHXZ @ 7 NONAME ; int CStateMachine::IsInitialized(void)
+	?NewL@CStateMachine@@SAPAV1@XZ @ 8 NONAME ; class CStateMachine * CStateMachine::NewL(void)
+	?IsTransitionValid@CStateMachine@@QAEHW4TCommand@1@@Z @ 9 NONAME ; int CStateMachine::IsTransitionValid(enum CStateMachine::TCommand)
+	?IsStarted@CStateMachine@@QAEHXZ @ 10 NONAME ; int CStateMachine::IsStarted(void)
+	?IfIsStateInInitailize@CStateMachine@@QAEHXZ @ 11 NONAME ; int CStateMachine::IfIsStateInInitailize(void)
+	?IsPlaying@CStateMachine@@QAEHXZ @ 12 NONAME ; int CStateMachine::IsPlaying(void)
+	?IsStopped@CStateMachine@@QAEHXZ @ 13 NONAME ; int CStateMachine::IsStopped(void)
+	?IsInputEndPending@CStateMachine@@QAEHXZ @ 14 NONAME ; int CStateMachine::IsInputEndPending(void)
+

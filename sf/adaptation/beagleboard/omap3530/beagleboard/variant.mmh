@@ -1,0 +1,29 @@
+// Copyright (c) 1998-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// beagle/beagleboard/variant.mmh
+// Unfortunately this must live in the same source directory as bld.inf
+// for the kernel platform-specific builds to work
+//
+
+#include			"assp/omap3530_assp/assp.mmh"
+
+#define VariantTarget(name,ext) _beagle_##name##.##ext
+#define VariantMediaDefIncludePath /epoc32/include/beagle
+
+
+
+//#if defined(__USING_USING_ASSP_REGISTER_API__) || defined(__USING_INTERRUPT_API__) || defined(__USING_ASSP_REGISTER_API__)
+//library	AsspTarget(kaomap3530,lib)
+//#endif
+

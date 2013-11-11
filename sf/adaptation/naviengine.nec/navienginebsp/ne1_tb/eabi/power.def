@@ -1,0 +1,7 @@
+EXPORTS
+	_ZN22TNE1_TBPowerController11WakeupEventEv @ 1 NONAME
+	_ZN22TNE1_TBPowerController15ResourceManagerEv @ 2 NONAME ABSENT
+	_ZN22TNE1_TBPowerController10EngageCoreEiR15TRetireEngageCb @ 3 NONAME ABSENT
+	_ZN22TNE1_TBPowerController10RetireCoreEiR15TRetireEngageCb @ 4 NONAME ABSENT
+	_ZN22TNE1_TBPowerController9IdleCountEv @ 5 NONAME
+

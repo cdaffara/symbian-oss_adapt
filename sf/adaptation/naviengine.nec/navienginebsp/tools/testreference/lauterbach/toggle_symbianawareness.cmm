@@ -1,0 +1,89 @@
+//
+// Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:  
+//
+
+; script to toggle EKA2 Symbian OS awareness on and off safely
+; 5/5/05 4.1 : modified script ordering so you can turn of awareness without
+;				being attached
+; 4/5/05 4.0 : rolled version to 4.0 for release
+; 7/4/05 1.0 : initial checkin
+
+; if os awareness is enabled, remove it and end
+global &_SYMBIAN_OS_AWARENESS_ENABLED
+if ("&_SYMBIAN_OS_AWARENESS_ENABLED"=="")
+	(
+	&_SYMBIAN_OS_AWARENESS_ENABLED=(0==1)
+	)
+
+if (&_SYMBIAN_OS_AWARENESS_ENABLED)
+	(
+	print "Removing SymbianOS support..."
+	TASK.reset
+	local &_FILE_CHECK
+	&_FILE_CHECK="symbian2.t32"
+	if os.file(&_FILE_CHECK)
+		(
+		 MENU.delete symbian2
+		)
+	else
+		(
+		 MENU.delete c:\t32\demo\arm\kernel\symbian\eka2\symbian2
+		)
+
+	&_SYMBIAN_OS_AWARENESS_ENABLED=(0==1)
+
+	enddo
+	)
+
+; check that symbols are enabled
+if !(y.exist("KernelMain"))
+	(
+	 print "ERROR: You must have symbols turned on to enable SymbianOS awareness"
+	 end
+	)
+
+if run()
+	break
+
+; Sanity test
+; check that the mmu is on
+if (Data.Long(C15:0x1)&0x1)==0
+	(
+	 &local _CP15
+	 &_CP15=data.long(C15:0x1)
+	 print "ERROR: MMU is not enabled => to enable symbian awareness you must boot the system (CP15=&_CP15)"
+	 end
+	)
+
+; enable os awareness
+print "Initialising SymbianOS support..."
+
+TASK.RESET
+local &_FILE_CHECK
+&_FILE_CHECK="symbian2.t32"
+if os.file(&_FILE_CHECK)
+	(
+	 TASK.CONFIG symbian2				; loads Symbian OS awareness (symbian2.t32)
+	 MENU.ReProgram symbian2			; loads Symbian OS menu (symbian2.men)
+	)
+else
+	(
+	 TASK.CONFIG c:\t32\demo\arm\kernel\symbian\eka2\symbian2			; loads Symbian OS awareness (symbian2.t32)
+	 MENU.ReProgram c:\t32\demo\arm\kernel\symbian\eka2\symbian2		; loads Symbian OS menu (symbian2.men)
+	)
+
+HELP.FILTER.Add rtossymbian2	; add Symbian OS awareness manual to help filter
+&_SYMBIAN_OS_AWARENESS_ENABLED=(0==0)
+

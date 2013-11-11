@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="systemswstubs" name="System Software Stubs">
+    <collection id="systemswstubs_info" name="System Software Stubs Info">
+      <component id="ddcaccessstub" name="DDC Access Stub" filter="s60,sf_build">
+        <unit bldFile="ddcaccessstub/group"/>
+      </component>
+      <component id="tvoutconfig" name="TV Out Config" filter="s60,sf_build">
+        <unit bldFile="TVOutConfig/group" filter="oem_build"/>
+      </component>
+      <component id="accessorypolicyreference" name="Accessory Policy Reference" filter="s60,sf_build">
+        <meta rel="config">
+          <defined condition="__ACCESSORY_FW"/>
+        </meta>
+        <unit bldFile="accessorypolicyreference/group" filter="oem_build"/>
+      </component>
+      <component id="asyreference" name="ASY Reference" class="plugin" filter="s60,sf_build">
+        <meta rel="config">
+          <defined condition="__ACCESSORY_FW"/>
+        </meta>
+        <unit bldFile="asyreference/group" filter="oem_build"/>
+      </component>
+      <component id="examplecommonisc" name="Example Common ISC" filter="s60,sf_build">
+        <unit bldFile="examplecommonisc/group" filter="oem_build"/>
+      </component>
+      <component id="exampledsy" name="Example DSY" filter="s60,sf_build">
+        <meta rel="config">
+          <defined condition="RD_STARTUP_CHANGE"/>
+        </meta>
+        <unit bldFile="exampledsy/group" filter="oem_build"/>
+      </component>
+      <component id="featuremanagerstub" name="Feature Manager Stub" filter="s60,sf_build">
+        <unit bldFile="featuremanagerstub/group" filter="oem_build"/>
+      </component>
+      <component id="hwrmstubplugins" name="Hardware Resource Manager Stub Plugins" class="plugin" filter="s60,sf_build">
+        <unit bldFile="hwrmstubplugins/group" filter="oem_build"/>
+      </component>
+      <component id="hwrmhapticsstubplugin" name="Hardware Resource Manager Haptics Stub Plugin" class="plugin" filter="s60,sf_build">
+        <unit bldFile="hwrmhapticsstubplugin/group" filter="oem_build"/>
+      </component>
+      <component id="sensorchannelsreference" name="Sensor Channels Reference" filter="s60,sf_build">
+        <unit bldFile="sensorchannelsreference/group" filter="oem_build"/>
+      </component>
+      <component id="ssyreference" name="SSY Reference" class="plugin" filter="s60,sf_build">
+        <meta rel="config">
+          <defined condition="RD_SENSOR_FW"/>
+        </meta>
+        <unit bldFile="ssyreference/group" filter="oem_build"/>
+      </component>
+      <component id="startupadaptationstub" name="Startup Adaptation Stub" class="plugin" filter="s60,sf_build">
+        <unit bldFile="startupadaptationstub/group" filter="oem_build"/>
+      </component>
+      <component id="tiltcompensationstub" name="Tilt Compensation Stub" filter="s60,sf_build">
+        <unit bldFile="tiltcompensationstub/group" filter="oem_build"/>
+      </component>
+      <component id="tvoutbehaviour" name="TV Out Behaviour" filter="s60,sf_build">
+        <unit bldFile="tvoutbehaviour/group" filter="oem_build"/>
+      </component>
+      <component id="wiredbearerreference" name="Wired Bearer Reference" class="plugin" filter="s60,sf_build">
+        <unit bldFile="wiredbearerreference/group" filter="oem_build"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>

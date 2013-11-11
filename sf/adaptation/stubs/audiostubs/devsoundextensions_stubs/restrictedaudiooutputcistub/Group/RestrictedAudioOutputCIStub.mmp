@@ -1,0 +1,53 @@
+/*
+* Copyright (c) 2007 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: Audio Stubs -  
+*  Version     : %version:  bh1mmcf#2.1.9 % 
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          RestrictedAudioOutputCI_stub.dll
+TARGETTYPE      DLL
+UID             0x1000008D 0x10207B94
+VENDORID	VID_DEFAULT
+
+
+CAPABILITY CAP_GENERAL_DLL
+
+
+SOURCEPATH      ../src
+SOURCE          RestrictedAudioOutputCIStub.cpp 
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../inc
+
+OS_LAYER_SYSTEMINCLUDE
+ 
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+SYSTEMINCLUDE   /epoc32/include/mmf/server
+SYSTEMINCLUDE	/epoc32/include/drivers
+
+LIBRARY     euser.lib
+LIBRARY 	mmfserverbaseclasses.lib
+LIBRARY		RestrictedAudioOutput.lib
+start wins
+win32_library	kernel32.lib 
+end
+
+// Users link against the non-stub name, so that rebuild is not necessary
+EXPORTLIBRARY	RestrictedAudioOutputCI.lib
+
+LINKAS          RestrictedAudioOutputCI.dll

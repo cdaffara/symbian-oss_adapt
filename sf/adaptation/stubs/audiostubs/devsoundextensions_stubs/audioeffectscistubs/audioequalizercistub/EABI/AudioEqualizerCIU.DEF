@@ -1,0 +1,6 @@
+EXPORTS
+	_ZN17CAudioEqualizerCI4NewLER12CMMFDevSound @ 1 NONAME
+	_ZTI17CAudioEqualizerCI @ 2 NONAME ; #<TI>#
+	_ZTV17CAudioEqualizerCI @ 3 NONAME ; #<VT>#
+	_ZN17CAudioEqualizerCI4NewLEv @ 4 NONAME
+

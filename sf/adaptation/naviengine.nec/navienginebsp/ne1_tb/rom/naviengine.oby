@@ -1,0 +1,100 @@
+/*
+* Copyright (c) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  
+*
+*/
+
+
+
+#ifndef __NAVIENGINE_OBY__
+#define __NAVIENGINE_OBY__
+
+// Generate final built ROM name and ROM image version 
+define LANGID 01
+define BUILDNO 0
+define VERSION 0.01
+
+#define _ARMV5
+
+// Pull in variant specific base kernel files
+#define __NE1_TB__
+
+//#define WITH_FLEXIBLE_MM
+
+#ifdef SMP
+// Use SMP-enabled kernel
+#define _KABI armv5smp
+#if !defined WITH_FLEXIBLE_MM
+// SMP on ARM requires Flexible Memory Model
+#define WITH_FLEXIBLE_MM
+#endif
+// allow to specify maximum number of CPU cores used in system
+#ifdef SMP_NUM_CPUS
+patchdata ekern.exe @ KSMPNumCpus SMP_NUM_CPUS
+#endif
+#endif
+
+// NB! Don't change VARID: bootstrap hardcodes matching ID pattern
+define VARID			0x09080001
+define VARIANT			NE1_TB
+define ROMMEGS			40		/* !! HEX !! */
+#ifdef WITH_FLEXIBLE_MM
+define MEMMODEL_PLATFORM_NAME	FNE1_TB
+#else
+define MEMMODEL_PLATFORM_NAME	NE1_TB
+#endif
+define PLATFORM_NAME	NE1_TB
+
+// Use colour resources
+#define COLOR
+
+REM defines for IrDA options
+REM Uncomment the line below to enable IrDA to use a Jeteye ESI09680 pod with serial card adapter
+REM #define _ENABLE_IRDA_POD_
+REM define which port IrDA uses
+define IRPOD_ESK irda_port2.esk
+
+// Pull in network support for Ethernet 
+#define HAS_ETHERNET
+
+#ifdef ENABLE_RESTRICTED_CODE
+// Pull in USB
+#define EUSBC
+
+#if !defined (USE_SD_MMC) && !defined (USE_SDIO_SD_MMC)
+#define USE_MMC
+#endif
+
+REM Pick up NAND2 components if the ROM is built with -D _NAND2
+#ifdef _NAND2
+#define WITH_NAND2
+#endif
+#endif // ENABLE_RESTRICTED_CODE
+
+//#define WITH_LFFS
+
+#ifndef INST_ARM4
+// Enable VFP
+#define VFPHELPERS
+#endif
+
+#ifdef SYMBIAN_EXCLUDE_KEYMAP
+#undef SYMBIAN_EXCLUDE_KEYMAP
+#warning("SYMBIAN_EXCLUDE_KEYMAP should not be defined for miniGUI")
+
+#endif
+
+
+#endif // __NAVIENGINE_OBY__
+

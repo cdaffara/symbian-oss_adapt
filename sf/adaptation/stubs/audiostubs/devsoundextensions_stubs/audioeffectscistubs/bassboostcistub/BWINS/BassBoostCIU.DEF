@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CBassBoostCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CBassBoostCI * CBassBoostCI::NewL(class CMMFDevSound &)
+	?NewL@CBassBoostCI@@SAPAV1@XZ @ 2 NONAME ; class CBassBoostCI * CBassBoostCI::NewL(void)
+

@@ -1,0 +1,7 @@
+EXPORTS
+	??1CIlbcDecoderIntfcCI@@UAE@XZ @ 1 NONAME ; CIlbcDecoderIntfcCI::~CIlbcDecoderIntfcCI(void)
+	?GetCng@CIlbcDecoderIntfcCI@@UAEHAAH@Z @ 2 NONAME ; int CIlbcDecoderIntfcCI::GetCng(int &)
+	?NewL@CIlbcDecoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CIlbcDecoderIntfcCI * CIlbcDecoderIntfcCI::NewL(void)
+	?SetCng@CIlbcDecoderIntfcCI@@UAEHH@Z @ 4 NONAME ; int CIlbcDecoderIntfcCI::SetCng(int)
+	?SetDecoderMode@CIlbcDecoderIntfcCI@@UAEHW4TDecodeMode@CIlbcDecoderIntfc@@@Z @ 5 NONAME ; int CIlbcDecoderIntfcCI::SetDecoderMode(enum CIlbcDecoderIntfc::TDecodeMode)
+

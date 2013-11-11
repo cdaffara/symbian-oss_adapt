@@ -1,0 +1,47 @@
+// Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+// All rights reserved.
+// This component and the accompanying materials are made available
+// under the terms of the License "Eclipse Public License v1.0"
+// which accompanies this distribution, and is available
+// at the URL "http://www.eclipse.org/legal/epl-v10.html".
+//
+// Initial Contributors:
+// Nokia Corporation - initial contribution.
+//
+// Contributors:
+//
+// Description:
+// Single bld.inf for most of the Beagleboard baseport
+// kernel & beagleboard subdirectories have distinct variant.mmh files, and must be processed separately
+
+#include "assp/bld.inf"
+#include "beagle_drivers/hal/bld.inf"
+#include "beagle_drivers/keytran/bld.inf"
+#include "beagle_drivers/lcd/bld.inf"
+#include "beagle_drivers/led/bld.inf"
+//West Bridge astoria drivers
+#include "beagle_drivers/wb/bld.inf"
+//West Bridge astoria drivers
+#include "beagle_drivers/medwb/bld.inf"
+// #include "beagle_drivers/prm/bld.inf"
+#include "beagle_drivers/medstaticrd/bld.inf"
+#include "beagle_drivers/serialmouse/bld.inf"
+#include "beagle_drivers/usbv/bld.inf"
+#include "omap3530_drivers/gpio/bld.inf"
+#include "omap3530_drivers/i2c/bld.inf"
+#include "omap3530_drivers/prcm/bld.inf"
+// #include "omap3530_drivers/prm/bld.inf"
+#include "omap3530_drivers/uart/bld.inf"
+#include "omap3530_drivers/usbcc/bld.inf"
+#include "omap3530_drivers/euart/bld.inf"
+#include "shared/monitor/bld.inf"
+#include "shared/mstick/bld.inf"
+#include "shared/serialkeyb/bld.inf"
+#include "shared/tps65950/bld.inf"
+
+// Build image armv5 for urel and udeb
+PRJ_EXTENSIONS
+start	extension	base/rom
+option	REE_TARGET	beagle
+option	TYPE	tshell
+end

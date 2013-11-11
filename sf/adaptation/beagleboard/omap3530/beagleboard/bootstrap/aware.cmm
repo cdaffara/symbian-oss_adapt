@@ -1,0 +1,28 @@
+
+
+  local &system
+
+; Check if system is running
+; Store present state to restore back later
+
+ if run()
+ (  
+    &system="run"
+    Break
+ )
+
+  
+; Initialize Symbian OS Support
+
+  print "initializing Symbian OS support..."
+
+  TASK.CONFIG symbian2       ; loads Symbian OS awareness (symbian2.t32)
+  MENU.ReProgram symbian2    ; loads Symbian OS menu (symbian2.men)
+  HELP.FILTER.Add rtossymbian2 ; add Symbian OS awareness manual to help filter
+
+; Ok, we're done, let's continue Symbian OS
+
+ if "&system"=="run"
+  Go
+
+  enddo

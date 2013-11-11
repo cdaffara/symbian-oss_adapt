@@ -1,0 +1,4 @@
+EXPORTS
+	?NewL@CListenerOrientationCI@@SAPAV1@AAVCMMFDevSound@@@Z @ 1 NONAME ; class CListenerOrientationCI * CListenerOrientationCI::NewL(class CMMFDevSound &)
+	?NewL@CListenerOrientationCI@@SAPAV1@XZ @ 2 NONAME ; class CListenerOrientationCI * CListenerOrientationCI::NewL(void)
+

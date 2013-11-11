@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Copyright (c) NOKIA 2009. All rights reserved.
+	file Source Sink Video tests for OpenMAX IL.
+	
+	This tests confirms that the file sink functions as expected with established components
+
+	Expected Result:
+	Read3GPFormat				Pass
+-->
+
+<TestSet>
+
+	<!--
+		File Source Video (3GP demuxer) -> 	File Sink Video	
+		Perform format detection by setting the component to the Executing state.
+	-->
+	<Test name="Read3GPFormat">
+		<LoadComponent comp="sink" name="OMX.NOKIA.VIDEO.FILESINK" />
+		<LoadComponent comp="3gp" name="OMX.SYMBIAN.OTHER.CONTAINER_DEMUXER.3GP" />
+		<SetFilename comp="3gp" filename="c:\omxil\data\cube-xvid-640x480-10fps-10s.3gp" />
+		<DisablePort port="3gp:0"/>
+		<ExpectEvent comp="3gp" event="CmdComplete" nData1="PortDisable" nData2="0" />
+		<DisablePort port="3gp:2"/>
+		<ExpectEvent comp="3gp" event="CmdComplete" nData1="PortDisable" nData2="2" />
+		<SetVideoPortDef port="3gp:1" codingType="autodetect" />
+		<SetFilename comp="sink" filename="c:\sink.3gp" />
+		<SetupTunnel output="3gp:1" input="sink:0" />
+		<AllTransition state="idle" />
+		<ExpectEvent comp="3gp" event="PortFormatDetected" nData1="1" nData2="0" />
+		<ExpectEvent comp="3gp" event="PortSettingsChanged" nData1="0x02000001" nData2="1" />
+		<ExpectEvent comp="sink" event="PortSettingsChanged" nData1="0x02000001" nData2="0"/>
+		
+		<AllTransition state="executing" />
+
+
+		<IgnoreEvent comp="3gp" event="OMX_EventBufferFlag" nData1="0x00000001" nData2="0x00000032" nData3="0"/>
+		
+		
+		<CheckVideoPortDef port="3gp:1" width="640" height="480" coding="mpeg4" colorFormat="unused" />	
+		<WaitEOS /> 
+
+		<AllTransition state="idle" />
+		<AllTransition state="loaded" />
+	</Test>
+	
+	
+</TestSet>
+
+
+

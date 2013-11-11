@@ -1,0 +1,7 @@
+EXPORTS
+	??1CErrorConcealmentIntfcCI@@UAE@XZ @ 1 NONAME ; CErrorConcealmentIntfcCI::~CErrorConcealmentIntfcCI(void)
+	?ConcealErrorForNextBuffer@CErrorConcealmentIntfcCI@@UAEHXZ @ 2 NONAME ; int CErrorConcealmentIntfcCI::ConcealErrorForNextBuffer(void)
+	?FrameModeRqrdForEC@CErrorConcealmentIntfcCI@@UAEHAAH@Z @ 3 NONAME ; int CErrorConcealmentIntfcCI::FrameModeRqrdForEC(int &)
+	?NewL@CErrorConcealmentIntfcCI@@SAPAV1@XZ @ 4 NONAME ; class CErrorConcealmentIntfcCI * CErrorConcealmentIntfcCI::NewL(void)
+	?SetFrameMode@CErrorConcealmentIntfcCI@@UAEHH@Z @ 5 NONAME ; int CErrorConcealmentIntfcCI::SetFrameMode(int)
+

@@ -1,0 +1,7 @@
+EXPORTS
+	??1CIlbcEncoderIntfcCI@@UAE@XZ @ 1 NONAME ; CIlbcEncoderIntfcCI::~CIlbcEncoderIntfcCI(void)
+	?GetVadMode@CIlbcEncoderIntfcCI@@UAEHAAH@Z @ 2 NONAME ; int CIlbcEncoderIntfcCI::GetVadMode(int &)
+	?NewL@CIlbcEncoderIntfcCI@@SAPAV1@XZ @ 3 NONAME ; class CIlbcEncoderIntfcCI * CIlbcEncoderIntfcCI::NewL(void)
+	?SetEncoderMode@CIlbcEncoderIntfcCI@@UAEHW4TEncodeMode@CIlbcEncoderIntfc@@@Z @ 4 NONAME ; int CIlbcEncoderIntfcCI::SetEncoderMode(enum CIlbcEncoderIntfc::TEncodeMode)
+	?SetVadMode@CIlbcEncoderIntfcCI@@UAEHH@Z @ 5 NONAME ; int CIlbcEncoderIntfcCI::SetVadMode(int)
+

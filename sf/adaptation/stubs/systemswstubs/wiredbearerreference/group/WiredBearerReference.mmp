@@ -1,0 +1,43 @@
+/*
+* Copyright (c) 2002-2004 Nokia Corporation and/or its subsidiary(-ies). 
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Used as an reference implementation.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+TARGET          WiredBearerReference.dll
+#include <remcon/remconservercaps.mmh>
+TARGETTYPE      PLUGIN
+UID             0x10009D8D 0x10205074
+VENDORID        VID_DEFAULT
+
+START RESOURCE  ../data/10205074.rss
+TARGET          WiredBearerReference.rsc
+END
+
+MW_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE     ../inc
+SOURCEPATH      ../src
+SOURCE          WiredBearerReferencePluginProxy.cpp
+SOURCE          WiredAccessoryKeyEventHandler.cpp
+SOURCE          AdaptationMessage.cpp
+
+LIBRARY         euser.lib
+LIBRARY         remconbearerplugin.lib
+LIBRARY         remcontypes.lib
+
+// End of File

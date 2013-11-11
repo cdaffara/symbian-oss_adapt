@@ -1,0 +1,80 @@
+// ===========================
+//
+//  Copyright Cypress Semiconductor Corporation, 2006-2009,
+//  All Rights Reserved
+//  UNPUBLISHED, LICENSED SOFTWARE.
+//
+//  CONFIDENTIAL AND PROPRIETARY INFORMATION
+//  WHICH IS THE PROPERTY OF CYPRESS.
+//
+// ===========================
+//
+// Description:
+// oamp3530/beagle_drivers/wb/wb.mmp
+// wb.dll Beagle WB driver
+//
+
+
+
+/**
+ @file
+*/
+#define __USING_ASSP_REGISTER_API__
+#define __USING_ASSP_INTERRUPT_API__
+
+#include			"beagle/variant.mmh"
+#include			"kernel/kern_ext.mmh"
+
+USERINCLUDE		./api/include
+USERINCLUDE		./api/hal
+USERINCLUDE		./api/src
+USERINCLUDE		./drivers
+
+//target				VariantTarget(wb,dll)
+target				wb.dll
+targettype			kext
+romtarget			wb.dll
+
+macro				CY_DEFINE_BASIC_TYPES
+macro				__CY_ASTORIA_BEAGLEBOARD_SPI__HAL__
+macro				DEBUG_ZERO
+macro				DEBUG_MSC
+//macro				FIRMWARE_NOPPORT
+//macro				HW_TEST
+macro				OVERCLOCK_SD
+
+sourcepath			.
+
+source 				./api/src/cyasdma.c 
+source				./api/src/cyaslep2pep.c 
+source				./api/src/cyaslowlevel.c 
+source				./api/src/cyasmisc.c 
+source				./api/src/cyasmtp.c 
+source				./api/src/cyasstorage.c 
+source				./api/src/cyasusb.c 
+source				./api/src/cyasintr.c
+source				./api/hal/cyashalbeagleboard_spi.cpp 
+source 				./api/hal/cyashalbeagleboard.cpp 
+source 				./drivers/CyAsSymbianStorageDriver.cpp 
+source 				./drivers/cyasusbinit.cpp
+source				wb.cpp
+
+library				VariantTarget(ecust,lib) 
+library				AsspTarget(gpio,lib)
+library             		AsspTarget(prcm,lib)
+
+deffile 		./def/~/wb.def
+
+start wins
+win32_headers
+end
+
+epocallowdlldata
+
+UID			0x10004379 0x10005742
+VENDORID	0x70000001
+
+capability		all
+
+SMPSAFE
+
